@@ -1,5 +1,6 @@
 package com.saidelshibiny.badmintonplanningandroidapp;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -42,14 +43,14 @@ public class DBHelper extends SQLiteOpenHelper {
     CRUD operation of the table
      */
     public static final String CREATE_PLAYERS_TABLE = "CREATE TABLE " + DB_TABLE_PLAYERS + " ("
-            + KEY_ID + " INSERT PRIMARY KEY AUTOINCREMENT,"
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_FIRST_NAME + " TEXT,"
             + KEY_LAST_NAME + " TEXT,"
             + KEY_RANKING + " INTEGER,"
             + KEY_IMAGE_ID + " INTEGER)";
 
     public static final String CREATE_MATCHES_TABLE = "CREATE TABLE " + DB_TABLE_MATCHES + " ("
-            + KEY_ID + " INSERT PRIMARY KEY AUTOINCREMENT,"
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + KEY_WIN_SCORE + " INTEGER,"
             + KEY_LOSE_SCORE + " INTEGER,"
             + KEY_MATCH_TIME + " DATE)";
@@ -59,13 +60,22 @@ public class DBHelper extends SQLiteOpenHelper {
             + KEY_MATCH_ID + " INTEGER REFERENCES " + DB_TABLE_MATCHES + "(" + KEY_ID + "),"
             + KEY_RESULT + " BOOLEAN)";
 
+    public DBHelper(Context context) {
+        super(context, DB_NAME, null, DB_VERSION);
+    }
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(CREATE_PLAYERS_TABLE);
+        db.execSQL(CREATE_MATCHES_TABLE);
+        db.execSQL(CREATE_PLAYER_MATCHES_TABLE);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+
+    }
+
+    private void addPlayersToTable(SQLiteDatabase db){
 
     }
 }
