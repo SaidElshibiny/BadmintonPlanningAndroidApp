@@ -1,5 +1,6 @@
 package com.saidelshibiny.badmintonplanningandroidapp;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -30,14 +31,14 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String KEY_IMAGE_ID = "image_id";
 
     //Attributes Name for matches table
-    private static final String KEY_WIN_SCORE= "win_score";
-    private static final String KEY_LOSE_SCORE= "lose_score";
-    private static final String KEY_MATCH_TIME= "match_time";
+    private static final String KEY_WIN_SCORE = "win_score";
+    private static final String KEY_LOSE_SCORE = "lose_score";
+    private static final String KEY_MATCH_TIME = "match_time";
 
     //Attributes Name for player_matches table
-    private static final String KEY_PLAYER_ID= "player_id";
-    private static final String KEY_MATCH_ID= "match_id";
-    private static final boolean KEY_RESULT= false;
+    private static final String KEY_PLAYER_ID = "player_id";
+    private static final String KEY_MATCH_ID = "match_id";
+    private static final boolean KEY_ISWINNER = false;
 
     /*
     CRUD operation of the table
@@ -58,11 +59,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String CREATE_PLAYER_MATCHES_TABLE = "CREATE TABLE " + DB_TABLE_PLAYER_MATCH + " ("
             + KEY_PLAYER_ID + " INTEGER REFERENCES " + DB_TABLE_PLAYERS + "(" + KEY_ID + "),"
             + KEY_MATCH_ID + " INTEGER REFERENCES " + DB_TABLE_MATCHES + "(" + KEY_ID + "),"
-            + KEY_RESULT + " BOOLEAN)";
+            + KEY_ISWINNER + " BOOLEAN)";
 
     public DBHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_PLAYERS_TABLE);
@@ -72,10 +74,34 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_PLAYERS);
+        db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_MATCHES);
+        db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_PLAYER_MATCH);
+    }
+
+    private void addPlayers(Player player, SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_FIRST_NAME, player.getFirstName());
+        values.put(KEY_LAST_NAME, player.getLastName());
+        values.put(KEY_RANKING, player.getRanking());
+        values.put(KEY_IMAGE_ID, player.getImageId());
+    }
+
+    private void addMatches(Match match, SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_WIN_SCORE, match.getWinningScore());
+        values.put(KEY_LOSE_SCORE, match.getLosingScore());
+        //TODO: Debug
+//        values.put(KEY_MATCH_TIME, match.getStartTime());
 
     }
 
-    private void addPlayersToTable(SQLiteDatabase db){
-
+    private void addPlayerMatch(Player_Match player_match, SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_PLAYER_ID, player_match.getPlayerId());
+        values.put(KEY_MATCH_ID, player_match.getMatchId());
+        //TODO: Debug
+//        values.put(KEY_ISWINNER, player_match.isWinner());
     }
+
 }
