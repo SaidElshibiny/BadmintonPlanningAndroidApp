@@ -1,4 +1,4 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Database;
 
 /*
 * Created by Chaonan Chen on March 9, 2019

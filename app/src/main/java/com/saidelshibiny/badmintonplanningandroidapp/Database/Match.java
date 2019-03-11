@@ -1,4 +1,4 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Database;
 
 import java.sql.Date;
 

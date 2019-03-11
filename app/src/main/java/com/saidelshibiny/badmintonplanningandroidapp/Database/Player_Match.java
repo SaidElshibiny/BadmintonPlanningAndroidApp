@@ -1,4 +1,4 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Database;
 
 public class Player_Match {
     private Integer playerId;
