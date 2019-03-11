@@ -4,9 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
@@ -28,6 +31,17 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    ImageButton checkinPlayers;
+    ImageButton matchPlayers;
+    ImageButton footworkDrills;
+    ImageButton timer;
+    ImageButton coaches;
+    ImageButton rules;
+
+    //Create fragment manager
+    FragmentManager fm;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,12 +80,102 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        //separate view and inflate
+        View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        //getsupportfragmentmanager
+        fm = getActivity().getSupportFragmentManager();
+
         //set the title
         getActivity().setTitle("Home Page");
 
+        //link imagebuttons
+        checkinPlayers = view.findViewById(R.id.hpcheckinimage);
+        matchPlayers = view.findViewById(R.id.hpmatchplayersimage);
+        footworkDrills = view.findViewById(R.id.hpfootworkdrillsimage);
+        timer = view.findViewById(R.id.hptimerimage);
+        coaches = view.findViewById(R.id.hpcoachesimage);
+        rules = view.findViewById(R.id.hprulesimage);
+
+        //create buttons
+        checkinPlayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+        matchPlayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new MatchingPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+
+        footworkDrills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new FootworkDrills());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+
+        timer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new Timer());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+
+        coaches.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new Coaches());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
+
+
+        rules.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new Rules());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
