@@ -1,8 +1,12 @@
 package com.saidelshibiny.badmintonplanningandroidapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +18,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+                   MainFragment.OnFragmentInteractionListener,
+                   CheckInPlayers.OnFragmentInteractionListener,
+                   MatchingPlayers.OnFragmentInteractionListener,
+                   FootworkDrills.OnFragmentInteractionListener,
+                   Timer.OnFragmentInteractionListener,
+                   Coaches.OnFragmentInteractionListener,
+                   Rules.OnFragmentInteractionListener{
+
+
+    //Create fragment manager
+    FragmentManager fm;
+
+    //create the a public static variable for the fab
+    public static FloatingActionButton fab;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +42,25 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fm = getSupportFragmentManager();
+
+        if(savedInstanceState == null){
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.main_content, new MainFragment());
+            transaction.commit();
+        }
+
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.hide();
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,24 +110,51 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        FragmentTransaction transaction = fm.beginTransaction();
+
         if (id == R.id.nav_check_in) {
-            // Handle the camera action
+            transaction.replace(R.id.main_content, new CheckInPlayers());
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_match_players) {
-
+            transaction.replace(R.id.main_content, new MatchingPlayers());
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_footwork_drills) {
-
+            transaction.replace(R.id.main_content, new FootworkDrills());
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_timer) {
-
+            transaction.replace(R.id.main_content, new Timer());
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_coaches) {
-
+            transaction.replace(R.id.main_content, new Coaches());
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_rules) {
-
+            transaction.replace(R.id.main_content, new Rules());
+            transaction.addToBackStack(null);
+            transaction.commit();
         } else if (id == R.id.nav_email) {
-
+            String[] UsersEmails = {"test1@test.com", "test2@test.com"};
+            Intent intent = new Intent(Intent.ACTION_SENDTO);
+            intent.setData(Uri.parse("mailto:"));
+            intent.putExtra(Intent.EXTRA_EMAIL, UsersEmails);
+            intent.putExtra(Intent.EXTRA_SUBJECT, "");
+            intent.putExtra(Intent.EXTRA_TEXT, "Dear All,");
+            if(intent.resolveActivity(getPackageManager()) != null){
+                startActivity(intent);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
