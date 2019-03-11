@@ -1,4 +1,4 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.saidelshibiny.badmintonplanningandroidapp.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Coaches.OnFragmentInteractionListener} interface
+ * {@link Rules.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Coaches#newInstance} factory method to
+ * Use the {@link Rules#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Coaches extends Fragment {
+public class Rules extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class Coaches extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Coaches() {
+    public Rules() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class Coaches extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Coaches.
+     * @return A new instance of fragment Rules.
      */
     // TODO: Rename and change types and number of parameters
-    public static Coaches newInstance(String param1, String param2) {
-        Coaches fragment = new Coaches();
+    public static Rules newInstance(String param1, String param2) {
+        Rules fragment = new Rules();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,10 +66,10 @@ public class Coaches extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().setTitle("Coaches");
+        getActivity().setTitle("Rules");
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_coaches, container, false);
+        return inflater.inflate(R.layout.fragment_rules, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -1,4 +1,4 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
