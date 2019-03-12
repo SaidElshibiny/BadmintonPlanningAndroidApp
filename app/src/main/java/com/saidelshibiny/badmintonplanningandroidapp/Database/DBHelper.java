@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     //table name
     private static final String DB_TABLE_PLAYERS = "players";
     private static final String DB_TABLE_MATCHES = "matches";
-    private static final String DB_TABLE_PLAYER_MATCH = "plaer_match";
+    private static final String DB_TABLE_PLAYER_MATCH = "player_match";
 
     //Table attributes name
     //1. Common Attributes name
