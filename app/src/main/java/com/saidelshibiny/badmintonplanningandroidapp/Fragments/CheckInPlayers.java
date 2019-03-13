@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
@@ -72,8 +73,15 @@ public class CheckInPlayers extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_check_in_players, container, false);
-        RecyclerView list = view.findViewById(R.id.playersList);
+        //set title bar
         getActivity().setTitle("Check-In Player");
+        //Display the players in Recycler view
+        RecyclerView list = view.findViewById(R.id.playersList);
+        list.setHasFixedSize(true);
+        players = new ArrayList<>();
+        DBHelper dbHelper = new DBHelper(this.getContext());
+        players = dbHelper.getAllPlayers();
+
 
         return view;
     }

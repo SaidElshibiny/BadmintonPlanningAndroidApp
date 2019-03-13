@@ -2,8 +2,11 @@ package com.saidelshibiny.badmintonplanningandroidapp.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 /*
  * Created by Chaonan Chen on March 9, 2019
@@ -104,4 +107,24 @@ public class DBHelper extends SQLiteOpenHelper {
 //        values.put(KEY_ISWINNER, player_match.isWinner());
     }
 
+    /*Reading All records from Player table*/
+    public ArrayList<Player> getAllPlayers(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Player> playersArrayList = new ArrayList<>();
+        String query = "SELECT * FROM " + DB_TABLE_PLAYERS;
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            do{
+                playersArrayList.add(new Player(
+                                                cursor.getInt(0),
+                                                cursor.getString(1),
+                                                cursor.getString(2),
+                                                cursor.getInt(3),
+                                                cursor.getInt(4)
+                                                ));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return  playersArrayList;
+    }
 }
