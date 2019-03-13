@@ -4,11 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +32,7 @@ public class CheckInPlayers extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ArrayList<Player> players;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,10 +71,11 @@ public class CheckInPlayers extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        View view = inflater.inflate(R.layout.fragment_check_in_players, container, false);
+        RecyclerView list = view.findViewById(R.id.playersList);
         getActivity().setTitle("Check-In Player");
 
-        return inflater.inflate(R.layout.fragment_check_in_players, container, false);
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
