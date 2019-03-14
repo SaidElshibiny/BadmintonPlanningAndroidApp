@@ -84,9 +84,9 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
 
         public CustomViewHolder(View view) {
             super(view);
-            this.firstName = (TextView) view.findViewById(R.id.firstName);
-            this.lastName = (TextView) view.findViewById(R.id.lastName);
-            this.imgPlayer = (ImageView)view.findViewById(R.id.imgPlayer);
+            this.firstName =  view.findViewById(R.id.firstName);
+            this.lastName =  view.findViewById(R.id.lastName);
+            this.imgPlayer = view.findViewById(R.id.imgPlayer);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

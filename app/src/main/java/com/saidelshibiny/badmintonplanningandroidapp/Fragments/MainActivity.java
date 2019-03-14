@@ -27,13 +27,10 @@ public class MainActivity extends AppCompatActivity
                    Coaches.OnFragmentInteractionListener,
                    Rules.OnFragmentInteractionListener{
 
-
     //Create fragment manager
     FragmentManager fm;
-
     //create the a public static variable for the fab
     public static FloatingActionButton fab;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +40,10 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         fm = getSupportFragmentManager();
-
-        if(savedInstanceState == null){
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.main_content, new MainFragment());
-            transaction.commit();
-        }
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_content, new MainFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
@@ -98,6 +93,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+//            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//            startActivity(intent);
             return true;
         }
 
@@ -109,7 +106,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+       // fm = getSupportFragmentManager();
         FragmentTransaction transaction = fm.beginTransaction();
 
         if (id == R.id.nav_check_in) {

@@ -73,6 +73,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_PLAYERS_TABLE);
         db.execSQL(CREATE_MATCHES_TABLE);
         db.execSQL(CREATE_PLAYER_MATCHES_TABLE);
+        addPlayersToTable(db);
     }
 
     @Override
@@ -107,6 +108,27 @@ public class DBHelper extends SQLiteOpenHelper {
 //        values.put(KEY_ISWINNER, player_match.isWinner());
     }
 
+    public void addPlayer(Player player, SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+        values.put(KEY_FIRST_NAME, player.getFirstName());
+        values.put(KEY_LAST_NAME, player.getLastName());
+        values.put(KEY_RANKING, player.getRanking());
+        values.put(KEY_IMAGE_ID, player.getImageId());
+        db.insert(DB_TABLE_PLAYERS, null, values);
+    }
+
+
+    //insert records to players table
+    private void addPlayersToTable(SQLiteDatabase db){
+        Player p1 = new Player(0, "Sally", "Zhao", 78, 0);
+        this.addPlayer(p1, db);
+        Player p2 = new Player(2, "Mario", "Zhang", 68, 1);
+        this.addPlayer(p2, db);
+    }
+
+
+
+
     /*Reading All records from Player table*/
     public ArrayList<Player> getAllPlayers(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -127,4 +149,8 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
         return  playersArrayList;
     }
+
+
+
+
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,12 +78,20 @@ public class CheckInPlayers extends Fragment {
         //set title bar
         getActivity().setTitle("Check-In Player");
         //Display the players in Recycler view
-        RecyclerView list = view.findViewById(R.id.playersList);
+        RecyclerView list = (RecyclerView)view.findViewById(R.id.playersList);
         list.setHasFixedSize(true);
         players = new ArrayList<>();
         DBHelper dbHelper = new DBHelper(this.getContext());
         players = dbHelper.getAllPlayers();
 
+        PlayersCustomAdapter adapter = new PlayersCustomAdapter(players, getContext());
+        list.setAdapter(adapter);
+        list.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        list.setItemAnimator(itemAnimator);
 
         return view;
     }

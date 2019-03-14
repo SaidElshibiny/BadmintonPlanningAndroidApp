@@ -10,7 +10,7 @@ public class Player {
     private Integer ranking;
     private Integer imageId;
 
-    public Player() {}
+   public Player() {}
 
     //constructor
     public Player(Integer playerId, String firstName, String lastName, Integer ranking, Integer imageId) {
@@ -43,6 +43,22 @@ public class Player {
     }
 
     //setter
+
+    public void setPlayerId(Integer playerId) {
+        this.playerId = playerId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setImageId(Integer imageId) {
+        this.imageId = imageId;
+    }
 
     public void setRanking(Integer ranking) {
         this.ranking = ranking;
