@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
@@ -81,8 +80,10 @@ public class CheckInPlayers extends Fragment {
         RecyclerView list = (RecyclerView)view.findViewById(R.id.playersList);
         list.setHasFixedSize(true);
         players = new ArrayList<>();
-        DBHelper dbHelper = new DBHelper(this.getContext());
-        players = dbHelper.getAllPlayers();
+        players.add(new Player(0, "Sally", "Zhao", 78, 0));
+        players.add(new Player(1, "John", "Json", 88, 1));
+//        DBHelper dbHelper = new DBHelper(this.getContext());
+//        players = dbHelper.getAllPlayers();
 
         PlayersCustomAdapter adapter = new PlayersCustomAdapter(players, getContext());
         list.setAdapter(adapter);

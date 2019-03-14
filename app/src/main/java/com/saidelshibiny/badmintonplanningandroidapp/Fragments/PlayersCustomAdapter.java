@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
@@ -44,7 +43,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
         final MainActivity mainActivity = (MainActivity) context;
         ((CustomViewHolder) holder).firstName.setText(player.getFirstName());
         ((CustomViewHolder) holder).lastName.setText(player.getLastName());
-        ((CustomViewHolder) holder).imgPlayer.setImageResource(player.getImageId());
+     //   ((CustomViewHolder) holder).imgPlayer.setImageResource(player.getImageId());
         ((CustomViewHolder) holder).setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View view, int position, boolean isLongClick) {
@@ -77,7 +76,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
-        protected ImageView imgPlayer;
+    //    protected ImageView imgPlayer;
         protected TextView firstName;
         protected TextView lastName;
         private ItemClickListener itemClickListener;
@@ -86,7 +85,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
             super(view);
             this.firstName =  view.findViewById(R.id.firstName);
             this.lastName =  view.findViewById(R.id.lastName);
-            this.imgPlayer = view.findViewById(R.id.imgPlayer);
+           // this.imgPlayer = view.findViewById(R.id.imgPlayer);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
