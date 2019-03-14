@@ -4,11 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +34,7 @@ public class CheckInPlayers extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    ArrayList<Player> players;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,10 +73,28 @@ public class CheckInPlayers extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        View view = inflater.inflate(R.layout.fragment_check_in_players, container, false);
+        //set title bar
         getActivity().setTitle("Check-In Player");
+        //Display the players in Recycler view
+        RecyclerView list = (RecyclerView)view.findViewById(R.id.playersList);
+        list.setHasFixedSize(true);
+        players = new ArrayList<>();
+        players.add(new Player(0, "Sally", "Zhao", 78, 0));
+        players.add(new Player(1, "John", "Json", 88, 1));
+//        DBHelper dbHelper = new DBHelper(this.getContext());
+//        players = dbHelper.getAllPlayers();
 
-        return inflater.inflate(R.layout.fragment_check_in_players, container, false);
+        PlayersCustomAdapter adapter = new PlayersCustomAdapter(players, getContext());
+        list.setAdapter(adapter);
+        list.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        itemAnimator.setAddDuration(1000);
+        itemAnimator.setRemoveDuration(1000);
+        list.setItemAnimator(itemAnimator);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
