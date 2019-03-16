@@ -83,14 +83,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + DB_TABLE_PLAYER_MATCH);
     }
 
-    private void addPlayers(Player player, SQLiteDatabase db) {
-        ContentValues values = new ContentValues();
-        values.put(KEY_FIRST_NAME, player.getFirstName());
-        values.put(KEY_LAST_NAME, player.getLastName());
-        values.put(KEY_RANKING, player.getRanking());
-        values.put(KEY_IMAGE_ID, player.getImageId());
-    }
-
     private void addMatches(Match match, SQLiteDatabase db) {
         ContentValues values = new ContentValues();
         values.put(KEY_WIN_SCORE, match.getWinningScore());
@@ -107,6 +99,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //TODO: Debug
 //        values.put(KEY_ISWINNER, player_match.isWinner());
     }
+
 
     public void addPlayer(Player player, SQLiteDatabase db){
         ContentValues values = new ContentValues();
@@ -126,7 +119,26 @@ public class DBHelper extends SQLiteOpenHelper {
         this.addPlayer(p2, db);
     }
 
-
+/*Reading one player table the PLAYER table*/
+    public Player getPlayer(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Player player = null;
+        String query = "SELECT * FROM " + DB_TABLE_PLAYERS +
+                        "WHERE " + KEY_ID + "=" + id;
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor != null){
+            cursor.moveToFirst();
+            player = new Player(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getInt(3),
+                    cursor.getInt(4)
+            );
+        }
+        db.close();
+        return player;
+    }
 
 
     /*Reading All records from Player table*/
