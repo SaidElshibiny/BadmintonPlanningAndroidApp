@@ -17,13 +17,12 @@
         />
 
     <Button
-        android:id="@+id/finishCheckout"
+        android:id="@+id/finishCheckin"
         android:layout_width="match_parent"
         android:layout_height="200px"
         android:layout_alignParentBottom="true"
-
         android:background="@color/colorPrimary"
-        android:text="Finish Checkout"
+        android:text="All Players Checked In"
         android:textColor="@color/colorBackground"
         android:visibility="visible" />
 

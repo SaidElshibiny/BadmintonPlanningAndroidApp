@@ -133,7 +133,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     cursor.getString(1),
                     cursor.getString(2),
                     cursor.getInt(3),
-                    cursor.getInt(4)
+                    cursor.getInt(4),
+                    cursor.getWantsAllOnMoveCalls()
             );
         }
         db.close();
@@ -154,7 +155,8 @@ public class DBHelper extends SQLiteOpenHelper {
                                                 cursor.getString(1),
                                                 cursor.getString(2),
                                                 cursor.getInt(3),
-                                                cursor.getInt(4)
+                                                cursor.getInt(4),
+                                                cursor.getWantsAllOnMoveCalls()
                                                 ));
             } while (cursor.moveToNext());
         }

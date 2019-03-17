@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
+import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 public class PlayersCustomAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Player> players;
+    SparseBooleanArray itemStateArray = new SparseBooleanArray();
     private Context context;
     View view;
     private int lastPostion = -1;
@@ -49,6 +52,12 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
         holder1.firstName.setText(player.getFirstName());
         holder1.lastName.setText(player.getLastName());
         holder1.imageID.setImageResource(player.getImageID());
+        if (!itemStateArray.get(position, false)) {
+            holder1.checkBox.setChecked(false);
+        }else {
+            holder1.checkBox.setChecked(true);
+        }
+
 
 //        (holder1).setItemClickListener(new ItemClickListener() {
 //            @Override
@@ -85,37 +94,61 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
+
+
     class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
     //    protected ImageView imgPlayer;
         protected TextView firstName;
         protected TextView lastName;
         protected ImageView imageID;
+        protected CheckBox checkBox;
+        protected CheckedTextView mCheckedTextView;
+
         private ItemClickListener itemClickListener;
-        private SparseBooleanArray selectedItems = new SparseBooleanArray();
+       private SparseBooleanArray selectedItems = new SparseBooleanArray();
 
-        public CustomViewHolder(View view) {
-            super(view);
-            view.setOnClickListener(this);
-            this.firstName =  view.findViewById(R.id.firstName);
-            this.lastName =  view.findViewById(R.id.lastName);
-            this.imageID = view.findViewById(R.id.playerImage);
-
-          //  itemView.setOnClickListener(this);
+        public CustomViewHolder(View itemView) {
+            super(itemView);
+            itemView.setOnClickListener(this);
+            this.firstName =  itemView.findViewById(R.id.firstName);
+            this.lastName =  itemView.findViewById(R.id.lastName);
+            this.imageID = itemView.findViewById(R.id.playerImage);
+            this.checkBox = itemView.findViewById(R.id.checkbox);
+            itemView.setOnClickListener(this);
          //   itemView.setOnLongClickListener(this);
         }
+
 
 //        public void setItemClickListener(ItemClickListener itemClickListener){
 //            this.itemClickListener = itemClickListener;
 //        }
         @Override
         public void onClick(View view) {
-            if(selectedItems.get(getAdapterPosition(), false)){
-                selectedItems.delete(getAdapterPosition());
-                view.setSelected(false);
-            }else{
-                selectedItems.put(getAdapterPosition(),true);
-                view.setSelected(true);
+//           // set the background for selected item
+//            if(selectedItems.get(getAdapterPosition(), false)){
+//
+//                view.setSelected(false);
+//            }else{
+//                selectedItems.put(getAdapterPosition(),true);
+//                view.setSelected(true);
+//            }
+
+            int adapterPosition = getAdapterPosition();
+            if(!itemStateArray.get(adapterPosition, false)){
+//                selectedItems.delete(getAdapterPosition());
+//                view.setSelected(false);
+                checkBox.setChecked(true);
+                itemStateArray.put(adapterPosition, true);
+            }else {
+//                selectedItems.put(getAdapterPosition(),true);
+//                view.setSelected(true);
+                checkBox.setChecked(false);
+                itemStateArray.put(adapterPosition, false);
             }
+
+            //set the check status for the checked item
+
+
            // itemClickListener.onClick(view, getAdapterPosition(), false);
         }
 

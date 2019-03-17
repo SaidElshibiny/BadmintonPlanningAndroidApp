@@ -4,11 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
@@ -34,6 +37,8 @@ public class CheckInPlayers extends Fragment {
     private String mParam1;
     private String mParam2;
     ArrayList<Player> players;
+    Button btfinishedCheckin;
+    FragmentManager fm;
 
     private OnFragmentInteractionListener mListener;
 
@@ -72,30 +77,32 @@ public class CheckInPlayers extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        fm = getActivity().getSupportFragmentManager();
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_check_in_players, container, false);
         //set title bar
         getActivity().setTitle("Check-In Player");
 
         players = new ArrayList<>();
         //get player info from here - player info displayed
-        players.add(new Player(0, "Sally", "Zhao", 78, R.drawable.girl1));
-        players.add(new Player(1, "John", "Json", 88, R.drawable.boy1));
-        players.add(new Player(2, "Mitch", "Zhao", 78, R.drawable.girl2));
-        players.add(new Player(3, "Sitch", "Json", 88, R.drawable.boy2));
-        players.add(new Player(4, "Shelly", "Smith", 78, R.drawable.girl3));
-        players.add(new Player(5, "John", "Yuan", 88, R.drawable.boy3));
-        players.add(new Player(6, "Sally", "Chen", 78, R.drawable.girl4));
-        players.add(new Player(7, "Jess", "Json", 88, R.drawable.boy4));
-        players.add(new Player(8, "Shally", "Zhao", 78, R.drawable.girl5));
-        players.add(new Player(9, "Steve", "Json", 88, R.drawable.boy4));
-        players.add(new Player(10, "Even", "Zhao", 78, R.drawable.girl1));
-        players.add(new Player(11, "macheal", "Json", 88, R.drawable.boy1));
-        players.add(new Player(12, "Efan", "Zhao", 78, R.drawable.girl2));
-        players.add(new Player(13, "John", "Json", 88, R.drawable.boy2));
-        players.add(new Player(14, "Jenny", "Zhao", 78, R.drawable.girl3));
-        players.add(new Player(15, "Laura", "Json", 88, R.drawable.boy3));
-        players.add(new Player(16, "Jenna", "Zhao", 78, R.drawable.girl4));
-        players.add(new Player(17, "Sohan", "Json", 88, R.drawable.boy4));
+        players.add(new Player(0, "Sally", "Zhao", 78, R.drawable.girl1, false));
+        players.add(new Player(1, "John", "Json", 88, R.drawable.boy1,false));
+        players.add(new Player(2, "Mitch", "Zhao", 78, R.drawable.girl2,false));
+        players.add(new Player(3, "Sitch", "Json", 88, R.drawable.boy2,false));
+        players.add(new Player(4, "Shelly", "Smith", 78, R.drawable.girl3,false));
+        players.add(new Player(5, "John", "Yuan", 88, R.drawable.boy3,false));
+        players.add(new Player(6, "Sally", "Chen", 78, R.drawable.girl4,false));
+        players.add(new Player(7, "Jess", "Json", 88, R.drawable.boy4,false));
+        players.add(new Player(8, "Shally", "Zhao", 78, R.drawable.girl5,false));
+        players.add(new Player(9, "Steve", "Json", 88, R.drawable.boy4,false));
+        players.add(new Player(10, "Even", "Zhao", 78, R.drawable.girl1,false));
+        players.add(new Player(11, "macheal", "Json", 88, R.drawable.boy1,false));
+        players.add(new Player(12, "Efan", "Zhao", 78, R.drawable.girl2,false));
+        players.add(new Player(13, "John", "Json", 88, R.drawable.boy2,false));
+        players.add(new Player(14, "Jenny", "Zhao", 78, R.drawable.girl3,false));
+        players.add(new Player(15, "Laura", "Json", 88, R.drawable.boy3,false));
+        players.add(new Player(16, "Jenna", "Zhao", 78, R.drawable.girl4,false));
+        players.add(new Player(17, "Sohan", "Json", 88, R.drawable.boy4,false));
         //get player info from DBHelper - player info not display
 //        DBHelper dbHelper = new DBHelper(this.getContext());
 //        players = dbHelper.getAllPlayers();
@@ -108,11 +115,17 @@ public class CheckInPlayers extends Fragment {
         PlayersCustomAdapter adapter = new PlayersCustomAdapter(players);
         recyclerView.setAdapter(adapter);
 
+        btfinishedCheckin = (Button) view.findViewById(R.id.finishCheckin);
+        btfinishedCheckin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new MatchingPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
-//        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
-//        itemAnimator.setAddDuration(1000);
-//        itemAnimator.setRemoveDuration(1000);
-//        list.setItemAnimator(itemAnimator);
 
         return view;
     }
