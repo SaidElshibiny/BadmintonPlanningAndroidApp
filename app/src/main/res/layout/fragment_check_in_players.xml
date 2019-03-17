@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Fragments.CheckInPlayers">
 
@@ -11,16 +11,23 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/playersList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layoutAnimation="@anim/layout_animation_fall_down"
-        android:scrollbars="vertical">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_marginBottom="200px"
+        />
 
     <Button
         android:id="@+id/finishCheckout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Finish Checkout" />
+        android:layout_height="200px"
+        android:layout_alignParentBottom="true"
+
+        android:background="@color/colorPrimary"
+        android:text="Finish Checkout"
+        android:textColor="@color/colorBackground"
+        android:visibility="visible" />
 
 
-</FrameLayout>
+
+
+</RelativeLayout>
