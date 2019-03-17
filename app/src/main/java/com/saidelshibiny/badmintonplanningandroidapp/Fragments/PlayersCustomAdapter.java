@@ -3,6 +3,7 @@ package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +32,9 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
 //        this.context = context;
     }
 
-    @NonNull
+
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_recycler_view, null);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         context = parent.getContext();
@@ -90,9 +91,11 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
         protected TextView lastName;
         protected ImageView imageID;
         private ItemClickListener itemClickListener;
+        private SparseBooleanArray selectedItems = new SparseBooleanArray();
 
         public CustomViewHolder(View view) {
             super(view);
+            view.setOnClickListener(this);
             this.firstName =  view.findViewById(R.id.firstName);
             this.lastName =  view.findViewById(R.id.lastName);
             this.imageID = view.findViewById(R.id.playerImage);
@@ -101,12 +104,19 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
          //   itemView.setOnLongClickListener(this);
         }
 
-        public void setItemClickListener(ItemClickListener itemClickListener){
-            this.itemClickListener = itemClickListener;
-        }
+//        public void setItemClickListener(ItemClickListener itemClickListener){
+//            this.itemClickListener = itemClickListener;
+//        }
         @Override
         public void onClick(View view) {
-            itemClickListener.onClick(view, getAdapterPosition(), false);
+            if(selectedItems.get(getAdapterPosition(), false)){
+                selectedItems.delete(getAdapterPosition());
+                view.setSelected(false);
+            }else{
+                selectedItems.put(getAdapterPosition(),true);
+                view.setSelected(true);
+            }
+           // itemClickListener.onClick(view, getAdapterPosition(), false);
         }
 
         @Override
