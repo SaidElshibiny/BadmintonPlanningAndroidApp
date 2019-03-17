@@ -8,17 +8,17 @@ public class Player {
     private String firstName;
     private String lastName;
     private Integer ranking;
-    private String imageURL;
+    private int imageID;
 
    public Player() {}
 
     //constructor
-    public Player(Integer playerId, String firstName, String lastName, Integer ranking, String imageURL) {
+    public Player(Integer playerId, String firstName, String lastName, Integer ranking, int imageID) {
         this.playerId = playerId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.ranking = ranking;
-        this.imageURL = imageURL;
+        this.imageID = imageID;
     }
 
     //getter
@@ -38,8 +38,8 @@ public class Player {
         return ranking;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public int getImageID() {
+        return imageID;
     }
 
     //setter
@@ -56,8 +56,8 @@ public class Player {
         this.lastName = lastName;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
     }
 
     public void setRanking(Integer ranking) {
