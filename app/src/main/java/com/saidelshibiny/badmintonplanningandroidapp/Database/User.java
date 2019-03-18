@@ -1,9 +1,11 @@
+package com.saidelshibiny.badmintonplanningandroidapp.Database;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
  * Created by Keegan on 2019-03-13.
- * In this class, we will store information related to the User
+ * In this class, we will store information related to the com.saidelshibiny.badmintonplanningandroidapp.Database.User
  */
 
 public class User implements Parcelable {
