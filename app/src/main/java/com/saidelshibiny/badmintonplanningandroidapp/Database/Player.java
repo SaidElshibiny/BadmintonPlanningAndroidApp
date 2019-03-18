@@ -8,17 +8,19 @@ public class Player {
     private String firstName;
     private String lastName;
     private Integer ranking;
-    private Integer imageId;
+    private int imageID;
+    private boolean isChecked;
 
-    public Player() {}
+   public Player() {}
 
     //constructor
-    public Player(Integer playerId, String firstName, String lastName, Integer ranking, Integer imageId) {
+    public Player(Integer playerId, String firstName, String lastName, Integer ranking, int imageID, boolean isChecked) {
         this.playerId = playerId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.ranking = ranking;
-        this.imageId = imageId;
+        this.imageID = imageID;
+        this.isChecked = false;
     }
 
     //getter
@@ -38,13 +40,34 @@ public class Player {
         return ranking;
     }
 
-    public Integer getImageId() {
-        return imageId;
+    public int getImageID() {
+        return imageID;
+    }
+
+    public boolean getChecked() { return isChecked;
     }
 
     //setter
 
+    public void setPlayerId(Integer playerId) {
+        this.playerId = playerId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setImageID(int imageID) {
+        this.imageID = imageID;
+    }
+
     public void setRanking(Integer ranking) {
         this.ranking = ranking;
     }
+
+    public void setChecked(boolean checked) { isChecked = checked;   }
 }
