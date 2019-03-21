@@ -103,6 +103,9 @@ public class Player implements Parcelable {
 
     public void setChecked(boolean checked) { isChecked = checked;   }
 
+    public void toggleChecked(){
+        isChecked = !isChecked;
+    }
     @Override
     public int describeContents() {
         return 0;

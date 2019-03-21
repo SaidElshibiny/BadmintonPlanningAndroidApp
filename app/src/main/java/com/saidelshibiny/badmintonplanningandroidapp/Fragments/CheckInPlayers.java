@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
@@ -36,7 +35,7 @@ public class CheckInPlayers extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    ArrayList<Player> players;
+    private ArrayList<Player> players;
     Button btfinishedCheckin;
     FragmentManager fm;
 
@@ -83,7 +82,7 @@ public class CheckInPlayers extends Fragment {
         //set title bar
         getActivity().setTitle("Check-In Player");
 
-        players = new ArrayList<>();
+       players = new ArrayList<>();
         //get player info from here - player info displayed
         players.add(new Player(0, "Sally", "Zhao", 78, R.drawable.girl1, false));
         players.add(new Player(1, "John", "Json", 88, R.drawable.boy1,false));
@@ -107,25 +106,32 @@ public class CheckInPlayers extends Fragment {
 //        DBHelper dbHelper = new DBHelper(this.getContext());
 //        players = dbHelper.getAllPlayers();
 
-        //Display the players in Recycler view
+       /* ====== //Display the players in Recycler view
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.playersList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 //        recyclerView.setHasFixedSize(true);
 //        PlayersCustomAdapter adapter = new PlayersCustomAdapter(players, getContext());
         PlayersCustomAdapter adapter = new PlayersCustomAdapter(players);
         recyclerView.setAdapter(adapter);
+*/
+        //Display the player info in Gridview
+        GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
+        final PlayersAdapter playersAdapter = new PlayersAdapter(getContext(), players);
+        gridView.setAdapter(playersAdapter);
+
+
 
         btfinishedCheckin = (Button) view.findViewById(R.id.finishCheckin);
         btfinishedCheckin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentTransaction transaction = fm.beginTransaction();
+
                 transaction.replace(R.id.main_content, new MatchingPlayers());
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
         });
-
 
         return view;
     }
