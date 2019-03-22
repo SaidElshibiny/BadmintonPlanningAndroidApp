@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,14 +49,15 @@ public class PlayersAdapter extends BaseAdapter {
         final ImageView imageView = (ImageView)view.findViewById(R.id.playerImageGrid);
         final TextView firstName =  (TextView)view.findViewById(R.id.firstNameGrid);
         final TextView lastName =  (TextView)view.findViewById(R.id.lastNameGrid);
-        final CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkboxGrid);
-
-        final ViewHolder viewHolder = new ViewHolder(firstName, lastName, imageView, checkBox);
+       // final CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkboxGrid);
+        final ImageView imageChecked = (ImageView)view.findViewById(R.id.checkImageGrid);
+        final ViewHolder viewHolder = new ViewHolder(firstName, lastName, imageView, imageChecked);
         view.setTag(viewHolder);
         final ViewHolder viewHolder1 =  (ViewHolder)view.getTag();
         viewHolder1.firstName.setText(player.getFirstName());
         viewHolder1.lastName.setText(player.getLastName());
         viewHolder1.imageID.setImageResource(player.getImageID());
+        viewHolder1.imageCheck.setImageResource(player.getChecked()? R.drawable.check_enabled:R.drawable.check_disabled);
 
 
         return view;
@@ -67,13 +67,13 @@ public class PlayersAdapter extends BaseAdapter {
         private final TextView firstName;
         private final TextView lastName;
         private final ImageView imageID;
-        private final CheckBox checkBox;
+        private final ImageView imageCheck;
 
-        public ViewHolder(TextView firstName, TextView lastName, ImageView imageID, CheckBox checkBox) {
+        public ViewHolder(TextView firstName, TextView lastName, ImageView imageID, ImageView imageCheck) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.imageID = imageID;
-            this.checkBox = checkBox;
+            this.imageCheck = imageCheck;
         }
 
 //

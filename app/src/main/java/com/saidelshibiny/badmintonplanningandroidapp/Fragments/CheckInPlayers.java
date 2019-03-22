@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 
@@ -102,6 +103,13 @@ public class CheckInPlayers extends Fragment {
         players.add(new Player(15, "Laura", "Json", 88, R.drawable.boy3,false));
         players.add(new Player(16, "Jenna", "Zhao", 78, R.drawable.girl4,false));
         players.add(new Player(17, "Sohan", "Json", 88, R.drawable.boy4,false));
+        players.add(new Player(18, "macheal", "Json", 88, R.drawable.boy1,false));
+        players.add(new Player(19, "Efan", "Zhao", 78, R.drawable.girl2,false));
+        players.add(new Player(20, "John", "Json", 88, R.drawable.boy2,false));
+        players.add(new Player(21, "Jenny", "Zhao", 78, R.drawable.girl3,false));
+        players.add(new Player(22, "Laura", "Json", 88, R.drawable.boy3,false));
+        players.add(new Player(23, "Jenna", "Zhao", 78, R.drawable.girl4,false));
+        players.add(new Player(24, "Sohan", "Json", 88, R.drawable.boy4,false));
         //get player info from DBHelper - player info not display
 //        DBHelper dbHelper = new DBHelper(this.getContext());
 //        players = dbHelper.getAllPlayers();
@@ -120,6 +128,14 @@ public class CheckInPlayers extends Fragment {
         gridView.setAdapter(playersAdapter);
 
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Player player = players.get(i);
+                player.toggleChecked();
+                playersAdapter.notifyDataSetChanged();
+            }
+        });
 
         btfinishedCheckin = (Button) view.findViewById(R.id.finishCheckin);
         btfinishedCheckin.setOnClickListener(new View.OnClickListener() {
