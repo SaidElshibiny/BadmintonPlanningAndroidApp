@@ -1,6 +1,7 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +17,8 @@ import java.util.ArrayList;
 public class PlayersAdapter extends BaseAdapter {
     private final Context mContext;
     private final ArrayList<Player> players;
-
+    private ItemClickListener itemClickListener;
+    private SparseBooleanArray selectedItems = new SparseBooleanArray();
     public PlayersAdapter(Context mContext, ArrayList<Player> players) {
         this.mContext = mContext;
         this.players = players;
@@ -43,13 +45,11 @@ public class PlayersAdapter extends BaseAdapter {
         if(view == null){
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             view = layoutInflater.inflate(R.layout.linearlayout_player, null);
-            //TODO: Add a linearlayout_player
         }
 
         final ImageView imageView = (ImageView)view.findViewById(R.id.playerImageGrid);
         final TextView firstName =  (TextView)view.findViewById(R.id.firstNameGrid);
         final TextView lastName =  (TextView)view.findViewById(R.id.lastNameGrid);
-       // final CheckBox checkBox = (CheckBox)view.findViewById(R.id.checkboxGrid);
         final ImageView imageChecked = (ImageView)view.findViewById(R.id.checkImageGrid);
         final ViewHolder viewHolder = new ViewHolder(firstName, lastName, imageView, imageChecked);
         view.setTag(viewHolder);
@@ -59,9 +59,10 @@ public class PlayersAdapter extends BaseAdapter {
         viewHolder1.imageID.setImageResource(player.getImageID());
         viewHolder1.imageCheck.setImageResource(player.getChecked()? R.drawable.check_enabled:R.drawable.check_disabled);
 
-
         return view;
     }
+
+
 
     private class ViewHolder {
         private final TextView firstName;
@@ -76,13 +77,6 @@ public class PlayersAdapter extends BaseAdapter {
             this.imageCheck = imageCheck;
         }
 
-//
-//        public ViewHolder() {
-//            this.nameTextView = nameTextView;
-//            this.authorTextView = authorTextView;
-//            this.imageViewCoverArt = imageViewCoverArt;
-//            this.imageViewFavorite = imageViewFavorite;
-//        }
     }
 
 

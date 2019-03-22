@@ -30,7 +30,7 @@ import java.util.ArrayList;
 public class CheckInPlayers extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+    private static final String checkedPlayerNamesKey = "checkedPlayerNamesKey";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -58,7 +58,7 @@ public class CheckInPlayers extends Fragment {
     public static CheckInPlayers newInstance(String param1, String param2) {
         CheckInPlayers fragment = new CheckInPlayers();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putString(checkedPlayerNamesKey, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -68,7 +68,7 @@ public class CheckInPlayers extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam1 = getArguments().getString(checkedPlayerNamesKey);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -137,6 +137,24 @@ public class CheckInPlayers extends Fragment {
             }
         });
 
+//        final ArrayList<Integer> checkedPlayerNames = savedInstanceState.getIntegerArrayList(checkedPlayerNamesKey);
+//        for(int playerid : checkedPlayerNames){
+//            for(Player player : players){
+//                if(player.getPlayerId() == playerid) {
+//                    player.setChecked(true);
+//                    break;
+//                }
+//            }
+//        }
+
+//        for(Player player : players){
+//            if(player.getChecked()){
+//                checkedPlayerNames.add(player.getPlayerId());
+//            }
+//            playersAdapter.putIntegerArrayList(checkedPlayerNamesKey, checkedPlayerNames);
+//        }
+
+
         btfinishedCheckin = (Button) view.findViewById(R.id.finishCheckin);
         btfinishedCheckin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,7 +168,15 @@ public class CheckInPlayers extends Fragment {
         });
 
         return view;
-    }
+    } //end of oncreatview
+
+
+
+
+
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -176,16 +202,6 @@ public class CheckInPlayers extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
