@@ -12,7 +12,7 @@ public class Player implements Parcelable {
     private String lastName;
     private Integer ranking;
     private int imageID;
-    private boolean isChecked;
+    private boolean isChecked = false;
 
    public Player() {}
 
@@ -101,8 +101,12 @@ public class Player implements Parcelable {
         this.ranking = ranking;
     }
 
-    public void setChecked(boolean checked) { isChecked = checked;   }
+    public void setChecked(boolean isChecked) { this.isChecked = isChecked;   }
 
+    public void toggleChecked(){
+        isChecked = !isChecked;
+
+    }
     @Override
     public int describeContents() {
         return 0;

@@ -40,11 +40,12 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         fm = getSupportFragmentManager();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_content, new MainFragment());
-        transaction.addToBackStack(null);
-        transaction.commit();
-
+        if (savedInstanceState == null) {
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.main_content, new MainFragment());
+           // transaction.addToBackStack(null);
+            transaction.commit();
+        }
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
 

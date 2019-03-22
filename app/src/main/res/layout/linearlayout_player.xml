@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:padding="@dimen/nav_header_vertical_spacing"
+
+    >
+
+        <ImageView
+            android:id="@+id/playerImageGrid"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="@string/image_attribute"
+            android:background="@color/colorPrimaryDark"
+            android:scaleType="centerCrop"
+            />
+
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="left"
+        >
+        <TextView
+            android:id="@+id/firstNameGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:gravity="left"
+
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/lastNameGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:gravity="left"
+
+            android:textSize="24sp" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/checkImageGrid"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/check_disabled"
+        android:layout_gravity="bottom|right"/>
+
+</FrameLayout>
+
+
+</LinearLayout>
