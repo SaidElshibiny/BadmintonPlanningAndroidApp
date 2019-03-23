@@ -11,7 +11,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
@@ -25,6 +29,11 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
  * create an instance of this fragment.
  */
 public class MatchingPlayers extends Fragment {
+
+    LinearLayout watingArea;
+    Button addGuestPlayer;
+    EditText mEditText;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -100,6 +109,20 @@ public class MatchingPlayers extends Fragment {
         view.findViewById(R.id.court5B).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court6B).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court7).setOnDragListener(new PlayerDragListener());
+
+        watingArea = (LinearLayout)view.findViewById(R.id.court1A);
+        mEditText = (EditText) view.findViewById(R.id.guestName);
+        addGuestPlayer = view.findViewById(R.id.addGuestPlayer);
+        addGuestPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                watingArea.addView(createNewTextView(mEditText.getText().toString()));
+                Toast toast = Toast.makeText(getContext(), "new player added", Toast.LENGTH_SHORT);
+                toast.setMargin(50,50);
+                toast.show();
+            }
+        });
+
         return view;
     }
 
@@ -157,6 +180,20 @@ public class MatchingPlayers extends Fragment {
     }
 
     // TODO: Rename method, update argument and hook method into UI event
+    private TextView createNewTextView(String text) {
+        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        final TextView textView = new TextView(getContext());
+        textView.setLayoutParams(lparams);
+        textView.setText(text);
+        textView.setTextSize(30);
+        // textView.setTextColor("#FFFFFF");
+//        textView.setBackgroundResource(R.drawable.round);
+        textView.setOnTouchListener(new PlayerTouchListener());
+        textView.setOnDragListener(new PlayerDragListener());
+        return textView;
+    }
+
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);

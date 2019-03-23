@@ -12,27 +12,28 @@
         android:columnCount="3"
         android:rowCount="4"
         android:stretchMode="columnWidth">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/margin_10">
+
             <LinearLayout
                 android:id="@+id/court1A"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
+
             <LinearLayout
                 android:id="@+id/court1B"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -40,22 +41,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/margin_10">
+
             <LinearLayout
                 android:id="@+id/court2A"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
+                android:orientation="vertical">
 
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/court2B"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
+                android:orientation="vertical">
 
             </LinearLayout>
         </LinearLayout>
@@ -65,23 +68,23 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/margin_10">
+
             <LinearLayout
                 android:id="@+id/court3A"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
+
             <LinearLayout
                 android:id="@+id/court3B"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
                 android:alignmentMode="alignBounds"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:background="@drawable/court_background"
+                android:gravity="center"
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -89,22 +92,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/margin_10">
+
             <LinearLayout
                 android:id="@+id/court4A"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
+
             <LinearLayout
                 android:id="@+id/court4B"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -112,22 +115,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/margin_10">
+
             <LinearLayout
                 android:id="@+id/court5A"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
+
             <LinearLayout
                 android:id="@+id/court5B"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -135,22 +138,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/margin_10">
+
             <LinearLayout
                 android:id="@+id/court6A"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
+
             <LinearLayout
                 android:id="@+id/court6B"
                 android:layout_width="@dimen/grid_width"
                 android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
+                android:background="@drawable/court_background"
                 android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
+                android:orientation="vertical"></LinearLayout>
         </LinearLayout>
 
     </GridLayout>
@@ -161,7 +164,7 @@
     <LinearLayout
         android:id="@+id/court7"
         android:layout_width="410dp"
-        android:layout_height="480dp"
+        android:layout_height="410dp"
         android:orientation="vertical"
         android:layout_margin="@dimen/margin_10"
         android:background="@drawable/court_background" >
@@ -297,8 +300,15 @@
             android:textColor="#FFFFFFFF"/>
     </LinearLayout>
 
+    <EditText
+        android:id="@+id/guestName"
+        android:layout_width="match_parent"
+
+        android:layout_height="60dp"
+        android:hint="Enter Guest Player's Name here"
+        tools:text="Enter Guest Player's Name here" />
         <Button
-            android:id="@+id/autoMatch"
+            android:id="@+id/addGuestPlayer"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:textSize="@dimen/text_size"
@@ -308,7 +318,7 @@
             android:layout_marginBottom="@dimen/margin_10"
             android:text="Add Guest Player"/>
         <Button
-            android:id="@+id/addMorePlayer"
+            android:id="@+id/autoMatch"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:textSize="@dimen/text_size"

@@ -12,6 +12,9 @@
     <string name="reference_background_selector">https://inducesmile.com/android/how-to-set-recycleview-item-row-background-color-in-android/</string>
     <string name="reference_button_under_recyclerview">https://techdoma.in/adding-buttons-below-recyclerview-android/</string>
     <string name="reference_drag_drop_tutorial">https://www.vogella.com/tutorials/AndroidDragAndDrop/article.html</string>
+    <string name="reference_dynamic_add_textview">https://stackoverflow.com/questions/6930604/android-add-textview-to-layout-when-button-is-pressed</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
