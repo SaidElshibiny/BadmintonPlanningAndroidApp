@@ -1,12 +1,17 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
+import android.content.ClipData;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.DragEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
@@ -65,11 +70,92 @@ public class MatchingPlayers extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         getActivity().setTitle("Matching Players");
-
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_matching_players, container, false);
+        View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
+        view.findViewById(R.id.matchPlayer1A).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer2A).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer3A).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer1B).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer2B).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer3B).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer4A).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer5A).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer6A).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer4B).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer5B).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.matchPlayer7).setOnTouchListener(new PlayerTouchListener());
+        view.findViewById(R.id.court1A).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court2A).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court3A).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court4A).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court5A).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court6A).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court1B).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court2B).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court3B).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court4B).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court5B).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court6B).setOnDragListener(new PlayerDragListener());
+        view.findViewById(R.id.court7).setOnDragListener(new PlayerDragListener());
+        return view;
+    }
+
+    private final class PlayerTouchListener implements View.OnTouchListener {
+        public boolean onTouch(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
+                        view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                view.setVisibility(View.INVISIBLE);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    class PlayerDragListener implements View.OnDragListener {
+        Drawable enterShape = getResources().getDrawable(R.drawable.drop_target);
+        Drawable normalShape = getResources().getDrawable(R.drawable.court_background);
+
+        @Override
+        public boolean onDrag(View v, DragEvent event) {
+            int action = event.getAction();
+            switch (event.getAction()) {
+                case DragEvent.ACTION_DRAG_STARTED:
+                    // do nothing
+                    break;
+                case DragEvent.ACTION_DRAG_ENTERED:
+                    v.setBackgroundDrawable(enterShape);
+                    break;
+                case DragEvent.ACTION_DRAG_EXITED:
+                    v.setBackgroundDrawable(normalShape);
+                    break;
+                case DragEvent.ACTION_DROP:
+                    // Dropped, reassign View to ViewGroup
+                    View view = (View) event.getLocalState();
+                    ViewGroup owner = (ViewGroup) view.getParent();
+                    owner.removeView(view);
+                    LinearLayout container = (LinearLayout) v;
+                    container.addView(view);
+                    view.setVisibility(View.VISIBLE);
+//                    RelativeLayout container1 = (RelativeLayout) v;
+//                    container1.addView(view);
+//                    view.setVisibility(View.VISIBLE);
+                    break;
+                case DragEvent.ACTION_DRAG_ENDED:
+                    v.setBackgroundDrawable(normalShape);
+                default:
+                    break;
+            }
+            return true;
+        }
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
