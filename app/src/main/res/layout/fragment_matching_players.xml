@@ -178,8 +178,6 @@
         <TextView
             android:id="@+id/matchPlayer1B"
             android:layout_width="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:layout_height="@dimen/text_height"
             android:layout_gravity="center"
             android:gravity="center"
@@ -190,8 +188,6 @@
         <TextView
             android:id="@+id/matchPlayer2A"
             android:layout_width="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:layout_height="@dimen/text_height"
             android:layout_gravity="center"
             android:gravity="center"
@@ -202,8 +198,6 @@
         <TextView
             android:id="@+id/matchPlayer2B"
             android:layout_width="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:layout_height="@dimen/text_height"
             android:layout_gravity="center"
             android:gravity="center"
@@ -214,8 +208,6 @@
         <TextView
             android:id="@+id/matchPlayer3A"
             android:layout_width="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:layout_height="@dimen/text_height"
             android:layout_gravity="center"
             android:gravity="center"
@@ -226,8 +218,6 @@
         <TextView
             android:id="@+id/matchPlayer3B"
             android:layout_width="wrap_content"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
             android:layout_height="@dimen/text_height"
             android:layout_gravity="center"
             android:gravity="center"
