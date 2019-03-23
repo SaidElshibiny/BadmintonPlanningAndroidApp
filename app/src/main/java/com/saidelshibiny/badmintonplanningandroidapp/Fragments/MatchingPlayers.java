@@ -130,10 +130,10 @@ public class MatchingPlayers extends Fragment {
                     // do nothing
                     break;
                 case DragEvent.ACTION_DRAG_ENTERED:
-                    v.setBackgroundDrawable(enterShape);
+                    v.setBackground(enterShape);
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
-                    v.setBackgroundDrawable(normalShape);
+                    v.setBackground(normalShape);
                     break;
                 case DragEvent.ACTION_DROP:
                     // Dropped, reassign View to ViewGroup
@@ -148,14 +148,12 @@ public class MatchingPlayers extends Fragment {
 //                    view.setVisibility(View.VISIBLE);
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
-                    v.setBackgroundDrawable(normalShape);
+                    v.setBackground(normalShape);
                 default:
                     break;
             }
             return true;
         }
-
-
     }
 
     // TODO: Rename method, update argument and hook method into UI event
