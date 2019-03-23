@@ -1,14 +1,296 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".Fragments.MatchingPlayers">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Matching Player Fragment" />
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="4"
+        android:stretchMode="columnWidth">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin"
+            >
+            <LinearLayout
+                android:id="@+id/court1A"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer1A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Player1A"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/court1B"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer1B"
+                    android:layout_width="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Player1B"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+            <LinearLayout
+                android:id="@+id/court2A"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer2A"
+                    android:layout_width="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Chaonan"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/court2B"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer2B"
+                    android:layout_width="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Chaonan"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+            <LinearLayout
+                android:id="@+id/court3A"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer3A"
+                    android:layout_width="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Chaonan"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/court3B"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:alignmentMode="alignBounds"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer3B"
+                    android:layout_width="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Chaonan"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+            <LinearLayout
+                android:id="@+id/court4A"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer4A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Chaonan"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/court4B"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer4B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Chaonan"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+            <LinearLayout
+                android:id="@+id/court5A"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer5A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Chaonan"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/court5B"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer5B"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Player5B"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_horizontal_margin">
+            <LinearLayout
+                android:id="@+id/court6A"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+                <TextView
+                    android:id="@+id/matchPlayer6A"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_height"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_size"
+                    android:text="Player6A"
+                    android:background="@drawable/round"
+                    android:textColor="#FFFFFFFF"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/court6B"
+                android:layout_width="@dimen/grid_width"
+                android:layout_height="@dimen/grid_height"
+                android:orientation="vertical"
+                android:background="@drawable/court_background" >
+            </LinearLayout>
+        </LinearLayout>
+
+    </GridLayout>
+
+    <LinearLayout
+        android:id="@+id/court7"
+        android:layout_width="400dp"
+        android:layout_height="650dp"
+        android:orientation="vertical"
+        android:background="@drawable/drop_target" >
+
+        <TextView
+            android:id="@+id/matchPlayer6B"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/text_size"
+            android:text="Player6B"
+            android:background="@drawable/round"
+            android:textColor="#FFFFFFFF"/>
+        <TextView
+            android:id="@+id/matchPlayer7"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/text_height"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="@dimen/text_size"
+            android:text="Player7"
+            android:background="@drawable/round"
+            android:textColor="#FFFFFFFF"/>
+    </LinearLayout>
+
+</LinearLayout>
