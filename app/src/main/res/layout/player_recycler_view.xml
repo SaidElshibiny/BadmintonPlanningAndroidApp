@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_selector"
+    android:padding="16dp"
+    android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:scaleX="1.5"
+            android:scaleY="1.5"
+            android:layout_marginStart="20dp"
+            />
+
+        <ImageView
+            android:id="@+id/playerImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/image_attribute"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            />
+        <TextView
+            android:id="@+id/firstName"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"/>
+
+        <TextView
+            android:id="@+id/lastName"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"/>
+
+
+
+</LinearLayout>
+
+

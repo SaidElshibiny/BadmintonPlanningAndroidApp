@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playersGridView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragments.CheckInPlayers">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- TODO: display player with grid  layout -->
+    <GridView
+        android:id="@+id/playersGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:columnWidth="150dp"
+        android:gravity="center"
+        android:horizontalSpacing="24dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="24dp"
+        android:layout_marginBottom="100dp">
 
-</FrameLayout>
+    </GridView>
+    <!--Display player with recycler view-->
+    <!--<android.support.v7.widget.RecyclerView-->
+    <!--android:id="@+id/playersList"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layoutAnimation="@anim/layout_animation_fall_down"-->
+    <!--android:layout_marginBottom="200px"-->
+    <!--/>-->
+
+    <Button
+        android:id="@+id/finishCheckin"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:text="All Players Checked In"
+        android:textColor="@color/colorBackground"
+        android:textSize="28dp"
+        android:visibility="visible" />
+
+
+</RelativeLayout>
