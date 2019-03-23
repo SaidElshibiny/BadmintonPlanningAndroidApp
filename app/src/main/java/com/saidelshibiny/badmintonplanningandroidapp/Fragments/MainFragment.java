@@ -15,6 +15,12 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 
 /**
+ * @author Said Elshibiny
+ * The main fragment aka the homepage of the app.
+ * It contains 6 icons that reflect the 6 pages In the app
+ **/
+
+/**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * {@link MainFragment.OnFragmentInteractionListener} interface
@@ -31,6 +37,8 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //Create Variables
 
     ImageButton checkinPlayers;
     ImageButton matchPlayers;

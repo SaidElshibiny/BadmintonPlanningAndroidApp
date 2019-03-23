@@ -25,7 +25,6 @@
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Riverside Badminton Club"
         android:textColor="#FFF"
-
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
