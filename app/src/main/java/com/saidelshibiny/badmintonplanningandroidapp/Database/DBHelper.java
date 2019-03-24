@@ -218,6 +218,18 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(player.getId())});
     }
 
+    public void deleteAllPlayers() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PLAYERS, null, null);
+
+    }
+
+    public void checkAllPlayers() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_PLAYERS, null, null);
+
+    }
+
     // Users CRUD functions=============================================================================================
 
     /**

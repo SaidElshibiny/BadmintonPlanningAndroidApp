@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.TextView;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
@@ -40,6 +41,10 @@ public class CheckInPlayers extends Fragment {
     private ArrayList<Player> players;
     Button btfinishedCheckin;
     Button btAddNewPlayer;
+    Button btRemoveAllPlayers;
+    TextView tvNumberOfPlayers;
+    int count;
+
     FragmentManager fm;
 
     private OnFragmentInteractionListener mListener;
@@ -83,23 +88,11 @@ public class CheckInPlayers extends Fragment {
         fm = getActivity().getSupportFragmentManager();
         //set title bar
         getActivity().setTitle("Check-In Player");
-        //use a fab to add guest player
-        MainActivity.fab.setImageResource(R.drawable.ic_add_circle_black_24dp);
-        MainActivity.fab.show();
-        MainActivity.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction ft = fm.beginTransaction();
-                ft.addToBackStack(null);
-                ft.replace(R.id.main_content, new AddPlayerFragment());
-                ft.commit();
-            }
-        });
-
        players = new ArrayList<>();
         //get player info from DBHelper - player info not display
         DBHelper db = new DBHelper(getContext());
         players = db.getAllPlayers();
+
         db.close();
         //Display the player info in Gridview
         GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
@@ -142,19 +135,40 @@ public class CheckInPlayers extends Fragment {
             }
         });
 
+        tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
         btAddNewPlayer = (Button) view.findViewById(R.id.addNewPlayer);
         btAddNewPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new AddPlayerFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
                 //pop up a window to add new player's first name, last name, and select an avatar from a given list
-                DBHelper db = new DBHelper(getContext());
-                Player p1 = new Player("Chaonan", "Chen", 88, R.drawable.girl5, false);
-                db.addPlayer(p1);
-                Player p2 = new Player("Mike", "Duan", 78, R.drawable.boy4, false);
-                db.addPlayer(p2);
-                db.close();
+//                DBHelper db = new DBHelper(getContext());
+//                Player p1 = new Player("Efan", "Duan", 68, R.drawable.girl5, false);
+//                db.addPlayer(p1);
+//                Player p2 = new Player("Even", "Duan", 98, R.drawable.boy4, false);
+//                db.addPlayer(p2);
+//                count = db.getPlayerCount();
+//                tvNumberOfPlayers.setText("Total " +  count);
+//                db.close();
+
+
             }
         });
+
+        btRemoveAllPlayers = (Button) view.findViewById(R.id.removeAllPlayers);
+        btRemoveAllPlayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHelper db = new DBHelper(getContext());
+                db.deleteAllPlayers();
+
+            }
+        });
+
+
 
         return view;
     } //end of oncreatview

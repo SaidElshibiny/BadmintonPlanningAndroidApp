@@ -1,14 +1,60 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    tools:context=".Fragments.AddPlayerFragment">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddPlayerFragment">
+    android:orientation="vertical">
 
-    <com.google.android.gms.plus.PlusOneButton xmlns:plus="http://schemas.android.com/apk/lib/com.google.android.gms.plus"
-        android:id="@+id/plus_one_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        plus:annotation="inline"
-        plus:size="standard" />
 
-</FrameLayout>
+    <EditText
+        android:id="@+id/tvFirstName"
+        style="@style/EqualEditTextVertical"
+        android:hint="First Name"
+         />
+
+    <EditText
+        android:id="@+id/tvLastName"
+        style="@style/EqualEditTextVertical"
+        android:hint="Last Name"
+        />
+
+    <EditText
+        android:id="@+id/tvRanking"
+        style="@style/EqualEditTextVertical"
+        android:hint="Estimate ranking (1 - 100)"
+        />
+
+    <ImageView
+        android:id="@+id/cameraButton"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/ic_add_a_photo_black_24dp" />
+
+    <LinearLayout
+        android:id="@+id/gallaryLayout"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:textSize="28sp"
+        android:text="Add Player" />
+</LinearLayout>
+</RelativeLayout>
