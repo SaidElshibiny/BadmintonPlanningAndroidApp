@@ -2,11 +2,13 @@ package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -182,10 +184,15 @@ public class MatchingPlayers extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     private TextView createNewTextView(String text) {
         final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        lparams.setMargins(5, 5, 5, 5);
+
         final TextView textView = new TextView(getContext());
         textView.setLayoutParams(lparams);
         textView.setText(text);
         textView.setTextSize(30);
+        textView.setGravity(Gravity.CENTER );
+        textView.setTextColor(Color.WHITE);
+textView.setPadding(10, 10, 10, 10);
         // textView.setTextColor("#FFFFFF");
 //        textView.setBackgroundResource(R.drawable.round);
         textView.setOnTouchListener(new PlayerTouchListener());
