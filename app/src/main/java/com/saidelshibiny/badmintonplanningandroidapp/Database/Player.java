@@ -23,6 +23,13 @@ public class Player{
     }
 
     //constructor
+    public Player(String firstName, String lastName, int ranking) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.ranking = ranking;
+    }
+
+    //constructor
     public Player(String firstName, String lastName, int ranking, int imageID, boolean isChecked) {
         this.firstName = firstName;
         this.lastName = lastName;

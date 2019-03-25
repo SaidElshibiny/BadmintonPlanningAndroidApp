@@ -4,10 +4,15 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
+import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 /**
@@ -19,6 +24,7 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
  * create an instance of this fragment.
  */
 public class AddPlayerFragment extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,6 +33,11 @@ public class AddPlayerFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    EditText firstName;
+    EditText lastName;
+    EditText ranking;
+    FragmentManager fm;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +76,27 @@ public class AddPlayerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_player, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_player, container, false);
+        firstName = (EditText) view.findViewById(R.id.etFirstName);
+        lastName = (EditText) view.findViewById(R.id.etLastName);
+        ranking = (EditText) view.findViewById(R.id.etRanking);
+        Button submit = (Button) view.findViewById(R.id.submitButton);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Player player = new Player(null,
+                        firstName.getText().toString() + ","
+                      + lastName.getText().toString() + ","
+                      + ranking.getText().toString());
+                DBHelper db = new DBHelper(getContext());
+                db.addPlayer(player);
+                db.close();
+                fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack();
+            }
+        });
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

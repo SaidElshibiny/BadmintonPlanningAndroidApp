@@ -11,26 +11,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-
     <EditText
-        android:id="@+id/tvFirstName"
+        android:id="@+id/etFirstName"
         style="@style/EqualEditTextVertical"
-        android:hint="First Name"
-         />
-
+        android:hint="First Name"/>
     <EditText
-        android:id="@+id/tvLastName"
+        android:id="@+id/etLastName"
         style="@style/EqualEditTextVertical"
-        android:hint="Last Name"
-        />
-
+        android:hint="Last Name"/>
     <EditText
-        android:id="@+id/tvRanking"
+        android:id="@+id/etRanking"
         style="@style/EqualEditTextVertical"
-        android:hint="Estimate ranking (1 - 100)"
-        />
-
+        android:hint="Estimate level(1 - 100)"/>
     <ImageView
         android:id="@+id/cameraButton"
         android:layout_width="match_parent"
@@ -38,7 +30,6 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/ic_add_a_photo_black_24dp" />
-
     <LinearLayout
         android:id="@+id/gallaryLayout"
         android:layout_width="match_parent"
@@ -46,7 +37,6 @@
         android:layout_height="0dp"
         android:orientation="vertical">
     </LinearLayout>
-
     <Button
         android:id="@+id/submitButton"
         android:layout_width="match_parent"

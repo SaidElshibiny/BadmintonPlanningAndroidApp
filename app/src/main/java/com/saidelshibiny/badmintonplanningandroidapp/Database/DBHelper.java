@@ -121,8 +121,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FIRST_NAME, player.getFirstName());
         values.put(COLUMN_LAST_NAME, player.getLastName());
         values.put(COLUMN_RANKING, player.getRanking());
-        values.put(COLUMN_IMAGE_ID, player.getImageID());
-        values.put(COLUMN_IS_CHECKED, player.getChecked());
+      //  values.put(COLUMN_IMAGE_ID, player.getImageID());
+      //  values.put(COLUMN_IS_CHECKED, player.getChecked());
         db.insert(TABLE_PLAYERS, null, values);
 //        long id = db.insert(TABLE_PLAYERS, null, values);
         db.close();
