@@ -21,6 +21,7 @@
         android:hint="Last Name"/>
     <EditText
         android:id="@+id/etRanking"
+        android:inputType="number"
         style="@style/EqualEditTextVertical"
         android:hint="Estimate level(1 - 100)"/>
     <ImageView

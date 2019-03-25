@@ -84,10 +84,12 @@ public class AddPlayerFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Player player = new Player(null,
-                        firstName.getText().toString() + ","
-                      + lastName.getText().toString() + ","
-                      + ranking.getText().toString());
+                Player player = new Player(
+                       firstName.getText().toString(),
+                       lastName.getText().toString(),
+                        Integer.parseInt(ranking.getText().toString()),
+                        0,
+                        false);
                 DBHelper db = new DBHelper(getContext());
                 db.addPlayer(player);
                 db.close();
