@@ -19,7 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
+import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -35,7 +39,11 @@ public class MatchingPlayers extends Fragment {
     LinearLayout watingArea;
     Button addGuestPlayer;
     EditText mEditText;
+    TextView txTotalPlayer;
+    ArrayList<TextView> checkedPlayerTextViews;
 
+    private ArrayList<Player> players;
+    int count;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -84,20 +92,21 @@ public class MatchingPlayers extends Fragment {
         getActivity().setTitle("Matching Players");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
+
         view.findViewById(R.id.matchPlayer1A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer2A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer3A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer1B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer2B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer3B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer4A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer5A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer4B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer5B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer7).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer2A).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer3A).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer1B).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer2B).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer3B).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer4A).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer5A).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer6A).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer4B).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer5B).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
+//        view.findViewById(R.id.matchPlayer7).setOnTouchListener(new PlayerTouchListener());
         view.findViewById(R.id.court1A).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court2A).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court3A).setOnDragListener(new PlayerDragListener());
@@ -111,8 +120,22 @@ public class MatchingPlayers extends Fragment {
         view.findViewById(R.id.court5B).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court6B).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court7).setOnDragListener(new PlayerDragListener());
+        players = new ArrayList<>();
+        DBHelper db = new DBHelper(getContext());
+        players = db.getCheckedPlayer();
+        count = players.size();
+        txTotalPlayer = view.findViewById(R.id.numOfMatchPlayers);
+        txTotalPlayer.setText("" + count);
+//        txTotalPlayer.setText(players.get(0).getFirstName());
+        watingArea = (LinearLayout)view.findViewById(R.id.court7);
+        for(int i = 0; i<count; i++){
+            String playerFirstName = players.get(i).getFirstName();
+            String playerLastName = players.get(i).getLastName();
+            String name = playerFirstName + " " + playerLastName;
+            watingArea.addView(createNewTextView(name));
+        }
+        db.close();
 
-        watingArea = (LinearLayout)view.findViewById(R.id.court1A);
         mEditText = (EditText) view.findViewById(R.id.guestName);
         addGuestPlayer = view.findViewById(R.id.addGuestPlayer);
         addGuestPlayer.setOnClickListener(new View.OnClickListener() {
@@ -184,17 +207,15 @@ public class MatchingPlayers extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     private TextView createNewTextView(String text) {
         final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lparams.setMargins(5, 5, 5, 5);
-
+        lparams.setMargins(2, 2, 2, 2);
+        lparams.gravity = Gravity.CENTER;
         final TextView textView = new TextView(getContext());
         textView.setLayoutParams(lparams);
         textView.setText(text);
-        textView.setTextSize(30);
+        textView.setTextSize(24);
         textView.setGravity(Gravity.CENTER );
         textView.setTextColor(Color.WHITE);
-textView.setPadding(10, 10, 10, 10);
-        // textView.setTextColor("#FFFFFF");
-//        textView.setBackgroundResource(R.drawable.round);
+        textView.setPadding(2, 2, 2, 2);
         textView.setOnTouchListener(new PlayerTouchListener());
         textView.setOnDragListener(new PlayerDragListener());
         return textView;

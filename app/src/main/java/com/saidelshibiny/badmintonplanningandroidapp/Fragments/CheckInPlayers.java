@@ -162,10 +162,10 @@ public class CheckInPlayers extends Fragment {
                 //pop up a window to add new player's first name, last name, and select an avatar from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
-                db.addPlayer(new Player("Lisa", "Zhao", 78, R.drawable.girl2,false));
-                db.addPlayer(new Player("Mary", "Thomson", 88, R.drawable.boy2,false));
-                db.addPlayer(new Player("Dan", "Underwood", 78, R.drawable.girl3,false));
-                db.addPlayer(new Player("Laura", "Robertson", 88, R.drawable.boy3,false));
+                db.addPlayer(new Player("Lisa", "Zhao", 78, R.drawable.girl2,true));
+                db.addPlayer(new Player("Mary", "Thomson", 88, R.drawable.boy2,true));
+                db.addPlayer(new Player("Dan", "Underwood", 78, R.drawable.girl3,true));
+                db.addPlayer(new Player("Laura", "Robertson", 88, R.drawable.boy3,true));
                 db.addPlayer(new Player("Abigail", "MacDonald", 78, R.drawable.girl1, false));
                 db.addPlayer(new Player("Carolyn", "MacDonald", 88, R.drawable.boy1,false));
                 db.addPlayer(new Player("Angela", "Newman", 78, R.drawable.girl2,false));
@@ -190,15 +190,15 @@ public class CheckInPlayers extends Fragment {
                 //pop up a window to add new player's first name, last name, and select an avatar from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
-                db.addPlayer(new Player("Jenna", "Paterson", 78, R.drawable.girl4,false));
-                db.addPlayer(new Player("Julian", "Newman", 88, R.drawable.boy4,false));
-                db.addPlayer(new Player("Richard", "Hemmings", 88, R.drawable.boy1,false));
-                db.addPlayer(new Player("Dominic", "Cameron", 78, R.drawable.girl2,false));
-                db.addPlayer(new Player("John", "Buckland", 88, R.drawable.boy2,false));
-                db.addPlayer(new Player("Jenny", "Cameron", 78, R.drawable.girl3,false));
-                db.addPlayer(new Player("Tim", "Bower", 88, R.drawable.boy3,false));
-                db.addPlayer(new Player("Warren", "Black", 78, R.drawable.girl4,false));
-                db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy4,false));
+                db.addPlayer(new Player("Jenna", "Paterson", 78, R.drawable.girl4,true));
+                db.addPlayer(new Player("Julian", "Newman", 88, R.drawable.boy4,true));
+                db.addPlayer(new Player("Richard", "Hemmings", 88, R.drawable.boy1,true));
+                db.addPlayer(new Player("Dominic", "Cameron", 78, R.drawable.girl2,true));
+                db.addPlayer(new Player("John", "Buckland", 88, R.drawable.boy2,true));
+                db.addPlayer(new Player("Jenny", "Cameron", 78, R.drawable.girl3,true));
+                db.addPlayer(new Player("Tim", "Bower", 88, R.drawable.boy3,true));
+                db.addPlayer(new Player("Warren", "Black", 78, R.drawable.girl4,true));
+                db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy4,true));
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("Total " +  count);
                 db.close();

@@ -200,14 +200,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-//                Player player = new Player();
-////                player.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-////                player.setFirstName(cursor.getString(cursor.getColumnIndex(COLUMN_FIRST_NAME)));
-////                player.setLastName(cursor.getString(cursor.getColumnIndex(COLUMN_LAST_NAME)));
-////                player.setRanking(cursor.getInt(cursor.getColumnIndex(COLUMN_RANKING)));
-////                player.setImageID(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE_ID)));
-////                player.setChecked(cursor.getWantsAllOnMoveCalls());
-////                playersArrayList.add(player);
                 playersArrayList.add(new Player(Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
                         cursor.getString(2),
@@ -230,13 +222,24 @@ public class DBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public int getCheckedPlayer() {
-        String query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + COLUMN_IS_CHECKED + "=true";
+    public ArrayList<Player> getCheckedPlayer() {
+        ArrayList<Player> playersArrayList = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + COLUMN_IS_CHECKED + "= 1";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
+        if (cursor.moveToFirst()) {
+            do {
+                playersArrayList.add(new Player(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4),
+                        cursor.getWantsAllOnMoveCalls()
+                ));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return playersArrayList;
     }
 
     public int updatePlayer(Player player) {

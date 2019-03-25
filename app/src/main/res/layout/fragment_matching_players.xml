@@ -101,54 +101,54 @@
             android:id="@+id/matchPlayer1A"
             android:text="Player1A"
             style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer1B"
-            android:text="Player1B"
-            style="@style/OvalBrownWhiteTextView" />
-        <TextView
-            android:id="@+id/matchPlayer2A"
-            android:text="Player2A"
-            style="@style/OvalBrownWhiteTextView" />
-        <TextView
-            android:id="@+id/matchPlayer2B"
-            android:text="Player2B"
-            style="@style/OvalBrownWhiteTextView" />
-        <TextView
-            android:id="@+id/matchPlayer3A"
-            android:text="Player3A"
-            style="@style/OvalBrownWhiteTextView" />
-        <TextView
-            android:id="@+id/matchPlayer3B"
-            android:text="Player3B"
-            style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer4A"
-            android:text="Player4A"
-            style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer4B"
-            android:text="Player4B"
-            style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer5A"
-            android:text="Player5A"
-            style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer5B"
-            android:text="Player5B"
-            style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer6A"
-            android:text="Player6A"
-            style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer6B"
-            android:text="Player6B"
-            style="@style/OvalBrownWhiteTextView"/>
-        <TextView
-            android:id="@+id/matchPlayer7"
-            android:text="Player7"
-            style="@style/OvalBrownWhiteTextView"/>
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer1B"-->
+            <!--android:text="Player1B"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer2A"-->
+            <!--android:text="Player2A"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer2B"-->
+            <!--android:text="Player2B"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer3A"-->
+            <!--android:text="Player3A"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer3B"-->
+            <!--android:text="Player3B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer4A"-->
+            <!--android:text="Player4A"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer4B"-->
+            <!--android:text="Player4B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer5A"-->
+            <!--android:text="Player5A"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer5B"-->
+            <!--android:text="Player5B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer6A"-->
+            <!--android:text="Player6A"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer6B"-->
+            <!--android:text="Player6B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer7"-->
+            <!--android:text="Player7"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
     </LinearLayout>
     <LinearLayout
             android:layout_width="0dp"
