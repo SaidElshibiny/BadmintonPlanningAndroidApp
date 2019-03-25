@@ -156,6 +156,42 @@ public class DBHelper extends SQLiteOpenHelper {
         return player;
     }
 
+//    public ArrayList<Player> getAllJuniorPlayers(){
+//        ArrayList<Player> playersArrayList = new ArrayList<>();
+//        playersArrayList.add(new Player("Sally", "Zhao", 78, R.drawable.girl1, false));
+//        playersArrayList.add(new Player("John", "Json", 88, R.drawable.boy1,false));
+//        playersArrayList.add(new Player("Mitch", "Zhao", 78, R.drawable.girl2,false));
+//        playersArrayList.add(new Player("Sitch", "Json", 88, R.drawable.boy2,false));
+//        playersArrayList.add(new Player("Shelly", "Smith", 78, R.drawable.girl3,false));
+//        playersArrayList.add(new Player("John", "Yuan", 88, R.drawable.boy3,false));
+//        playersArrayList.add(new Player("Sally", "Chen", 78, R.drawable.girl4,false));
+//        playersArrayList.add(new Player("Jess", "Json", 88, R.drawable.boy4,false));
+//        playersArrayList.add(new Player("Shally", "Zhao", 78, R.drawable.girl5,false));
+//        playersArrayList.add(new Player("Steve", "Json", 88, R.drawable.boy4,false));
+//        playersArrayList.add(new Player("Even", "Zhao", 78, R.drawable.girl1,false));
+//        playersArrayList.add(new Player("macheal", "Json", 88, R.drawable.boy1,false));
+//        playersArrayList.add(new Player("Efan", "Zhao", 78, R.drawable.girl2,false));
+//        playersArrayList.add(new Player("John", "Json", 88, R.drawable.boy2,false));
+//        playersArrayList.add(new Player("Jenny", "Zhao", 78, R.drawable.girl3,false));
+//        playersArrayList.add(new Player("Laura", "Json", 88, R.drawable.boy3,false));
+//        playersArrayList.add(new Player("Jenna", "Zhao", 78, R.drawable.girl4,false));
+//        playersArrayList.add(new Player("Sohan", "Json", 88, R.drawable.boy4,false));
+//        playersArrayList.add(new Player("macheal", "Json", 88, R.drawable.boy1,false));
+//        playersArrayList.add(new Player(19, "Efan", "Zhao", 78, R.drawable.girl2,false));
+//        playersArrayList.add(new Player(20, "John", "Json", 88, R.drawable.boy2,false));
+//        playersArrayList.add(new Player(21, "Jenny", "Zhao", 78, R.drawable.girl3,false));
+//        playersArrayList.add(new Player(22, "Laura", "Json", 88, R.drawable.boy3,false));
+//        playersArrayList.add(new Player(23, "Jenna", "Zhao", 78, R.drawable.girl4,false));
+//        playersArrayList.add(new Player(24, "Sohan", "Json", 88, R.drawable.boy4,false));
+//        return playersArrayList;
+//    }
+
+//    public ArrayList<Player> getAllSeniorPlayers(){
+//        ArrayList<Player> playersArrayList = new ArrayList<>();
+//        return playersArrayList;
+//    }
+
+
     /*Reading All records from Player table*/
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> playersArrayList = new ArrayList<>();

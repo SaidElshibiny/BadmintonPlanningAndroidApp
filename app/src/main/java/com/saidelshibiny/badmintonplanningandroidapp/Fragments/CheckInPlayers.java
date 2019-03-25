@@ -41,7 +41,11 @@ public class CheckInPlayers extends Fragment {
     private ArrayList<Player> players;
     Button btfinishedCheckin;
     Button btAddNewPlayer;
-    Button btRemoveAllPlayers;
+
+    //for testing purpose
+//    Button btRemoveAllPlayers;
+    Button btgetAllJuniorPlayers;
+    Button btgetAllSeniorPlayers;
     TextView tvNumberOfPlayers;
     int count;
 
@@ -92,7 +96,7 @@ public class CheckInPlayers extends Fragment {
         //get player info from DBHelper - player info not display
         DBHelper db = new DBHelper(getContext());
         players = db.getAllPlayers();
-
+        count = db.getPlayerCount();
         db.close();
         //Display the player info in Gridview
         GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
@@ -136,6 +140,7 @@ public class CheckInPlayers extends Fragment {
         });
 
         tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
+        tvNumberOfPlayers.setText("" + count);
         btAddNewPlayer = (Button) view.findViewById(R.id.addNewPlayer);
         btAddNewPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,29 +149,70 @@ public class CheckInPlayers extends Fragment {
                 transaction.replace(R.id.main_content, new AddPlayerFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
-                //pop up a window to add new player's first name, last name, and select an avatar from a given list
-//                DBHelper db = new DBHelper(getContext());
-//                Player p1 = new Player("Efan", "Duan", 68, R.drawable.girl5, false);
-//                db.addPlayer(p1);
-//                Player p2 = new Player("Even", "Duan", 98, R.drawable.boy4, false);
-//                db.addPlayer(p2);
-//                count = db.getPlayerCount();
-//                tvNumberOfPlayers.setText("Total " +  count);
-//                db.close();
+
 
 
             }
         });
 
-        btRemoveAllPlayers = (Button) view.findViewById(R.id.removeAllPlayers);
-        btRemoveAllPlayers.setOnClickListener(new View.OnClickListener() {
+        btgetAllJuniorPlayers = (Button) view.findViewById(R.id.juniorPlayers);
+        btgetAllJuniorPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //pop up a window to add new player's first name, last name, and select an avatar from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
-
+                db.addPlayer(new Player("Lisa", "Zhao", 78, R.drawable.girl2,false));
+                db.addPlayer(new Player("Mary", "Thomson", 88, R.drawable.boy2,false));
+                db.addPlayer(new Player("Dan", "Underwood", 78, R.drawable.girl3,false));
+                db.addPlayer(new Player("Laura", "Robertson", 88, R.drawable.boy3,false));
+                db.addPlayer(new Player("Abigail", "MacDonald", 78, R.drawable.girl1, false));
+                db.addPlayer(new Player("Carolyn", "MacDonald", 88, R.drawable.boy1,false));
+                db.addPlayer(new Player("Angela", "Newman", 78, R.drawable.girl2,false));
+                db.addPlayer(new Player("Emily", "Paterson", 88, R.drawable.boy2,false));
+                db.addPlayer(new Player("Shelly", "Smith", 78, R.drawable.girl3,false));
+                db.addPlayer(new Player("John", "Robertson", 88, R.drawable.boy3,false));
+                db.addPlayer(new Player("Heather", "Underwood", 78, R.drawable.girl4,false));
+                db.addPlayer(new Player("Jessica", "Thomson", 88, R.drawable.boy4,false));
+                db.addPlayer(new Player("Karen", "White", 78, R.drawable.girl5,false));
+                db.addPlayer(new Player("Steve", "White", 88, R.drawable.boy4,false));
+                db.addPlayer(new Player("Leah", "Zhao", 78, R.drawable.girl1,false));
+                db.addPlayer(new Player("Maria", "Hemmings", 88, R.drawable.boy1,false));
+                count = db.getPlayerCount();
+                tvNumberOfPlayers.setText("Total " +  count);
+                db.close();
             }
         });
+        btgetAllSeniorPlayers = (Button) view.findViewById(R.id.seniorPlayers);
+        btgetAllSeniorPlayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //pop up a window to add new player's first name, last name, and select an avatar from a given list
+                DBHelper db = new DBHelper(getContext());
+                db.deleteAllPlayers();
+                db.addPlayer(new Player("Jenna", "Paterson", 78, R.drawable.girl4,false));
+                db.addPlayer(new Player("Julian", "Newman", 88, R.drawable.boy4,false));
+                db.addPlayer(new Player("Richard", "Hemmings", 88, R.drawable.boy1,false));
+                db.addPlayer(new Player("Dominic", "Cameron", 78, R.drawable.girl2,false));
+                db.addPlayer(new Player("John", "Buckland", 88, R.drawable.boy2,false));
+                db.addPlayer(new Player("Jenny", "Cameron", 78, R.drawable.girl3,false));
+                db.addPlayer(new Player("Tim", "Bower", 88, R.drawable.boy3,false));
+                db.addPlayer(new Player("Warren", "Black", 78, R.drawable.girl4,false));
+                db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy4,false));
+                count = db.getPlayerCount();
+                tvNumberOfPlayers.setText("Total " +  count);
+                db.close();
+            }
+        });
+//        btRemoveAllPlayers = (Button) view.findViewById(R.id.removeAllPlayers);
+//        btRemoveAllPlayers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                DBHelper db = new DBHelper(getContext());
+//                db.deleteAllPlayers();
+//
+//            }
+//        });
 
 
 
