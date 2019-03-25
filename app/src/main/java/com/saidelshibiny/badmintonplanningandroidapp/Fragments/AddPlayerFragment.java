@@ -1,6 +1,7 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
@@ -38,6 +40,17 @@ public class AddPlayerFragment extends Fragment {
     EditText lastName;
     EditText ranking;
     FragmentManager fm;
+    ImageView avatar1;
+    ImageView avatar2;
+    ImageView avatar3;
+    ImageView avatar4;
+    ImageView avatar5;
+    ImageView avatar6;
+    ImageView avatar7;
+    ImageView avatar8;
+    ImageView avatar9;
+    String avatarName;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -80,6 +93,19 @@ public class AddPlayerFragment extends Fragment {
         firstName = (EditText) view.findViewById(R.id.etFirstName);
         lastName = (EditText) view.findViewById(R.id.etLastName);
         ranking = (EditText) view.findViewById(R.id.etRanking);
+        avatar1 = (ImageView)view.findViewById(R.id.avatar1);
+
+
+
+        avatar1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                avatarName = "girl1";
+                avatar1.setPadding(18,18,18,18);
+                avatar1.setBackgroundColor(Color.BLUE);
+            }
+        });
+
         Button submit = (Button) view.findViewById(R.id.submitButton);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +115,8 @@ public class AddPlayerFragment extends Fragment {
                        lastName.getText().toString(),
                         Integer.parseInt(ranking.getText().toString()),
                         0,
+                        //To be debug
+                       // Integer.parseInt("R.drawable." + avatarName),
                         false);
                 DBHelper db = new DBHelper(getContext());
                 db.addPlayer(player);
@@ -100,6 +128,8 @@ public class AddPlayerFragment extends Fragment {
 
         return view;
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
