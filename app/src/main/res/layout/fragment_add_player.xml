@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".Fragments.AddPlayerFragment">
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_centerVertical="true"-->
+
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_weight="1"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <EditText
+        android:id="@+id/etFirstName"
+        style="@style/EqualEditTextVertical"
+        android:hint="First Name"/>
+    <EditText
+        android:id="@+id/etLastName"
+        style="@style/EqualEditTextVertical"
+        android:hint="Last Name"/>
+    <EditText
+        android:id="@+id/etRanking"
+        android:inputType="number"
+        style="@style/EqualEditTextVertical"
+        android:hint="Estimate level(1 - 100)"/>
+    <!--<ImageView-->
+    <!--android:id="@+id/cameraButton"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_weight="1"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:src="@drawable/ic_add_a_photo_black_24dp" />-->
+    <!--<LinearLayout-->
+        <!--android:id="@+id/gallaryLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:orientation="vertical">-->
+    <!--</LinearLayout>-->
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:layout_column="0"
+        android:layout_columnSpan="2"
+        android:textSize="28sp"
+        android:text="Add Player" />
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:textSize="28sp"
+            android:text="Choose an Avatar"/><GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="3"
+        android:columnCount="3"
+        android:layout_margin="@dimen/margin_10"
+        android:padding="@dimen/margin_10">
+        <ImageView
+            android:id="@+id/avatar1"
+            android:src="@drawable/girl1"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar2"
+            android:src="@drawable/boy1"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar3"
+            android:src="@drawable/girl2"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar4"
+            android:src="@drawable/boy2"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar5"
+            android:src="@drawable/girl3"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar6"
+            android:src="@drawable/boy3"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar7"
+            android:src="@drawable/girl4"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar8"
+            android:src="@drawable/boy4"
+            style="@style/AvatarImageView"/>
+        <ImageView
+            android:id="@+id/avatar9"
+            android:src="@drawable/girl5"
+            style="@style/AvatarImageView"/>
+    </GridLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

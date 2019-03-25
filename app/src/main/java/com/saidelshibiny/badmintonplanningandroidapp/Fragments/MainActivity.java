@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    MainFragment.OnFragmentInteractionListener,
                    CheckInPlayers.OnFragmentInteractionListener,
+                    AddPlayerFragment.OnFragmentInteractionListener,
                    MatchingPlayers.OnFragmentInteractionListener,
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
