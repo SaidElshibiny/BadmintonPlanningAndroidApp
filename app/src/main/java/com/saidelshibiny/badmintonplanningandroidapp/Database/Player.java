@@ -13,7 +13,7 @@ public class Player{
     private String lastName;
     private int ranking;
     private int imageID;
-    private boolean isChecked = false;
+    private boolean isChecked;
 
    public Player() {}
     //constructor
@@ -35,7 +35,7 @@ public class Player{
         this.lastName = lastName;
         this.ranking = ranking;
         this.imageID = imageID;
-        this.isChecked = false;
+        this.isChecked = isChecked;
     }
 
     public Player(int id, String firstName, String lastName, int ranking, int imageID, boolean isChecked) {
@@ -44,7 +44,7 @@ public class Player{
         this.lastName = lastName;
         this.ranking = ranking;
         this.imageID = imageID;
-        this.isChecked = false;
+        this.isChecked = isChecked;
     }
 
     //getter and setter

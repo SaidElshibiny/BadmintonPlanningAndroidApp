@@ -22,62 +22,34 @@
 
     </GridView>
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_alignParentRight="true"
         >
         <Button
-        android:id="@+id/addNewPlayer"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_width="140dp"
-        android:background="@color/colorPrimary"
-        android:text="Add Player"
-        android:textColor="@color/colorBackground"
-        android:layout_marginTop="@dimen/margin_10"
-        android:layout_marginBottom="@dimen/margin_10"
-        android:textSize="28dp"
-        android:visibility="visible" />
+            android:id="@+id/addNewPlayer"
+            android:text="Add Player"
+            style="@style/BlueYellowButtonVertical"  />
         <TextView
             android:id="@+id/numOfPlayers"
-            android:layout_width="140dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginBottom="@dimen/margin_10"
             android:text="Total"
-            android:layout_gravity="center"
+            style="@style/BlueYellowButtonVertical"
             android:gravity="center"
-            android:textSize="32dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorBackground"
-            />
+            android:textSize="32dp" />
 
         <Button
-        android:id="@+id/juniorPlayers"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_width="140dp"
-        android:background="@color/colorPrimary"
-        android:text="Junior Player"
-        android:textColor="@color/colorBackground"
-        android:layout_marginTop="@dimen/margin_10"
-        android:layout_marginBottom="@dimen/margin_10"
-        android:textSize="28dp"
-        android:visibility="visible" />
+            android:id="@+id/juniorPlayers"
+            android:text="Junior Player"
+            style="@style/BlueYellowButtonVertical" />
         <Button
             android:id="@+id/seniorPlayers"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_width="140dp"
-            android:background="@color/colorPrimary"
             android:text="Senior Player"
-            android:textColor="@color/colorBackground"
-            android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:textSize="28dp"
-            android:visibility="visible" />
+            style="@style/BlueYellowButtonVertical" />
+        <Button
+            android:id="@+id/finishCheckin"
+            android:text="Next"
+            style="@style/BlueYellowButtonVertical" />
         <!--<Button-->
             <!--android:id="@+id/removeAllPlayers"-->
             <!--android:layout_height="0dp"-->
@@ -86,8 +58,8 @@
             <!--android:background="@color/colorPrimary"-->
             <!--android:text="Remove All"-->
             <!--android:textColor="@color/colorBackground"-->
-            <!--android:layout_marginTop="@dimen/margin_10"-->
-            <!--android:layout_marginBottom="@dimen/margin_10"-->
+            <!--android:layout_marginTop="@dimen/margin_5"-->
+            <!--android:layout_marginBottom="@dimen/margin_5"-->
             <!--android:textSize="28dp"-->
             <!--android:visibility="visible" />-->
         <!--<Button-->
@@ -98,24 +70,12 @@
             <!--android:background="@color/colorPrimary"-->
             <!--android:text="Check All"-->
             <!--android:textColor="@color/colorBackground"-->
-            <!--android:layout_marginTop="@dimen/margin_10"-->
-            <!--android:layout_marginBottom="@dimen/margin_10"-->
+            <!--android:layout_marginTop="@dimen/margin_5"-->
+            <!--android:layout_marginBottom="@dimen/margin_5"-->
             <!--android:textSize="28dp"-->
             <!--android:visibility="visible" />-->
 
-        <Button
-            android:id="@+id/finishCheckin"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_width="140dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/colorPrimary"
-            android:text="Next"
-            android:textColor="@color/colorBackground"
-            android:layout_marginTop="@dimen/margin_10"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:textSize="28dp"
-            android:visibility="visible" />
+
     </LinearLayout>
 
 

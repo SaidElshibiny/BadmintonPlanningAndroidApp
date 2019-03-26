@@ -156,42 +156,6 @@ public class DBHelper extends SQLiteOpenHelper {
         return player;
     }
 
-//    public ArrayList<Player> getAllJuniorPlayers(){
-//        ArrayList<Player> playersArrayList = new ArrayList<>();
-//        playersArrayList.add(new Player("Sally", "Zhao", 78, R.drawable.girl1, false));
-//        playersArrayList.add(new Player("John", "Json", 88, R.drawable.boy1,false));
-//        playersArrayList.add(new Player("Mitch", "Zhao", 78, R.drawable.girl2,false));
-//        playersArrayList.add(new Player("Sitch", "Json", 88, R.drawable.boy2,false));
-//        playersArrayList.add(new Player("Shelly", "Smith", 78, R.drawable.girl3,false));
-//        playersArrayList.add(new Player("John", "Yuan", 88, R.drawable.boy3,false));
-//        playersArrayList.add(new Player("Sally", "Chen", 78, R.drawable.girl4,false));
-//        playersArrayList.add(new Player("Jess", "Json", 88, R.drawable.boy4,false));
-//        playersArrayList.add(new Player("Shally", "Zhao", 78, R.drawable.girl5,false));
-//        playersArrayList.add(new Player("Steve", "Json", 88, R.drawable.boy4,false));
-//        playersArrayList.add(new Player("Even", "Zhao", 78, R.drawable.girl1,false));
-//        playersArrayList.add(new Player("macheal", "Json", 88, R.drawable.boy1,false));
-//        playersArrayList.add(new Player("Efan", "Zhao", 78, R.drawable.girl2,false));
-//        playersArrayList.add(new Player("John", "Json", 88, R.drawable.boy2,false));
-//        playersArrayList.add(new Player("Jenny", "Zhao", 78, R.drawable.girl3,false));
-//        playersArrayList.add(new Player("Laura", "Json", 88, R.drawable.boy3,false));
-//        playersArrayList.add(new Player("Jenna", "Zhao", 78, R.drawable.girl4,false));
-//        playersArrayList.add(new Player("Sohan", "Json", 88, R.drawable.boy4,false));
-//        playersArrayList.add(new Player("macheal", "Json", 88, R.drawable.boy1,false));
-//        playersArrayList.add(new Player(19, "Efan", "Zhao", 78, R.drawable.girl2,false));
-//        playersArrayList.add(new Player(20, "John", "Json", 88, R.drawable.boy2,false));
-//        playersArrayList.add(new Player(21, "Jenny", "Zhao", 78, R.drawable.girl3,false));
-//        playersArrayList.add(new Player(22, "Laura", "Json", 88, R.drawable.boy3,false));
-//        playersArrayList.add(new Player(23, "Jenna", "Zhao", 78, R.drawable.girl4,false));
-//        playersArrayList.add(new Player(24, "Sohan", "Json", 88, R.drawable.boy4,false));
-//        return playersArrayList;
-//    }
-
-//    public ArrayList<Player> getAllSeniorPlayers(){
-//        ArrayList<Player> playersArrayList = new ArrayList<>();
-//        return playersArrayList;
-//    }
-
-
     /*Reading All records from Player table*/
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> playersArrayList = new ArrayList<>();
@@ -200,14 +164,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-//                Player player = new Player();
-////                player.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
-////                player.setFirstName(cursor.getString(cursor.getColumnIndex(COLUMN_FIRST_NAME)));
-////                player.setLastName(cursor.getString(cursor.getColumnIndex(COLUMN_LAST_NAME)));
-////                player.setRanking(cursor.getInt(cursor.getColumnIndex(COLUMN_RANKING)));
-////                player.setImageID(cursor.getInt(cursor.getColumnIndex(COLUMN_IMAGE_ID)));
-////                player.setChecked(cursor.getWantsAllOnMoveCalls());
-////                playersArrayList.add(player);
                 playersArrayList.add(new Player(Integer.parseInt(cursor.getString(0)),
                         cursor.getString(1),
                         cursor.getString(2),
@@ -230,19 +186,31 @@ public class DBHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public int getCheckedPlayer() {
-        String query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + COLUMN_IS_CHECKED + "=true";
+    public ArrayList<Player> getCheckedPlayer() {
+        ArrayList<Player> playersArrayList = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + COLUMN_IS_CHECKED + "= 1";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-        int count = cursor.getCount();
-        cursor.close();
-        return count;
+        if (cursor.moveToFirst()) {
+            do {
+                playersArrayList.add(new Player(Integer.parseInt(cursor.getString(0)),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getInt(3),
+                        cursor.getInt(4),
+                        cursor.getWantsAllOnMoveCalls()
+                ));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        return playersArrayList;
     }
 
     public int updatePlayer(Player player) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_RANKING, player.getRanking());
+        values.put(COLUMN_IS_CHECKED, player.getChecked());
         // updating row
         return db.update(TABLE_PLAYERS, values, COLUMN_ID + " = ?",
                 new String[]{String.valueOf(player.getId())});

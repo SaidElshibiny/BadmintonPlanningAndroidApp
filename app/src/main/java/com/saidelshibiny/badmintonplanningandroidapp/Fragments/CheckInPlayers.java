@@ -105,8 +105,11 @@ public class CheckInPlayers extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                DBHelper db = new DBHelper(getContext());
                 Player player = players.get(i);
                 player.toggleChecked();
+                db.updatePlayer(player);
+                db.close();
                 playersAdapter.notifyDataSetChanged();
             }
         });
@@ -114,7 +117,7 @@ public class CheckInPlayers extends Fragment {
 //        final ArrayList<Integer> checkedPlayerNames = savedInstanceState.getIntegerArrayList(checkedPlayerNamesKey);
 //        for(int playerid : checkedPlayerNames){
 //            for(Player player : players){
-//                if(player.getPlayerId() == playerid) {
+//                if(player.getId() == playerid) {
 //                    player.setChecked(true);
 //                    break;
 //                }
@@ -123,7 +126,7 @@ public class CheckInPlayers extends Fragment {
 
 //        for(Player player : players){
 //            if(player.getChecked()){
-//                checkedPlayerNames.add(player.getPlayerId());
+//                checkedPlayerNames.add(player.getId());
 //            }
 //            playersAdapter.putIntegerArrayList(checkedPlayerNamesKey, checkedPlayerNames);
 //        }
@@ -149,9 +152,6 @@ public class CheckInPlayers extends Fragment {
                 transaction.replace(R.id.main_content, new AddPlayerFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
-
-
             }
         });
 
@@ -179,7 +179,7 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Leah", "Zhao", 78, R.drawable.girl1,false));
                 db.addPlayer(new Player("Maria", "Hemmings", 88, R.drawable.boy1,false));
                 count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("Total " +  count);
+                tvNumberOfPlayers.setText("" +  count);
                 db.close();
             }
         });
@@ -200,7 +200,7 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Warren", "Black", 78, R.drawable.girl4,false));
                 db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy4,false));
                 count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("Total " +  count);
+                tvNumberOfPlayers.setText("" +  count);
                 db.close();
             }
         });
