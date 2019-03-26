@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
@@ -110,19 +111,27 @@ public class AddPlayerFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Player player = new Player(
-                       firstName.getText().toString(),
-                       lastName.getText().toString(),
-                        Integer.parseInt(ranking.getText().toString()),
-                        0,
-                        //To be debug
-                       // Integer.parseInt("R.drawable." + avatarName),
-                        false);
-                DBHelper db = new DBHelper(getContext());
-                db.addPlayer(player);
-                db.close();
-                fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack();
+                if(firstName.getText().toString().isEmpty() || lastName.getText().toString().isEmpty()
+                ||ranking.getText().toString().isEmpty()){
+                    Toast toast = Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT);
+                    toast.setMargin(50, 50);
+                    toast.show();
+                }else{
+                    Player player = new Player(
+                            firstName.getText().toString(),
+                            lastName.getText().toString(),
+                            Integer.parseInt(ranking.getText().toString()),
+                            0,
+                            //To be debug
+                            // Integer.parseInt("R.drawable." + avatarName),
+                            false);
+                    DBHelper db = new DBHelper(getContext());
+                    db.addPlayer(player);
+                    db.close();
+                    fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack();
+                }
+
             }
         });
 

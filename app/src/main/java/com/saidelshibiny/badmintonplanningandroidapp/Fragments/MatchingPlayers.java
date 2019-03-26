@@ -40,9 +40,10 @@ public class MatchingPlayers extends Fragment {
     Button addGuestPlayer;
     EditText mEditText;
     TextView txTotalPlayer;
+    DBHelper db;
     ArrayList<TextView> checkedPlayerTextViews;
 
-    private ArrayList<Player> players;
+    private ArrayList<Player> checkedPlayers;
     int count;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -120,18 +121,18 @@ public class MatchingPlayers extends Fragment {
         view.findViewById(R.id.court5B).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court6B).setOnDragListener(new PlayerDragListener());
         view.findViewById(R.id.court7).setOnDragListener(new PlayerDragListener());
-        players = new ArrayList<>();
-        DBHelper db = new DBHelper(getContext());
-        players = db.getCheckedPlayer();
-        count = players.size();
+        checkedPlayers = new ArrayList<>();
+        db = new DBHelper(getContext());
+        checkedPlayers = db.getCheckedPlayer();
+        count = checkedPlayers.size();
         txTotalPlayer = view.findViewById(R.id.numOfMatchPlayers);
         txTotalPlayer.setText("" + count);
 //        txTotalPlayer.setText(players.get(0).getFirstName());
         watingArea = (LinearLayout)view.findViewById(R.id.court7);
         for(int i = 0; i<count; i++){
-            String playerFirstName = players.get(i).getFirstName();
-            String playerLastName = players.get(i).getLastName();
-            String name = playerFirstName + " " + playerLastName;
+            String playerFirstName = checkedPlayers.get(i).getFirstName();
+            String playerLastName = checkedPlayers.get(i).getLastName().substring(0,1);
+            String name = playerFirstName + " " + playerLastName + ".";
             watingArea.addView(createNewTextView(name));
         }
         db.close();
@@ -141,10 +142,16 @@ public class MatchingPlayers extends Fragment {
         addGuestPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                watingArea.addView(createNewTextView(mEditText.getText().toString()));
-                Toast toast = Toast.makeText(getContext(), "new player added", Toast.LENGTH_SHORT);
-                toast.setMargin(50,50);
+                Toast toast;
+                if(!mEditText.getText().toString().isEmpty()) {
+                    watingArea.addView(createNewTextView(mEditText.getText().toString()));
+                    toast = Toast.makeText(getContext(), "new player added", Toast.LENGTH_SHORT);
+                }else{
+                    toast = Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT);
+                }
+                toast.setMargin(50, 50);
                 toast.show();
+
             }
         });
 
@@ -204,20 +211,27 @@ public class MatchingPlayers extends Fragment {
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     private TextView createNewTextView(String text) {
-        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lparams.setMargins(2, 2, 2, 2);
+        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        lparams.setMargins(5, 2, 5, 2);
         lparams.gravity = Gravity.CENTER;
         final TextView textView = new TextView(getContext());
         textView.setLayoutParams(lparams);
+        textView.setBackgroundColor(0x47212F);
         textView.setText(text);
         textView.setTextSize(24);
         textView.setGravity(Gravity.CENTER );
-        textView.setTextColor(Color.WHITE);
-        textView.setPadding(2, 2, 2, 2);
+        textView.setTextColor(Color.BLACK);
+        textView.setPadding(5, 2, 5, 2);
         textView.setOnTouchListener(new PlayerTouchListener());
         textView.setOnDragListener(new PlayerDragListener());
+//        Player player = new Player();
+//        player.setFirstName(text);
+//        db.addPlayer(player);
+//
+//        db.close();
         return textView;
     }
 

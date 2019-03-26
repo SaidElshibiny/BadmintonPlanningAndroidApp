@@ -105,8 +105,11 @@ public class CheckInPlayers extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                DBHelper db = new DBHelper(getContext());
                 Player player = players.get(i);
                 player.toggleChecked();
+                db.updatePlayer(player);
+                db.close();
                 playersAdapter.notifyDataSetChanged();
             }
         });
@@ -114,7 +117,7 @@ public class CheckInPlayers extends Fragment {
 //        final ArrayList<Integer> checkedPlayerNames = savedInstanceState.getIntegerArrayList(checkedPlayerNamesKey);
 //        for(int playerid : checkedPlayerNames){
 //            for(Player player : players){
-//                if(player.getPlayerId() == playerid) {
+//                if(player.getId() == playerid) {
 //                    player.setChecked(true);
 //                    break;
 //                }
@@ -123,7 +126,7 @@ public class CheckInPlayers extends Fragment {
 
 //        for(Player player : players){
 //            if(player.getChecked()){
-//                checkedPlayerNames.add(player.getPlayerId());
+//                checkedPlayerNames.add(player.getId());
 //            }
 //            playersAdapter.putIntegerArrayList(checkedPlayerNamesKey, checkedPlayerNames);
 //        }
@@ -149,9 +152,6 @@ public class CheckInPlayers extends Fragment {
                 transaction.replace(R.id.main_content, new AddPlayerFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
-
-
             }
         });
 
@@ -162,10 +162,10 @@ public class CheckInPlayers extends Fragment {
                 //pop up a window to add new player's first name, last name, and select an avatar from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
-                db.addPlayer(new Player("Lisa", "Zhao", 78, R.drawable.girl2,true));
-                db.addPlayer(new Player("Mary", "Thomson", 88, R.drawable.boy2,true));
-                db.addPlayer(new Player("Dan", "Underwood", 78, R.drawable.girl3,true));
-                db.addPlayer(new Player("Laura", "Robertson", 88, R.drawable.boy3,true));
+                db.addPlayer(new Player("Lisa", "Zhao", 78, R.drawable.girl2,false));
+                db.addPlayer(new Player("Mary", "Thomson", 88, R.drawable.boy2,false));
+                db.addPlayer(new Player("Dan", "Underwood", 78, R.drawable.girl3,false));
+                db.addPlayer(new Player("Laura", "Robertson", 88, R.drawable.boy3,false));
                 db.addPlayer(new Player("Abigail", "MacDonald", 78, R.drawable.girl1, false));
                 db.addPlayer(new Player("Carolyn", "MacDonald", 88, R.drawable.boy1,false));
                 db.addPlayer(new Player("Angela", "Newman", 78, R.drawable.girl2,false));
@@ -190,17 +190,17 @@ public class CheckInPlayers extends Fragment {
                 //pop up a window to add new player's first name, last name, and select an avatar from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
-                db.addPlayer(new Player("Jenna", "Paterson", 78, R.drawable.girl4,true));
-                db.addPlayer(new Player("Julian", "Newman", 88, R.drawable.boy4,true));
-                db.addPlayer(new Player("Richard", "Hemmings", 88, R.drawable.boy1,true));
-                db.addPlayer(new Player("Dominic", "Cameron", 78, R.drawable.girl2,true));
-                db.addPlayer(new Player("John", "Buckland", 88, R.drawable.boy2,true));
-                db.addPlayer(new Player("Jenny", "Cameron", 78, R.drawable.girl3,true));
-                db.addPlayer(new Player("Tim", "Bower", 88, R.drawable.boy3,true));
-                db.addPlayer(new Player("Warren", "Black", 78, R.drawable.girl4,true));
-                db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy4,true));
+                db.addPlayer(new Player("Jenna", "Paterson", 78, R.drawable.girl4,false));
+                db.addPlayer(new Player("Julian", "Newman", 88, R.drawable.boy4,false));
+                db.addPlayer(new Player("Richard", "Hemmings", 88, R.drawable.boy1,false));
+                db.addPlayer(new Player("Dominic", "Cameron", 78, R.drawable.girl2,false));
+                db.addPlayer(new Player("John", "Buckland", 88, R.drawable.boy2,false));
+                db.addPlayer(new Player("Jenny", "Cameron", 78, R.drawable.girl3,false));
+                db.addPlayer(new Player("Tim", "Bower", 88, R.drawable.boy3,false));
+                db.addPlayer(new Player("Warren", "Black", 78, R.drawable.girl4,false));
+                db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy4,false));
                 count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("Total " +  count);
+                tvNumberOfPlayers.setText("" +  count);
                 db.close();
             }
         });
