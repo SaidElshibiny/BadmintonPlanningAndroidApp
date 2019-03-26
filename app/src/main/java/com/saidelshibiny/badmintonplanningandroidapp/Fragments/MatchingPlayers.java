@@ -94,7 +94,7 @@ public class MatchingPlayers extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
 
-        view.findViewById(R.id.matchPlayer1A).setOnTouchListener(new PlayerTouchListener());
+      //  view.findViewById(R.id.matchPlayer1A).setOnTouchListener(new PlayerTouchListener());
 //        view.findViewById(R.id.matchPlayer2A).setOnTouchListener(new PlayerTouchListener());
 //        view.findViewById(R.id.matchPlayer3A).setOnTouchListener(new PlayerTouchListener());
 //        view.findViewById(R.id.matchPlayer1B).setOnTouchListener(new PlayerTouchListener());

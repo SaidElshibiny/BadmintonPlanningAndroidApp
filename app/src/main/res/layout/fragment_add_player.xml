@@ -23,11 +23,10 @@
         android:id="@+id/etLastName"
         style="@style/EqualEditTextVertical"
         android:hint="Last Name"/>
-    <EditText
-        android:id="@+id/etRanking"
-        android:inputType="number"
+    <TextView
+        android:id="@+id/tvRanking"
         style="@style/EqualEditTextVertical"
-        android:hint="Estimate level(1 - 100)"/>
+        android:text="Estimate ranking: 50"/>
     <!--<ImageView-->
     <!--android:id="@+id/cameraButton"-->
     <!--android:layout_width="match_parent"-->
@@ -42,6 +41,16 @@
         <!--android:layout_height="0dp"-->
         <!--android:orientation="vertical">-->
     <!--</LinearLayout>-->
+    <SeekBar
+        android:id="@+id/seekBarRanking"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:max="100"
+        android:progress="50"
+        android:layout_gravity="fill_horizontal"
+         />
+
     <Button
         android:id="@+id/submitButton"
         android:layout_width="match_parent"

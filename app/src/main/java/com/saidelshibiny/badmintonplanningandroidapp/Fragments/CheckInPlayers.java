@@ -179,7 +179,7 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Leah", "Zhao", 78, R.drawable.girl1,false));
                 db.addPlayer(new Player("Maria", "Hemmings", 88, R.drawable.boy1,false));
                 count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("Total " +  count);
+                tvNumberOfPlayers.setText("" +  count);
                 db.close();
             }
         });

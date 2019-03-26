@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
@@ -39,7 +41,9 @@ public class AddPlayerFragment extends Fragment {
 
     EditText firstName;
     EditText lastName;
-    EditText ranking;
+    TextView tvRanking;
+    int ranking;
+    SeekBar seekBarRanking;
     FragmentManager fm;
     ImageView avatar1;
     ImageView avatar2;
@@ -93,10 +97,23 @@ public class AddPlayerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_player, container, false);
         firstName = (EditText) view.findViewById(R.id.etFirstName);
         lastName = (EditText) view.findViewById(R.id.etLastName);
-        ranking = (EditText) view.findViewById(R.id.etRanking);
+       // ranking = (EditText) view.findViewById(R.id.etRanking);
         avatar1 = (ImageView)view.findViewById(R.id.avatar1);
-
-
+        tvRanking = (TextView) view.findViewById(R.id.tvRanking);
+        seekBarRanking = (SeekBar) view.findViewById(R.id.seekBarRanking);
+        seekBarRanking.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                tvRanking.setText("Estimate ranking: " + progress);
+                ranking = progress;
+            }
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+            }
+        });
 
         avatar1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +128,7 @@ public class AddPlayerFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(firstName.getText().toString().isEmpty() || lastName.getText().toString().isEmpty()
-                ||ranking.getText().toString().isEmpty()){
+                if(firstName.getText().toString().isEmpty() || lastName.getText().toString().isEmpty()){
                     Toast toast = Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT);
                     toast.setMargin(50, 50);
                     toast.show();
@@ -120,7 +136,7 @@ public class AddPlayerFragment extends Fragment {
                     Player player = new Player(
                             firstName.getText().toString(),
                             lastName.getText().toString(),
-                            Integer.parseInt(ranking.getText().toString()),
+                            ranking,
                             0,
                             //To be debug
                             // Integer.parseInt("R.drawable." + avatarName),
@@ -131,14 +147,10 @@ public class AddPlayerFragment extends Fragment {
                     fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack();
                 }
-
             }
         });
-
         return view;
     }
-
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

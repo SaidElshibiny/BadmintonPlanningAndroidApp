@@ -99,8 +99,14 @@
         android:background="@drawable/court_background" >
         <TextView
             android:id="@+id/matchPlayer1A"
-            android:text="Player1A"
-            style="@style/OvalBrownWhiteTextView"/>
+            android:text="Court 7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/colorBackground"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:background="#47212F"
+            />
         <!--<TextView-->
             <!--android:id="@+id/matchPlayer1B"-->
             <!--android:text="Player1B"-->
