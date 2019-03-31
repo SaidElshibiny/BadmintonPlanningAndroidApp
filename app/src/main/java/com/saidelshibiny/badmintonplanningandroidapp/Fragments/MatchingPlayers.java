@@ -2,18 +2,28 @@ package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
+import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
+
+import java.util.ArrayList;
 
 
 /**
@@ -25,6 +35,29 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
  * create an instance of this fragment.
  */
 public class MatchingPlayers extends Fragment {
+
+    LinearLayout court7;
+    Button btAddGuestPlayer;
+    Button btAutoMatch;
+    EditText mEditText;
+    TextView txTotalPlayer;
+    DBHelper db;
+    LinearLayout court1A;
+    LinearLayout court1B;
+    LinearLayout court2A;
+    LinearLayout court2B;
+    LinearLayout court3A;
+    LinearLayout court3B;
+    LinearLayout court4A;
+    LinearLayout court4B;
+    LinearLayout court5A;
+    LinearLayout court5B;
+    LinearLayout court6A;
+    LinearLayout court6B;
+    ArrayList<TextView> checkedPlayerTextViews;
+
+    private ArrayList<Player> checkedPlayers;
+    int count;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -73,33 +106,76 @@ public class MatchingPlayers extends Fragment {
         getActivity().setTitle("Matching Players");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
-        view.findViewById(R.id.matchPlayer1A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer2A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer3A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer1B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer2B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer3B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer4A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer5A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer4B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer5B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer7).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.court1A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court2A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court3A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court4A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court5A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court6A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court1B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court2B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court3B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court4B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court5B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court6B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court7).setOnDragListener(new PlayerDragListener());
+
+        court1A = view.findViewById(R.id.court1A);
+        court1A.setOnDragListener(new PlayerDragListener());
+        court1B = view.findViewById(R.id.court1B);
+        court1B.setOnDragListener(new PlayerDragListener());
+        court2A = view.findViewById(R.id.court2A);
+        court2A.setOnDragListener(new PlayerDragListener());
+        court2B = view.findViewById(R.id.court2B);
+        court2B.setOnDragListener(new PlayerDragListener());
+        court3A = view.findViewById(R.id.court3A);
+        court3A.setOnDragListener(new PlayerDragListener());
+        court3B = view.findViewById(R.id.court3B);
+        court3B.setOnDragListener(new PlayerDragListener());
+        court4A = view.findViewById(R.id.court4A);
+        court4A.setOnDragListener(new PlayerDragListener());
+        court4B = view.findViewById(R.id.court4B);
+        court4B.setOnDragListener(new PlayerDragListener());
+        court5A = view.findViewById(R.id.court5A);
+        court5A.setOnDragListener(new PlayerDragListener());
+        court5B = view.findViewById(R.id.court5B);
+        court5B.setOnDragListener(new PlayerDragListener());
+        court6A = view.findViewById(R.id.court6A);
+        court6A.setOnDragListener(new PlayerDragListener());
+        court6B = view.findViewById(R.id.court6B);
+        court6B.setOnDragListener(new PlayerDragListener());
+        court7 = (LinearLayout)view.findViewById(R.id.court7);
+        court7.setOnDragListener(new PlayerDragListener());
+
+        checkedPlayers = new ArrayList<>();
+        db = new DBHelper(getContext());
+        checkedPlayers = db.getCheckedPlayer();
+        count = checkedPlayers.size();
+        txTotalPlayer = view.findViewById(R.id.numOfMatchPlayers);
+        txTotalPlayer.setText("" + count);
+
+        for(int i = 0; i<count; i++){
+            String playerFirstName = checkedPlayers.get(i).getFirstName();
+            String playerLastName = checkedPlayers.get(i).getLastName().substring(0,1);
+            String name = playerFirstName + " " + playerLastName + ".";
+
+            court7.addView(createNewTextView(name));
+            //TODO: Add a loop to automatically assign each textview into each LinearLayout
+        }
+        db.close();
+    //add a guest player before game matching
+        mEditText = (EditText) view.findViewById(R.id.guestName);
+        btAddGuestPlayer = view.findViewById(R.id.addGuestPlayer);
+        btAddGuestPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast;
+                if(!mEditText.getText().toString().isEmpty()) {
+                    court7.addView(createNewTextView(mEditText.getText().toString()));
+                    toast = Toast.makeText(getContext(), "new player added", Toast.LENGTH_SHORT);
+                }else{
+                    toast = Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT);
+                }
+                toast.setMargin(50, 50);
+                toast.show();
+            }
+        });
+
+        //start auto matching
+        btAutoMatch = (Button) view.findViewById(R.id.autoMatch);
+        btAutoMatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         return view;
     }
 
@@ -156,7 +232,31 @@ public class MatchingPlayers extends Fragment {
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    private TextView createNewTextView(String text) {
+        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        lparams.setMargins(5, 2, 5, 2);
+        lparams.gravity = Gravity.CENTER;
+        final TextView textView = new TextView(getContext());
+        textView.setLayoutParams(lparams);
+        textView.setBackgroundColor(0x47212F);
+        textView.setText(text);
+        textView.setTextSize(24);
+        textView.setGravity(Gravity.CENTER );
+        textView.setTextColor(Color.BLACK);
+        textView.setPadding(5, 2, 5, 2);
+        textView.setOnTouchListener(new PlayerTouchListener());
+        textView.setOnDragListener(new PlayerDragListener());
+//        Player player = new Player();
+//        player.setFirstName(text);
+//        db.addPlayer(player);
+//
+//        db.close();
+        return textView;
+    }
+
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
