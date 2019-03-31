@@ -1,6 +1,7 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
@@ -99,6 +101,20 @@ public class Timer extends Fragment {
     LinearLayout matchLL;
     LinearLayout cooldownLL;
 
+
+    /*Countdown timers*/
+    CountDownTimer warmUpCD;
+    CountDownTimer footworkDrillsCD;
+    CountDownTimer breakCD;
+    CountDownTimer matchCD;
+    CountDownTimer coolDownCD;
+
+    //Create boolean for counterIsActive to change the button text
+    Boolean counterIsActive = false;
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,241 +158,173 @@ public class Timer extends Fragment {
         /* LinerLayout */
         warmupLL = view.findViewById(R.id.warmpUpLL);
         footworkDrillLL = view.findViewById(R.id.footworkDrillLL);
-        warmupLL = view.findViewById(R.id.warmpUpLL);
-        warmupLL = view.findViewById(R.id.warmpUpLL);
-        warmupLL = view.findViewById(R.id.warmpUpLL);
+        breakLL = view.findViewById(R.id.breakLL);
+        matchLL = view.findViewById(R.id.matchLL);
+        cooldownLL = view.findViewById(R.id.coolDownLL);
 
         /*Setup SeekBars */
 
+//        //max values
+//        warmupSB.setMax(600);
+//        footworkDrillsSB.setMax(1800);
+//        breakSB.setMax(600);
+//        matchSB.setMax(1800);
+//        cooldownSB.setMax(600);
+
         //max values
-        warmupSB.setMax(600);
-        footworkDrillsSB.setMax(1800);
-        breakSB.setMax(600);
-        matchSB.setMax(1800);
-        cooldownSB.setMax(600);
+        warmupSB.setMax(10);
+        footworkDrillsSB.setMax(10);
+        breakSB.setMax(10);
+        matchSB.setMax(10);
+        cooldownSB.setMax(10);
 
+        //SeekBar Listeners
 
-//        final Integer[] totalminutesArray = {0,0};
-//        final Integer[] totalsecondsArray = {0,0};
-//
-//
-//        Integer totalMintesForTimer = (totalminutesArray[0] + totalminutesArray[1]);
-//        Integer totalSecondsForTimer = (totalsecondsArray[0] + totalsecondsArray[1]);
-
-
-        //seekbar listeners
         warmupSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
                 updateWarmUpTimer(progress);
 
-//                totalminutesArray[0] = minutes;
-//                totalsecondsArray[0] = seconds;
-
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         footworkDrillsSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Take the number of seconds and divide by 60, then round down
-                int minutes = (int) progress / 60;
 
-                //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
-                int seconds = progress - minutes * 60;
-
-                //string to hold the minutes
-                String minuteString = Integer.toString(minutes);
-
-                //check if minutes are equal to zero and add another 0 to reflect in the timer
-                if (minuteString == "0"){
-                    minuteString = "00";
-                }
-
-                //string to hold the seconds
-                String secondsString = Integer.toString(seconds);
-
-                //check if seconds are equal to zero and add another 0 to reflect in the timer
-                if (secondsString == "0"){
-                    secondsString = "00";
-                }
-//
-                //Update the timerTitle
-                footworkDrillTimerText.setText(minuteString + ":" + secondsString);
-
-//                totalminutesArray[1] = minutes;
-//                totalsecondsArray[1] = seconds;
+                updateFootWorkDrillTimer(progress);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         breakSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Take the number of seconds and divide by 60, then round down
-                int minutes = (int) progress / 60;
 
-                //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
-                int seconds = progress - minutes * 60;
-
-                //string to hold the minutes
-                String minuteString = Integer.toString(minutes);
-
-                //check if minutes are equal to zero and add another 0 to reflect in the timer
-                if (minuteString == "0"){
-                    minuteString = "00";
-                }
-
-                //string to hold the seconds
-                String secondsString = Integer.toString(seconds);
-
-                //check if seconds are equal to zero and add another 0 to reflect in the timer
-                if (secondsString == "0"){
-                    secondsString = "00";
-                }
-//
-                //Update the timerTitle
-                breakTimerText.setText(minuteString + ":" + secondsString);
-
-//                totalminutesArray[1] = minutes;
-//                totalsecondsArray[1] = seconds;
+                updateBreakTimer(progress);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         matchSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Take the number of seconds and divide by 60, then round down
-                int minutes = (int) progress / 60;
 
-                //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
-                int seconds = progress - minutes * 60;
-
-                //string to hold the minutes
-                String minuteString = Integer.toString(minutes);
-
-                //check if minutes are equal to zero and add another 0 to reflect in the timer
-                if (minuteString == "0"){
-                    minuteString = "00";
-                }
-
-                //string to hold the seconds
-                String secondsString = Integer.toString(seconds);
-
-                //check if seconds are equal to zero and add another 0 to reflect in the timer
-                if (secondsString == "0"){
-                    secondsString = "00";
-                }
-//
-                //Update the timerTitle
-                matchTimerText.setText(minuteString + ":" + secondsString);
-
-//                totalminutesArray[1] = minutes;
-//                totalsecondsArray[1] = seconds;
+                updateMatchTimer(progress);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
 
         cooldownSB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //Take the number of seconds and divide by 60, then round down
-                int minutes = (int) progress / 60;
 
-                //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
-                int seconds = progress - minutes * 60;
-
-                //string to hold the minutes
-                String minuteString = Integer.toString(minutes);
-
-                //check if minutes are equal to zero and add another 0 to reflect in the timer
-                if (minuteString == "0"){
-                    minuteString = "00";
-                }
-
-                //string to hold the seconds
-                String secondsString = Integer.toString(seconds);
-
-                //check if seconds are equal to zero and add another 0 to reflect in the timer
-                if (secondsString == "0"){
-                    secondsString = "00";
-                }
-//
-                //Update the timerTitle
-                cooldownTimerText.setText(minuteString + ":" + secondsString);
-
-//                totalminutesArray[1] = minutes;
-//                totalsecondsArray[1] = seconds;
+                updateCoolDownTimer(progress);
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
+            public void onStartTrackingTouch(SeekBar seekBar) {}
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
+
 
         playPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                controlTimer();
+
+                if (warmupSB.getProgress() == 0 || footworkDrillsSB.getProgress() == 0 || breakSB.getProgress() == 0 || matchSB.getProgress() == 0 || cooldownSB.getProgress() == 0){
+
+                    Toast toast = Toast.makeText(getContext(), "Please set the timers first", Toast.LENGTH_LONG);
+                    toast.show();
+
+                } else{
+
+                    //start timers in sequence
+                    controlWarmUpTimer();
+
+                    //disable SeekBars
+                    warmupSB.setEnabled(false);
+                    footworkDrillsSB.setEnabled(false);
+                    breakSB.setEnabled(false);
+                    matchSB.setEnabled(false);
+                    cooldownSB.setEnabled(false);
+
+                    playPauseButton.setVisibility(view.INVISIBLE);
+                }
             }
         });
-
-
-//        System.out.print(totalMintesForTimer);
-//        System.out.print(totalSecondsForTimer);
-//
-//        //Update the timerTitle
-//        timerTitle.setText("00:" + Integer.toString(totalMintesForTimer) + ":" + Integer.toString(totalSecondsForTimer));
 
         // Inflate the layout for this fragment
         return view;
     }
+
+    /*RESET TIMERS*/
+
+    public void resetAllTimers(){
+
+        //change timer to 10min
+        warmUpTimerText.setText("10:00");
+        warmupSB.setProgress(600);
+        //enable SeekBar
+        warmupSB.setEnabled(true);
+        //cancel the countdown
+        warmUpCD.cancel();
+        //change the layout background color
+        warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+
+
+        footworkDrillTimerText.setText("30:00");
+        footworkDrillsSB.setProgress(1800);
+        footworkDrillsSB.setEnabled(true);
+        footworkDrillsCD.cancel();
+        footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+
+
+        breakTimerText.setText("10:00");
+        breakSB.setProgress(600);
+        breakSB.setEnabled(true);
+        breakCD.cancel();
+        breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+
+
+        matchTimerText.setText("30:00");
+        matchSB.setProgress(1800);
+        matchSB.setEnabled(true);
+        matchCD.cancel();
+        matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+
+
+        cooldownTimerText.setText("10:00");
+        cooldownSB.setProgress(600);
+        cooldownSB.setEnabled(true);
+        coolDownCD.cancel();
+        cooldownLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+
+        playPauseButton.setVisibility(getView().VISIBLE);
+        playPauseButton.setText("START");
+        counterIsActive = false;
+    }
+
+    /* WARMUP */
 
     //Create a method for updating the warmup timer
     public void updateWarmUpTimer(int secondsLeft){
@@ -408,30 +356,305 @@ public class Timer extends Fragment {
     }
 
     //Create a method for the button, that will control the timers
-    public void controlTimer(){
-            Log.i("Button Pressed", "Pressed");
+    public void controlWarmUpTimer() {
+
+        if (counterIsActive == false) {
+
+        //set counterIsActive to true
+        counterIsActive = true;
+
+        //change the text for the playPauseButton
+        playPauseButton.setText("STOP");
+
+        //Add 0.1 seconds to time to give time for the script to run and not impact timer
+        warmUpCD = new CountDownTimer(warmupSB.getProgress() * 1000 + 100, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                /*call updateTimer for warmup
+                /divide the number of milliseconds by 1000 to get seconds and cast as integer*/
+                updateWarmUpTimer((int) millisUntilFinished / 1000);
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                //change the values of the timer to 00:00
+                warmUpTimerText.setText("00:00");
+
+                controlFootWorkDrillsTimer();
+
+                //change the layout background color
+                warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+
+                //create a mediaplayer and play sound
+                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
+                mplayer.start();
+
+            }
+        }.start();
+
+        }
+    }
+
+    /* FOOTWORK DRILLS */
+
+    //Create a method for updating the footwork drills timer
+    public void updateFootWorkDrillTimer(int secondsLeft){
+
+        //Take the number of seconds and divide by 60, then round down
+        int minutes = (int) secondsLeft / 60;
+
+        //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
+        int seconds = secondsLeft - minutes * 60;
+
+        //string to hold the minutes
+        String minuteString = Integer.toString(minutes);
+
+        //check if the number of minutes is single digit and add a zero to fix the timet
+        if(minutes <= 9){
+            minuteString = "0" + minuteString;
+        }
+
+        //string to hold the seconds
+        String secondsString = Integer.toString(seconds);
+
+        //check if the number of seconds is single digit and add a zero to fix the timet
+        if(seconds <= 9){
+            secondsString = "0" + secondsString;
+        }
+
+        //Update the timerTitle
+        footworkDrillTimerText.setText(minuteString + ":" + secondsString);
+    }
+
+    //Create a method for the button, that will control the timer
+    public void controlFootWorkDrillsTimer() {
 
             //Add 0.1 seconds to time to give time for the script to run and not impact timer
-            new CountDownTimer(warmupSB.getProgress()* 1000 + 100, 1000){
+            footworkDrillsCD = new CountDownTimer(footworkDrillsSB.getProgress() * 1000 + 100, 1000) {
 
                 @Override
                 public void onTick(long millisUntilFinished) {
 
-                    /*call updateTimer for warmup
-                    /divide the number of milliseconds by 1000 to get seconds and cast as integer*/
-                    updateWarmUpTimer((int) millisUntilFinished / 1000);
-                    
+                /*call updateTimer for warmup
+                /divide the number of milliseconds by 1000 to get seconds and cast as integer*/
+                    updateFootWorkDrillTimer((int) millisUntilFinished / 1000);
+
                 }
 
                 @Override
                 public void onFinish() {
 
-                    Log.i("Finished","Timer Done");
-                    warmUpTimerText.setText("00:00");
-                    warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+                    //change the values of the timer to 00:00
+                    footworkDrillTimerText.setText("00:00");
+
+                    controlBreakTimer();
+
+                    //change the layout background color
+                    footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+
+
+                    //create a mediaplayer and play sound
+                    MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
+                    mplayer.start();
 
                 }
             }.start();
+
+        }
+
+    /* BREAK */
+
+    //Create a method for updating the break timer
+    public void updateBreakTimer(int secondsLeft){
+
+        //Take the number of seconds and divide by 60, then round down
+        int minutes = (int) secondsLeft / 60;
+
+        //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
+        int seconds = secondsLeft - minutes * 60;
+
+        //string to hold the minutes
+        String minuteString = Integer.toString(minutes);
+
+        //check if the number of minutes is single digit and add a zero to fix the timet
+        if(minutes <= 9){
+            minuteString = "0" + minuteString;
+        }
+
+        //string to hold the seconds
+        String secondsString = Integer.toString(seconds);
+
+        //check if the number of seconds is single digit and add a zero to fix the timet
+        if(seconds <= 9){
+            secondsString = "0" + secondsString;
+        }
+
+        //Update the timerTitle
+        breakTimerText.setText(minuteString + ":" + secondsString);
+    }
+
+    //Create a method for the button, that will control the timer
+    public void controlBreakTimer() {
+
+        //Add 0.1 seconds to time to give time for the script to run and not impact timer
+        breakCD = new CountDownTimer(breakSB.getProgress() * 1000 + 100, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                /*call updateTimer for warmup
+                /divide the number of milliseconds by 1000 to get seconds and cast as integer*/
+                updateBreakTimer((int) millisUntilFinished / 1000);
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                //change the values of the timer to 00:00
+                breakTimerText.setText("00:00");
+
+                controlMatchTimer();
+
+                //change the layout background color
+                breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+
+
+                //create a mediaplayer and play sound
+                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
+                mplayer.start();
+
+            }
+        }.start();
+
+    }
+
+    /* MATCH */
+
+    //Create a method for updating the match timer
+    public void updateMatchTimer(int secondsLeft){
+
+        //Take the number of seconds and divide by 60, then round down
+        int minutes = (int) secondsLeft / 60;
+
+        //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
+        int seconds = secondsLeft - minutes * 60;
+
+        //string to hold the minutes
+        String minuteString = Integer.toString(minutes);
+
+        //check if the number of minutes is single digit and add a zero to fix the timet
+        if(minutes <= 9){
+            minuteString = "0" + minuteString;
+        }
+
+        //string to hold the seconds
+        String secondsString = Integer.toString(seconds);
+
+        //check if the number of seconds is single digit and add a zero to fix the timet
+        if(seconds <= 9){
+            secondsString = "0" + secondsString;
+        }
+
+        //Update the timerTitle
+        matchTimerText.setText(minuteString + ":" + secondsString);
+    }
+
+    //Create a method for the button, that will control the timer
+    public void controlMatchTimer() {
+
+        //Add 0.1 seconds to time to give time for the script to run and not impact timer
+        matchCD = new CountDownTimer(matchSB.getProgress() * 1000 + 100, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                /*call updateTimer for warmup
+                /divide the number of milliseconds by 1000 to get seconds and cast as integer*/
+                updateMatchTimer((int) millisUntilFinished / 1000);
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                //change the values of the timer to 00:00
+                matchTimerText.setText("00:00");
+
+                controlCoolDownTimer();
+
+                //change the layout background color
+                matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+
+                //create a mediaplayer and play sound
+                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
+                mplayer.start();
+
+            }
+        }.start();
+    }
+
+    /* COOLDOWN */
+
+    //Create a method for updating the cooldown timer
+    public void updateCoolDownTimer(int secondsLeft){
+
+        //Take the number of seconds and divide by 60, then round down
+        int minutes = (int) secondsLeft / 60;
+
+        //Take the total number of seconds and subtract the number of seconds already included in minutes to get the left over seconds.
+        int seconds = secondsLeft - minutes * 60;
+
+        //string to hold the minutes
+        String minuteString = Integer.toString(minutes);
+
+        //check if the number of minutes is single digit and add a zero to fix the timet
+        if(minutes <= 9){
+            minuteString = "0" + minuteString;
+        }
+
+        //string to hold the seconds
+        String secondsString = Integer.toString(seconds);
+
+        //check if the number of seconds is single digit and add a zero to fix the timet
+        if(seconds <= 9){
+            secondsString = "0" + secondsString;
+        }
+
+        //Update the timerTitle
+        cooldownTimerText.setText(minuteString + ":" + secondsString);
+    }
+
+    //Create a method for the button, that will control the timer
+    public void controlCoolDownTimer() {
+
+        //Add 0.1 seconds to time to give time for the script to run and not impact timer
+        coolDownCD = new CountDownTimer(cooldownSB.getProgress() * 1000 + 100, 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                /*call updateTimer for warmup
+                /divide the number of milliseconds by 1000 to get seconds and cast as integer*/
+                updateCoolDownTimer((int) millisUntilFinished / 1000);
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                resetAllTimers();
+
+                //create a mediaplayer and play sound
+                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.airhorn);
+                mplayer.start();
+
+            }
+        }.start();
     }
 
 
