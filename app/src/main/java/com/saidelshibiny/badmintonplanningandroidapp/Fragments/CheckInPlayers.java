@@ -181,6 +181,11 @@ public class CheckInPlayers extends Fragment {
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("" +  count);
                 db.close();
+                //refresh fragment
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         btgetAllSeniorPlayers = (Button) view.findViewById(R.id.seniorPlayers);
@@ -202,6 +207,11 @@ public class CheckInPlayers extends Fragment {
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("" +  count);
                 db.close();
+                //refresh fragment
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 //        btRemoveAllPlayers = (Button) view.findViewById(R.id.removeAllPlayers);
