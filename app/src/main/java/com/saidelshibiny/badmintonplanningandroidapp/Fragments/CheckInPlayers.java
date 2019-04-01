@@ -43,14 +43,12 @@ public class CheckInPlayers extends Fragment {
     Button btAddNewPlayer;
 
     //for testing purpose
-//    Button btRemoveAllPlayers;
+    Button btRemoveAllPlayers;
     Button btgetAllJuniorPlayers;
     Button btgetAllSeniorPlayers;
     TextView tvNumberOfPlayers;
     int count;
-
     FragmentManager fm;
-
     private OnFragmentInteractionListener mListener;
 
     public CheckInPlayers() {
@@ -181,6 +179,11 @@ public class CheckInPlayers extends Fragment {
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("" +  count);
                 db.close();
+                //refresh fragment
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
         btgetAllSeniorPlayers = (Button) view.findViewById(R.id.seniorPlayers);
@@ -202,17 +205,28 @@ public class CheckInPlayers extends Fragment {
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("" +  count);
                 db.close();
+                //refresh fragment
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
-//        btRemoveAllPlayers = (Button) view.findViewById(R.id.removeAllPlayers);
-//        btRemoveAllPlayers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                DBHelper db = new DBHelper(getContext());
-//                db.deleteAllPlayers();
-//
-//            }
-//        });
+
+        btRemoveAllPlayers = (Button) view.findViewById(R.id.removeAllPlayers);
+        btRemoveAllPlayers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBHelper db = new DBHelper(getContext());
+                db.deleteAllPlayers();
+                //refresh fragment
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
 
 
 
