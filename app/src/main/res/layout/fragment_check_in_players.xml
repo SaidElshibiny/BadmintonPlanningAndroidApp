@@ -27,10 +27,7 @@
         android:orientation="vertical"
         android:layout_alignParentRight="true"
         >
-        <Button
-            android:id="@+id/addNewPlayer"
-            android:text="Add Player"
-            style="@style/BlueYellowButtonVertical"  />
+
         <TextView
             android:id="@+id/numOfPlayers"
             android:text="Total"
@@ -39,29 +36,28 @@
             android:textSize="32dp" />
 
         <Button
+            android:id="@+id/addNewPlayer"
+            android:text="Add"
+            style="@style/BlueYellowButtonVertical"  />
+
+        <Button
             android:id="@+id/juniorPlayers"
-            android:text="Junior Player"
+            android:text="Junior"
             style="@style/BlueYellowButtonVertical" />
         <Button
             android:id="@+id/seniorPlayers"
-            android:text="Senior Player"
+            android:text="Senior"
             style="@style/BlueYellowButtonVertical" />
+        <Button
+            android:id="@+id/removeAllPlayers"
+            android:text="Clear"
+            style="@style/BlueYellowButtonVertical"
+            />
         <Button
             android:id="@+id/finishCheckin"
             android:text="Next"
             style="@style/BlueYellowButtonVertical" />
-        <!--<Button-->
-            <!--android:id="@+id/removeAllPlayers"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_width="140dp"-->
-            <!--android:background="@color/colorPrimary"-->
-            <!--android:text="Remove All"-->
-            <!--android:textColor="@color/colorBackground"-->
-            <!--android:layout_marginTop="@dimen/margin_5"-->
-            <!--android:layout_marginBottom="@dimen/margin_5"-->
-            <!--android:textSize="28dp"-->
-            <!--android:visibility="visible" />-->
+
         <!--<Button-->
             <!--android:id="@+id/checkAllPlayers"-->
             <!--android:layout_height="0dp"-->
