@@ -27,7 +27,10 @@ public class MainActivity extends AppCompatActivity
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
+                   LoginFragment.OnFragmentInteractionListener,
                    Rules.OnFragmentInteractionListener{
+
+
 
     //Create fragment manager
     FragmentManager fm;
