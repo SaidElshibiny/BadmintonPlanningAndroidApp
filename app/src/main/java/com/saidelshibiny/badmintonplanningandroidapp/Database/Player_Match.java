@@ -1,32 +1,32 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Database;
 
 public class Player_Match {
-    private Integer playerId;
-    private Integer matchId;
+    private int playerId;
+    private int matchId;
     private boolean isWinner; // 1 for win, 0 for lose
 
     //constructor
     public Player_Match(){}
-    public Player_Match(Integer playerId, Integer matchId, boolean isWinner) {
+    public Player_Match(int playerId, int matchId, boolean isWinner) {
         this.playerId = playerId;
         this.matchId = matchId;
         this.isWinner = isWinner;
     }
 
     //getter and setter
-    public Integer getPlayerId() {
+    public int getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(Integer playerId) {
+    public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }
 
-    public Integer getMatchId() {
+    public int getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(Integer matchId) {
+    public void setMatchId(int matchId) {
         this.matchId = matchId;
     }
 

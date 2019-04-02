@@ -6,27 +6,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_check_in"
-            android:icon="@drawable/check_in"
+            android:icon="@drawable/ic_check_black_24dp"
             android:title="Check-In Players" />
         <item
             android:id="@+id/nav_match_players"
-            android:icon="@drawable/match_players"
+            android:icon="@drawable/ic_group_work_black_24dp"
             android:title="Match Players" />
         <item
             android:id="@+id/nav_footwork_drills"
-            android:icon="@drawable/footwork_drills"
+            android:icon="@drawable/ic_transfer_within_a_station_black_24dp"
             android:title="Footwork Drills" />
         <item
             android:id="@+id/nav_timer"
-            android:icon="@drawable/timer"
+            android:icon="@drawable/ic_timer_black_24dp"
             android:title="Timer" />
         <item
             android:id="@+id/nav_coaches"
-            android:icon="@drawable/coaches"
+            android:icon="@drawable/ic_supervisor_account_black_24dp"
             android:title="Coaches" />
         <item
             android:id="@+id/nav_rules"
-            android:icon="@drawable/rules"
+            android:icon="@drawable/ic_format_list_bulleted_black_24dp"
             android:title="Rules"/>
     </group>
 

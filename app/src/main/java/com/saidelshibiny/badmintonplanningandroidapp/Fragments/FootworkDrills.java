@@ -1,4 +1,4 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,16 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.saidelshibiny.badmintonplanningandroidapp.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Rules.OnFragmentInteractionListener} interface
+ * {@link FootworkDrills.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Rules#newInstance} factory method to
+ * Use the {@link FootworkDrills#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Rules extends Fragment {
+public class FootworkDrills extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,7 +31,7 @@ public class Rules extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public Rules() {
+    public FootworkDrills() {
         // Required empty public constructor
     }
 
@@ -39,11 +41,11 @@ public class Rules extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Rules.
+     * @return A new instance of fragment FootworkDrills.
      */
     // TODO: Rename and change types and number of parameters
-    public static Rules newInstance(String param1, String param2) {
-        Rules fragment = new Rules();
+    public static FootworkDrills newInstance(String param1, String param2) {
+        FootworkDrills fragment = new FootworkDrills();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,10 +66,10 @@ public class Rules extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().setTitle("Rules");
+        getActivity().setTitle("Footwork Drills");
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rules, container, false);
+        return inflater.inflate(R.layout.fragment_footwork_drills, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

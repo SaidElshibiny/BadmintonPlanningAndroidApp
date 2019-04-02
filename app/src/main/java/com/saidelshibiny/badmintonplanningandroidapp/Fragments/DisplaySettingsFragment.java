@@ -1,23 +1,39 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
+import com.saidelshibiny.badmintonplanningandroidapp.Database.User;
+import com.saidelshibiny.badmintonplanningandroidapp.R;;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link CheckInPlayers.OnFragmentInteractionListener} interface
+ * {@link DisplaySettingsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CheckInPlayers#newInstance} factory method to
+ * Use the {@link DisplaySettingsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CheckInPlayers extends Fragment {
+
+/**
+ * @author Keegan
+ * This fragment will be used to setup the settings
+ * there is also a related layout file
+ */
+
+public class DisplaySettingsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -29,46 +45,48 @@ public class CheckInPlayers extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public CheckInPlayers() {
+    public DisplaySettingsFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CheckInPlayers.
+    //setting up toolbar
+    private Toolbar toolbar;
+
+    //SharedPref
+    SharedPreferences sharedPref;
+
+    public static final String USER = "user";
+    private User user;
+
+    /*
+    So we can receive the user
      */
-    // TODO: Rename and change types and number of parameters
-    public static CheckInPlayers newInstance(String param1, String param2) {
-        CheckInPlayers fragment = new CheckInPlayers();
+    public static DisplaySettingsFragment newInstance(User user) {
+        DisplaySettingsFragment fragment = new DisplaySettingsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable(USER, user);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
+
+        //set the user
+        if(getArguments() != null){
+            user = getArguments().getParcelable(USER);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        getActivity().setTitle("Check-In Player");
-
-        return inflater.inflate(R.layout.fragment_check_in_players, container, false);
+        return inflater.inflate(R.layout.fragment_display_settings, container, false);
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

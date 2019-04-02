@@ -1,14 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playersGridView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CheckInPlayers">
+    android:orientation="horizontal"
+    tools:context=".Fragments.CheckInPlayers">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- TODO: display player with grid  layout -->
+    <GridView
+        android:id="@+id/playersGrid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:columnWidth="150dp"
+        android:gravity="center"
+        android:horizontalSpacing="24dp"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="24dp"
+        android:layout_marginRight="100dp">
 
-</FrameLayout>
+    </GridView>
+    <LinearLayout
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        >
+
+        <TextView
+            android:id="@+id/numOfPlayers"
+            android:text="Total"
+            style="@style/BlueYellowButtonVertical"
+            android:gravity="center"
+            android:textSize="32dp" />
+
+        <Button
+            android:id="@+id/addNewPlayer"
+            android:text="Add"
+            style="@style/BlueYellowButtonVertical"  />
+
+        <Button
+            android:id="@+id/juniorPlayers"
+            android:text="Junior"
+            style="@style/BlueYellowButtonVertical" />
+        <Button
+            android:id="@+id/seniorPlayers"
+            android:text="Senior"
+            style="@style/BlueYellowButtonVertical" />
+        <Button
+            android:id="@+id/removeAllPlayers"
+            android:text="Clear"
+            style="@style/BlueYellowButtonVertical"
+            />
+        <Button
+            android:id="@+id/finishCheckin"
+            android:text="Next"
+            style="@style/BlueYellowButtonVertical" />
+
+        <!--<Button-->
+            <!--android:id="@+id/checkAllPlayers"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="140dp"-->
+            <!--android:background="@color/colorPrimary"-->
+            <!--android:text="Check All"-->
+            <!--android:textColor="@color/colorBackground"-->
+            <!--android:layout_marginTop="@dimen/margin_5"-->
+            <!--android:layout_marginBottom="@dimen/margin_5"-->
+            <!--android:textSize="28dp"-->
+            <!--android:visibility="visible" />-->
+
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

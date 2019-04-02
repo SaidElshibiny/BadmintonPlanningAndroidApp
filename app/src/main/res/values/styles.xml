@@ -13,6 +13,56 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="CourtLinearLayout">
+        <item name="android:layout_width">@dimen/grid_width</item>
+        <item name="android:layout_height">@dimen/grid_height</item>
+        <item name="android:background">@drawable/court_background</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="OvalBrownWhiteTextView">
+        <item name="android:layout_height">@dimen/text_height</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:background">@drawable/round</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+
+    <style name="BlueYellowButtonVertical">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorBackground</item>
+        <item name="android:layout_marginTop">@dimen/margin_10</item>
+        <item name="android:layout_marginBottom">@dimen/margin_10</item>
+        <item name="android:textSize">28dp</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="EqualEditTextVertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/colorLightBlue</item>
+    </style>
+
+    <style name="AvatarImageView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:contentDescription">@string/image_attribute</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:clickable">true</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

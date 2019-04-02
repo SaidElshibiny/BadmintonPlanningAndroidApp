@@ -1,14 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    tools:context=".MatchingPlayers">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+    android:orientation="horizontal"
+    tools:context=".Fragments.MatchingPlayers">
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_weight="4"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/colorBrown"
+        android:rowCount="2"
+        android:columnCount="3">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_8">
+            <LinearLayout
+                android:id="@+id/court1A"
+                style="@style/CourtLinearLayout"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/court1B"
+                style="@style/CourtLinearLayout"></LinearLayout>
+        </LinearLayout>
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_8">
+            <LinearLayout
+                android:id="@+id/court2A"
+                style="@style/CourtLinearLayout"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/court2B"
+                style="@style/CourtLinearLayout"></LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_8">
+            <LinearLayout
+                android:id="@+id/court3A"
+                style="@style/CourtLinearLayout"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/court3B"
+                style="@style/CourtLinearLayout"></LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_8">
+            <LinearLayout
+                android:id="@+id/court4A"
+                style="@style/CourtLinearLayout"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/court4B"
+                style="@style/CourtLinearLayout"></LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_8">
+            <LinearLayout
+                android:id="@+id/court5A"
+                style="@style/CourtLinearLayout"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/court5B"
+                style="@style/CourtLinearLayout"></LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_8">
+            <LinearLayout
+                android:id="@+id/court6A"
+                style="@style/CourtLinearLayout"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/court6B"
+                style="@style/CourtLinearLayout"></LinearLayout>
+        </LinearLayout>
+    </GridLayout>
+    <LinearLayout
+        android:id="@+id/court7"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/margin_8"
+        android:background="@drawable/court_background" >
+        <TextView
+            android:id="@+id/matchPlayer1A"
+            android:text="Court 7"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/colorBackground"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:background="#47212F"
+            />
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer1B"-->
+            <!--android:text="Player1B"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer2A"-->
+            <!--android:text="Player2A"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer2B"-->
+            <!--android:text="Player2B"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer3A"-->
+            <!--android:text="Player3A"-->
+            <!--style="@style/OvalBrownWhiteTextView" />-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer3B"-->
+            <!--android:text="Player3B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer4A"-->
+            <!--android:text="Player4A"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer4B"-->
+            <!--android:text="Player4B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer5A"-->
+            <!--android:text="Player5A"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer5B"-->
+            <!--android:text="Player5B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer6A"-->
+            <!--android:text="Player6A"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer6B"-->
+            <!--android:text="Player6B"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/matchPlayer7"-->
+            <!--android:text="Player7"-->
+            <!--style="@style/OvalBrownWhiteTextView"/>-->
+    </LinearLayout>
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/numOfMatchPlayers"
+                android:text="Total"
+                style="@style/BlueYellowButtonVertical"
+                android:gravity="center"
+                android:textSize="32dp" />
+            <EditText
+                android:id="@+id/guestName"
+                android:hint="Name"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:textSize="28sp"
+                android:gravity="center"
+                android:background="@color/colorLightBlue"/>
+
+            <Button
+            android:id="@+id/addGuestPlayer"
+            android:text="Add Player"
+            style="@style/BlueYellowButtonVertical" />
+            <Button
+                android:id="@+id/autoMatch"
+                android:text="Auto Match"
+                style="@style/BlueYellowButtonVertical"
+                />
+        </LinearLayout>
+</LinearLayout>

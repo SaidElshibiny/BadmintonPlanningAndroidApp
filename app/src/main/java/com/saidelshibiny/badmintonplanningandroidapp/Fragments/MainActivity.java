@@ -1,13 +1,12 @@
-package com.saidelshibiny.badmintonplanningandroidapp;
+package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,23 +16,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.saidelshibiny.badmintonplanningandroidapp.R;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    MainFragment.OnFragmentInteractionListener,
                    CheckInPlayers.OnFragmentInteractionListener,
+                    AddPlayerFragment.OnFragmentInteractionListener,
                    MatchingPlayers.OnFragmentInteractionListener,
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
                    Rules.OnFragmentInteractionListener{
 
-
     //Create fragment manager
     FragmentManager fm;
-
     //create the a public static variable for the fab
     public static FloatingActionButton fab;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +42,12 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         fm = getSupportFragmentManager();
-
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.replace(R.id.main_content, new MainFragment());
+           // transaction.addToBackStack(null);
             transaction.commit();
         }
-
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
 
@@ -98,6 +96,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+//            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+//            startActivity(intent);
             return true;
         }
 
@@ -109,13 +109,18 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+       // fm = getSupportFragmentManager();
+
+//        Fragment timerFragment = new Timer();
 
         FragmentTransaction transaction = fm.beginTransaction();
+//        transaction.add(R.id.main_content, timerFragment);
 
         if (id == R.id.nav_check_in) {
             transaction.replace(R.id.main_content, new CheckInPlayers());
             transaction.addToBackStack(null);
             transaction.commit();
+
         } else if (id == R.id.nav_match_players) {
             transaction.replace(R.id.main_content, new MatchingPlayers());
             transaction.addToBackStack(null);
@@ -128,6 +133,9 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.main_content, new Timer());
             transaction.addToBackStack(null);
             transaction.commit();
+//            transaction.show(timerFragment);
+//            transaction.commit();
+
         } else if (id == R.id.nav_coaches) {
             transaction.replace(R.id.main_content, new Coaches());
             transaction.addToBackStack(null);
