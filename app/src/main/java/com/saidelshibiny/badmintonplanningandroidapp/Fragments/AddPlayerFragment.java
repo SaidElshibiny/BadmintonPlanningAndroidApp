@@ -108,7 +108,7 @@ public class AddPlayerFragment extends Fragment {
         imm.hideSoftInputFromWindow(firstName.getWindowToken(), 0);
         lastName = (EditText) view.findViewById(R.id.etLastName);
         imm.hideSoftInputFromWindow(lastName.getWindowToken(), 0);
-
+        imageID = R.drawable.profile;
         //available avatars for players to pick from
         avatar1 = (ImageView)view.findViewById(R.id.avatar1);
         avatar2 = (ImageView)view.findViewById(R.id.avatar2);
