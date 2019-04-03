@@ -142,31 +142,24 @@ public class MainFragment extends Fragment {
         timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 transaction.replace(R.id.main_content, new Timer());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
-
 
         coaches.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 transaction.replace(R.id.main_content, new Coaches());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
-
 
         rules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 transaction.replace(R.id.main_content, new Rules());
                 transaction.addToBackStack(null);
                 transaction.commit();

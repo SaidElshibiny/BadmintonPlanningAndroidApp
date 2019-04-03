@@ -32,6 +32,9 @@ public class CheckInPlayers extends Fragment {
     private String mParam1;
     private String mParam2;
     private ArrayList<Player> players;
+    private ArrayList<Player> checkedPlayers;
+    int countAllPlayers;
+    int countCheckedPlayers;
     Button btfinishedCheckin;
     Button btAddNewPlayer;
 
@@ -40,7 +43,7 @@ public class CheckInPlayers extends Fragment {
     Button btgetAllJuniorPlayers;
     Button btgetAllSeniorPlayers;
     TextView tvNumberOfPlayers;
-    int count;
+
     FragmentManager fm;
     private OnFragmentInteractionListener mListener;
 
@@ -87,8 +90,13 @@ public class CheckInPlayers extends Fragment {
         //get player info from DBHelper - player info not display
         DBHelper db = new DBHelper(getContext());
         players = db.getAllPlayers();
-        count = db.getPlayerCount();
-        db.close();
+        countAllPlayers = db.getPlayerCount();
+
+
+       // db.close();
+
+        tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
+
         //Display the player info in Gridview
         GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
         final PlayersAdapter playersAdapter = new PlayersAdapter(getContext(),players);
@@ -99,7 +107,11 @@ public class CheckInPlayers extends Fragment {
                 DBHelper db = new DBHelper(getContext());
                 Player player = players.get(i);
                 player.toggleChecked();
+
                 db.updatePlayer(player);
+                checkedPlayers = db.getCheckedPlayer();
+                countCheckedPlayers = checkedPlayers.size();
+                tvNumberOfPlayers.setText(countCheckedPlayers + "/" + countAllPlayers );
                 db.close();
                 playersAdapter.notifyDataSetChanged();
             }
@@ -133,8 +145,7 @@ public class CheckInPlayers extends Fragment {
             }
         });
 
-        tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
-        tvNumberOfPlayers.setText("" + count);
+
         btAddNewPlayer = (Button) view.findViewById(R.id.addNewPlayer);
         btAddNewPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,8 +180,8 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Steve", "White", 88, R.drawable.boy8,false));
                 db.addPlayer(new Player("Leah", "Zhao", 78, R.drawable.girl1,false));
                 db.addPlayer(new Player("Mario", "Hemmings", 88, R.drawable.boy7,false));
-                count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("" +  count);
+                countAllPlayers = db.getPlayerCount();
+                tvNumberOfPlayers.setText("" + countAllPlayers);
                 db.close();
                 //refresh fragment
                 FragmentTransaction transaction = fm.beginTransaction();
@@ -195,8 +206,8 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Tim", "Bower", 88, R.drawable.boy3,false));
                 db.addPlayer(new Player("Warren", "Black", 78, R.drawable.boy5,false));
                 db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy6,false));
-                count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("" +  count);
+                countAllPlayers = db.getPlayerCount();
+                tvNumberOfPlayers.setText("" + countAllPlayers);
 //                btgetAllSeniorPlayers.setBackgroundColor(Color.GREEN);
                 db.close();
                 //refresh fragment
