@@ -113,50 +113,7 @@
             <!--android:id="@+id/matchPlayer1B"-->
             <!--android:text="Player1B"-->
             <!--style="@style/OvalBrownWhiteTextView" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer2A"-->
-            <!--android:text="Player2A"-->
-            <!--style="@style/OvalBrownWhiteTextView" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer2B"-->
-            <!--android:text="Player2B"-->
-            <!--style="@style/OvalBrownWhiteTextView" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer3A"-->
-            <!--android:text="Player3A"-->
-            <!--style="@style/OvalBrownWhiteTextView" />-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer3B"-->
-            <!--android:text="Player3B"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer4A"-->
-            <!--android:text="Player4A"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer4B"-->
-            <!--android:text="Player4B"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer5A"-->
-            <!--android:text="Player5A"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer5B"-->
-            <!--android:text="Player5B"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer6A"-->
-            <!--android:text="Player6A"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer6B"-->
-            <!--android:text="Player6B"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer7"-->
-            <!--android:text="Player7"-->
-            <!--style="@style/OvalBrownWhiteTextView"/>-->
+
     </LinearLayout>
     <LinearLayout
             android:layout_width="0dp"
@@ -165,7 +122,7 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/numOfMatchPlayers"
-                android:text="Total"
+                android:text="Total Players"
                 style="@style/BlueYellowButtonVertical"
                 android:gravity="center"
                 android:textSize="32dp" />
@@ -182,6 +139,24 @@
             <Button
             android:id="@+id/addGuestPlayer"
             android:text="Add Player"
+            style="@style/BlueYellowButtonVertical" />
+            <TextView
+            android:id="@+id/tvPlayTime"
+            style="@style/EqualEditTextVertical"
+            android:text="10 minutes"/>
+            <SeekBar
+            android:id="@+id/seekBarPlayTime"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:min="2"
+            android:max="60"
+            android:progress="10"
+            android:layout_gravity="fill_horizontal"
+            />
+            <Button
+            android:id="@+id/buttonPlayStart"
+            android:text="Start"
             style="@style/BlueYellowButtonVertical" />
             <Button
                 android:id="@+id/autoMatch"

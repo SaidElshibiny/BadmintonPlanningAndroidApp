@@ -19,16 +19,9 @@ import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 import java.util.ArrayList;
-
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CheckInPlayers.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CheckInPlayers#newInstance} factory method to
- * create an instance of this fragment.
- */
+/* @@author Chaonan Chen
+        * Last updated on April 02, 2019
+        */
 public class CheckInPlayers extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -164,18 +157,18 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Mary", "Thomson", 88, R.drawable.girl9,false));
                 db.addPlayer(new Player("Dan", "Underwood", 78, R.drawable.boy10,false));
                 db.addPlayer(new Player("Laura", "Robertson", 88, R.drawable.girl5,false));
-                db.addPlayer(new Player("Abigail", "MacDonald", 78, R.drawable.boy1, false));
-                db.addPlayer(new Player("Carolyn", "MacDonald", 88, R.drawable.boy2,false));
+                db.addPlayer(new Player("Abigail", "MacDonald", 78, R.drawable.boy5, false));
+                db.addPlayer(new Player("Carolyn", "MacDonald", 88, R.drawable.boy9,false));
                 db.addPlayer(new Player("Angela", "Newman", 78, R.drawable.girl2,false));
                 db.addPlayer(new Player("Emily", "Paterson", 88, R.drawable.girl3,false));
                 db.addPlayer(new Player("Shelly", "Smith", 78, R.drawable.girl6,false));
-                db.addPlayer(new Player("John", "Robertson", 88, R.drawable.boy3,false));
+                db.addPlayer(new Player("John", "Robertson", 88, R.drawable.boy6,false));
                 db.addPlayer(new Player("Heather", "Underwood", 78, R.drawable.girl7,false));
                 db.addPlayer(new Player("Jessica", "Thomson", 88, R.drawable.girl8,false));
-                db.addPlayer(new Player("Karen", "White", 78, R.drawable.girl6,false));
+                db.addPlayer(new Player("David", "White", 78, R.drawable.boy4,false));
                 db.addPlayer(new Player("Steve", "White", 88, R.drawable.boy8,false));
                 db.addPlayer(new Player("Leah", "Zhao", 78, R.drawable.girl1,false));
-                db.addPlayer(new Player("Maria", "Hemmings", 88, R.drawable.boy1,false));
+                db.addPlayer(new Player("Mario", "Hemmings", 88, R.drawable.boy7,false));
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("" +  count);
                 db.close();
