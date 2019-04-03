@@ -1,7 +1,6 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -198,7 +197,7 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy6,false));
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("" +  count);
-                btgetAllSeniorPlayers.setBackgroundColor(Color.GREEN);
+//                btgetAllSeniorPlayers.setBackgroundColor(Color.GREEN);
                 db.close();
                 //refresh fragment
                 FragmentTransaction transaction = fm.beginTransaction();
