@@ -50,7 +50,7 @@
             style="@style/BlueYellowButtonVertical" />
         <Button
             android:id="@+id/removeAllPlayers"
-            android:text="Clear"
+            android:text="New"
             style="@style/BlueYellowButtonVertical"
             />
         <Button

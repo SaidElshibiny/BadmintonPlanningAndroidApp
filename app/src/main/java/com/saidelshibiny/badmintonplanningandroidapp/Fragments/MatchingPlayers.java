@@ -241,7 +241,7 @@ public class MatchingPlayers extends Fragment {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                updatePlayCountdownTimer((int) millisUntilFinished / 1000);
+                updatePlayCountdownTimer((int) millisUntilFinished/1000);
             }
 
             @Override

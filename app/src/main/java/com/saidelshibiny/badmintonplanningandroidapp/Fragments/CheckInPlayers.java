@@ -1,6 +1,7 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -197,12 +198,15 @@ public class CheckInPlayers extends Fragment {
                 db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy6,false));
                 count = db.getPlayerCount();
                 tvNumberOfPlayers.setText("" +  count);
+                btgetAllSeniorPlayers.setBackgroundColor(Color.GREEN);
                 db.close();
                 //refresh fragment
                 FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new CheckInPlayers());
                 transaction.addToBackStack(null);
                 transaction.commit();
+
+
             }
         });
 
@@ -210,13 +214,11 @@ public class CheckInPlayers extends Fragment {
         btRemoveAllPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db = new DBHelper(getContext());
-                db.deleteAllPlayers();
-                //refresh fragment
                 FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.replace(R.id.main_content, new ProtectFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
+
 
             }
         });
