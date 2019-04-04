@@ -22,7 +22,8 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 import java.util.ArrayList;
 
-import static android.widget.AdapterView.*;
+import static android.widget.AdapterView.OnItemClickListener;
+import static android.widget.AdapterView.OnItemLongClickListener;
 
 /* @@author Chaonan Chen
         * Last updated on April 02, 2019
@@ -126,13 +127,18 @@ public class CheckInPlayers extends Fragment {
 
         @Override
         public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+
             DBHelper db = new DBHelper(getContext());
             Player player = players.get(position);
-           // player.
+            // player.
             db.deletePlayer(player);
             Toast.makeText(getContext(), "Player " + (position +1) + " removed",  Toast.LENGTH_SHORT).show();
             db.close();
             playersAdapter.notifyDataSetChanged();
+
+
+
+
             return false;
         }
     });

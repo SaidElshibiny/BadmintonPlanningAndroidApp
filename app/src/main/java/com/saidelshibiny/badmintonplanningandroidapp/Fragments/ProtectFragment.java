@@ -108,14 +108,6 @@ public class ProtectFragment extends Fragment {
                     tvNotice.setText("Invalid Password: " + etProtectPassword.getText().toString());
                     tvNotice.setTextColor(Color.RED);
                 }
-
-
-
-//                //refresh fragment
-//                FragmentTransaction transaction = fm.beginTransaction();
-//                transaction.replace(R.id.main_content, new CheckInPlayers());
-//                transaction.addToBackStack(null);
-//                transaction.commit();
             }
         });
 
