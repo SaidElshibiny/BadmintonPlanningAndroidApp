@@ -3,6 +3,7 @@ package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,23 +14,27 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 import java.util.ArrayList;
+
+import static android.widget.AdapterView.*;
+
 /* @@author Chaonan Chen
         * Last updated on April 02, 2019
         */
 public class CheckInPlayers extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String checkedPlayerNamesKey = "checkedPlayerNamesKey";
+    private static final String CHECKED_PLAYERS_ID_KEY = "CHECKED_PLAYERS_ID";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String mcheckedPlayersID;
     private String mParam2;
     private ArrayList<Player> players;
     private ArrayList<Player> checkedPlayers;
@@ -63,7 +68,7 @@ public class CheckInPlayers extends Fragment {
     public static CheckInPlayers newInstance(String param1, String param2) {
         CheckInPlayers fragment = new CheckInPlayers();
         Bundle args = new Bundle();
-        args.putString(checkedPlayerNamesKey, param1);
+        args.putString(CHECKED_PLAYERS_ID_KEY, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -73,10 +78,13 @@ public class CheckInPlayers extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(checkedPlayerNamesKey);
+            mcheckedPlayersID = getArguments().getString(CHECKED_PLAYERS_ID_KEY);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    @NonNull
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,23 +99,19 @@ public class CheckInPlayers extends Fragment {
         DBHelper db = new DBHelper(getContext());
         players = db.getAllPlayers();
         countAllPlayers = db.getPlayerCount();
-
-
        // db.close();
-
         tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
-
+        tvNumberOfPlayers.setText(countCheckedPlayers + "/" + countAllPlayers );
         //Display the player info in Gridview
-        GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
+        final GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
         final PlayersAdapter playersAdapter = new PlayersAdapter(getContext(),players);
         gridView.setAdapter(playersAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 DBHelper db = new DBHelper(getContext());
                 Player player = players.get(i);
                 player.toggleChecked();
-
                 db.updatePlayer(player);
                 checkedPlayers = db.getCheckedPlayer();
                 countCheckedPlayers = checkedPlayers.size();
@@ -117,22 +121,29 @@ public class CheckInPlayers extends Fragment {
             }
         });
 
-//        final ArrayList<Integer> checkedPlayerNames = savedInstanceState.getIntegerArrayList(checkedPlayerNamesKey);
-//        for(int playerid : checkedPlayerNames){
-//            for(Player player : players){
-//                if(player.getId() == playerid) {
-//                    player.setChecked(true);
-//                    break;
-//                }
-//            }
-//        }
+        //long click to remove a player
+    gridView.setOnItemLongClickListener(new OnItemLongClickListener(){
 
-//        for(Player player : players){
-//            if(player.getChecked()){
-//                checkedPlayerNames.add(player.getId());
+        @Override
+        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+            DBHelper db = new DBHelper(getContext());
+            Player player = players.get(position);
+           // player.
+            db.deletePlayer(player);
+            Toast.makeText(getContext(), "Player " + (position +1) + " removed",  Toast.LENGTH_SHORT).show();
+            db.close();
+            playersAdapter.notifyDataSetChanged();
+            return false;
+        }
+    });
+//        final ArrayList<Integer> checkedPlayerIDs = new ArrayList<>();
+//            for(Player player : players){
+//                if(player.getChecked()){
+//                checkedPlayerIDs.add(player.getId());
+//                }
+//                //ssavedInstanceState.putIntegerArrayList(CHECKED_PLAYERS_ID_KEY, checkedPlayerIDs);
 //            }
-//            playersAdapter.putIntegerArrayList(checkedPlayerNamesKey, checkedPlayerNames);
-//        }
+
 
         btfinishedCheckin = (Button) view.findViewById(R.id.finishCheckin);
         btfinishedCheckin.setOnClickListener(new View.OnClickListener() {
@@ -215,8 +226,6 @@ public class CheckInPlayers extends Fragment {
                 transaction.replace(R.id.main_content, new CheckInPlayers());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
-
             }
         });
 
@@ -228,8 +237,6 @@ public class CheckInPlayers extends Fragment {
                 transaction.replace(R.id.main_content, new ProtectFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
-
             }
         });
 
@@ -261,6 +268,20 @@ public class CheckInPlayers extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        final ArrayList<Integer> checkedPlayerIDs = savedInstanceState.getIntegerArrayList(CHECKED_PLAYERS_ID_KEY);
+//        for(int playerid : checkedPlayerIDs){
+//            for(Player player : players){
+//                if(player.getId() == playerid) {
+//                    player.setChecked(true);
+//                    break;
+//                }
+//            }
+//        }
+//    }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
