@@ -1,167 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="horizontal"
+
     tools:context=".Fragments.MatchingPlayers">
-
-    <GridLayout
+    <ScrollView
         android:layout_width="0dp"
-        android:layout_weight="4"
+        android:layout_weight="6"
         android:layout_height="match_parent"
-        android:background="@color/colorBrown"
-        android:rowCount="2"
-        android:columnCount="3">
+        android:layout_gravity="center"
+        android:scrollbars="horizontal">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_8">
+            android:layout_marginLeft="50dp"
+            android:orientation="vertical">
             <LinearLayout
-                android:id="@+id/court1A"
-                style="@style/CourtLinearLayout"></LinearLayout>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:orientation="horizontal">
+                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textColor="@color/colorText"
+                        android:background="@color/colorBackground"
+                        android:text="1"/>
+
+                <LinearLayout
+                    android:id="@+id/court1A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/court1B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
+            </LinearLayout>
+                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textColor="@color/colorText"
+                        android:background="@color/colorBackground"
+                        android:text="2"/>
+                <LinearLayout
+                    android:id="@+id/court2A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                <LinearLayout
+                    android:id="@+id/court2B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
             <LinearLayout
-                android:id="@+id/court1B"
-                style="@style/CourtLinearLayout"></LinearLayout>
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="50dp"
+             android:orientation="horizontal">
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="50dp"
+                 android:orientation="vertical"
+                 android:padding="@dimen/margin_10">
+                 <TextView
+                     android:layout_width="50dp"
+                     android:layout_height="50dp"
+                     android:textSize="28sp"
+                     android:gravity="center"
+                     android:textColor="@color/colorText"
+                     android:background="@color/colorBackground"
+                     android:text="3"/>
+                 <LinearLayout
+                     android:id="@+id/court3A"
+                     style="@style/CourtLinearLayout"
+                     android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/court3B"
+                        style="@style/CourtLinearLayout"></LinearLayout>
+                </LinearLayout>
+             <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_10">
+                 <TextView
+                     android:layout_width="50dp"
+                     android:layout_height="50dp"
+                     android:textSize="28sp"
+                     android:gravity="center"
+                     android:textColor="@color/colorText"
+                     android:background="@color/colorBackground"
+                     android:text="4"/>
+        <LinearLayout
+            android:id="@+id/court4A"
+            style="@style/CourtLinearLayout"
+            android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+        <LinearLayout
+            android:id="@+id/court4B"
+            style="@style/CourtLinearLayout"></LinearLayout>
+    </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:textSize="28sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    android:background="@color/colorBackground"
+                    android:text="5"/>
+                <LinearLayout
+                    android:id="@+id/court5A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                <LinearLayout
+                    android:id="@+id/court5B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:textSize="28sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    android:background="@color/colorBackground"
+                    android:text="6"/>
+                <LinearLayout
+                    android:id="@+id/court6A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                <LinearLayout
+                    android:id="@+id/court6B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/guestName"
+                    android:hint="Guest Player Name"
+                    android:layout_width="@dimen/grid_width"
+                    android:layout_height="50dp"
+                    android:textSize="28sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/colorLightBlue"/>
+                <Button
+                    android:id="@+id/addGuestPlayer"
+                    android:text="Add"
+                    android:textSize="28sp"
+                    android:layout_width="@dimen/grid_width"
+                    android:textColor="@color/colorText"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/rounded_button"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvPlayTime"
+                    android:text="10 minutes"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:textSize="28sp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/colorLightBlue"
+                    />
+                <SeekBar
+                    android:id="@+id/seekBarPlayTime"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:min="2"
+                    android:max="60"
+                    android:progress="10"
+                    android:layout_gravity="fill_horizontal"
+                    />
+                <Button
+                    android:id="@+id/buttonPlayStart"
+                    android:text="Start"
+                    android:textSize="28sp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:textColor="@color/colorText"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rounded_button"
+                    />
+            </LinearLayout>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_8">
-            <LinearLayout
-                android:id="@+id/court2A"
-                style="@style/CourtLinearLayout"></LinearLayout>
-            <LinearLayout
-                android:id="@+id/court2B"
-                style="@style/CourtLinearLayout"></LinearLayout>
-        </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_8">
-            <LinearLayout
-                android:id="@+id/court3A"
-                style="@style/CourtLinearLayout"></LinearLayout>
-            <LinearLayout
-                android:id="@+id/court3B"
-                style="@style/CourtLinearLayout"></LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_8">
-            <LinearLayout
-                android:id="@+id/court4A"
-                style="@style/CourtLinearLayout"></LinearLayout>
-            <LinearLayout
-                android:id="@+id/court4B"
-                style="@style/CourtLinearLayout"></LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_8">
-            <LinearLayout
-                android:id="@+id/court5A"
-                style="@style/CourtLinearLayout"></LinearLayout>
-            <LinearLayout
-                android:id="@+id/court5B"
-                style="@style/CourtLinearLayout"></LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_8">
-            <LinearLayout
-                android:id="@+id/court6A"
-                style="@style/CourtLinearLayout"></LinearLayout>
-            <LinearLayout
-                android:id="@+id/court6B"
-                style="@style/CourtLinearLayout"></LinearLayout>
-        </LinearLayout>
-    </GridLayout>
     <LinearLayout
         android:id="@+id/court7"
         android:layout_width="160dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="@dimen/margin_8"
+        android:layout_margin="@dimen/margin_10"
         android:background="@drawable/court_background" >
         <TextView
-            android:id="@+id/matchPlayer1A"
-            android:text="Court 7"
+            android:id="@+id/numOfMatchPlayers"
+            android:text="Players"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textColor="@color/colorBackground"
+            android:textColor="@color/colorText"
+            android:background="@color/colorBackground"
             android:textSize="28sp"
-            android:gravity="center"
-            android:background="#47212F"
-            />
-        <!--<TextView-->
-            <!--android:id="@+id/matchPlayer1B"-->
-            <!--android:text="Player1B"-->
-            <!--style="@style/OvalBrownWhiteTextView" />-->
-
+            android:gravity="center" />
     </LinearLayout>
-    <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/numOfMatchPlayers"
-                android:text="Total Players"
-                style="@style/BlueYellowButtonVertical"
-                android:gravity="center"
-                android:textSize="32dp" />
-            <EditText
-                android:id="@+id/guestName"
-                android:hint="Name"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp"
-                android:textSize="28sp"
-                android:gravity="center"
-                android:background="@color/colorLightBlue"/>
-
-            <Button
-            android:id="@+id/addGuestPlayer"
-            android:text="Add Player"
-            style="@style/BlueYellowButtonVertical" />
-            <TextView
-            android:id="@+id/tvPlayTime"
-            style="@style/EqualEditTextVertical"
-            android:text="10 minutes"/>
-            <SeekBar
-            android:id="@+id/seekBarPlayTime"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"
-            android:min="2"
-            android:max="60"
-            android:progress="10"
-            android:layout_gravity="fill_horizontal"
-            />
-            <Button
-            android:id="@+id/buttonPlayStart"
-            android:text="Start"
-            style="@style/BlueYellowButtonVertical" />
-            <Button
-                android:id="@+id/autoMatch"
-                android:text="Auto Match"
-                style="@style/BlueYellowButtonVertical"
-                />
-        </LinearLayout>
 </LinearLayout>
+
+
+
+            <!--<Button-->
+                <!--android:id="@+id/autoMatch"-->
+                <!--android:text="Auto Match"-->
+                <!--style="@style/BlueYellowButtonVertical"-->
+                <!--/>-->
+
+

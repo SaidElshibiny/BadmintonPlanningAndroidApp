@@ -165,6 +165,7 @@ public class MatchingPlayers extends Fragment {
                 Toast toast;
                 if(!etGuestName.getText().toString().isEmpty()) {
                     court7.addView(createNewTextView(etGuestName.getText().toString()));
+                    etGuestName.setText("");
                     toast = Toast.makeText(getContext(), "new player added", Toast.LENGTH_SHORT);
                 }else{
                     toast = Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT);
@@ -207,13 +208,13 @@ public class MatchingPlayers extends Fragment {
         });
 
         //start auto matching
-        btAutoMatch = (Button) view.findViewById(R.id.autoMatch);
-        btAutoMatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+//        btAutoMatch = (Button) view.findViewById(R.id.autoMatch);
+//        btAutoMatch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
         return view;
     }
 
@@ -316,10 +317,10 @@ public class MatchingPlayers extends Fragment {
         textView.setLayoutParams(lparams);
         textView.setBackgroundColor(0x47212F);
         textView.setText(text);
-        textView.setTextSize(24);
+        textView.setTextSize(28);
         textView.setGravity(Gravity.CENTER );
         textView.setTextColor(Color.BLACK);
-        textView.setPadding(5, 2, 5, 2);
+        textView.setPadding(5, 5, 5, 5);
         textView.setOnTouchListener(new PlayerTouchListener());
         textView.setOnDragListener(new PlayerDragListener());
 //        Player player = new Player();

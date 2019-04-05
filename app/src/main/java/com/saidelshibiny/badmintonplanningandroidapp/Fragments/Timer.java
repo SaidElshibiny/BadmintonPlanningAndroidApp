@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -318,7 +317,7 @@ public class Timer extends Fragment {
         //cancel the countdown
         warmUpCD.cancel();
         //change the layout background color
-        warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         footworkDrillTimerText.setText("30:00");
@@ -326,7 +325,7 @@ public class Timer extends Fragment {
         footworkDrillsSB.setEnabled(true);
         footworkDrillsET.setEnabled(true);
         footworkDrillsCD.cancel();
-        footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         breakTimerText.setText("10:00");
@@ -334,7 +333,7 @@ public class Timer extends Fragment {
         breakSB.setEnabled(true);
         breakET.setEnabled(true);
         breakCD.cancel();
-        breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         matchTimerText.setText("30:00");
@@ -342,7 +341,7 @@ public class Timer extends Fragment {
         matchSB.setEnabled(true);
         matchET.setEnabled(true);
         matchCD.cancel();
-        matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         cooldownTimerText.setText("10:00");
@@ -350,7 +349,7 @@ public class Timer extends Fragment {
         cooldownSB.setEnabled(true);
         cooldownET.setEnabled(true);
         coolDownCD.cancel();
-        cooldownLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        cooldownLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
         playPauseButton.setVisibility(getView().VISIBLE);
         playPauseButton.setText("START");

@@ -546,7 +546,7 @@ public class AddPlayerFragment extends Fragment {
     // set style for selected avatar
     public void selectedAvatar(ImageView avatar){
         avatar.setPadding(18,18,18,18);
-        avatar.setBackgroundColor(Color.BLUE);
+        avatar.setBackgroundColor(Color.YELLOW);
     }
 
     // set style for deselected avatar
