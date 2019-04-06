@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,7 +21,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    MainFragment.OnFragmentInteractionListener,
                    CheckInPlayers.OnFragmentInteractionListener,
-                    AddPlayerFragment.OnFragmentInteractionListener,
+                   AddPlayerFragment.OnFragmentInteractionListener,
+                   ProtectFragment.OnFragmentInteractionListener,
                    MatchingPlayers.OnFragmentInteractionListener,
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,

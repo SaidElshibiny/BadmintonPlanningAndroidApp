@@ -4,8 +4,10 @@ import android.content.ClipData;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.DragEvent;
 import android.view.Gravity;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,23 +28,25 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 import java.util.ArrayList;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MatchingPlayers.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MatchingPlayers#newInstance} factory method to
- * create an instance of this fragment.
+/* @@author Chaonan Chen
+ * Last updated on April 02, 2019
  */
 public class MatchingPlayers extends Fragment {
 
-    LinearLayout court7;
-    Button btAddGuestPlayer;
-    Button btAutoMatch;
-    EditText mEditText;
+
     TextView txTotalPlayer;
+    EditText etGuestName;
+    Button btAddGuestPlayer;
+    TextView tvPlayTime;
+    SeekBar sbPlayTime;
+    CountDownTimer playTimeCDT;
+    MediaPlayer beep;
+
+    Button btStart;
+    Button btAutoMatch;
+
     DBHelper db;
+
     LinearLayout court1A;
     LinearLayout court1B;
     LinearLayout court2A;
@@ -54,8 +59,9 @@ public class MatchingPlayers extends Fragment {
     LinearLayout court5B;
     LinearLayout court6A;
     LinearLayout court6B;
-    ArrayList<TextView> checkedPlayerTextViews;
+    LinearLayout court7;
 
+    ArrayList<TextView> checkedPlayerTextViews;
     private ArrayList<Player> checkedPlayers;
     int count;
     // TODO: Rename parameter arguments, choose names that match
@@ -106,6 +112,7 @@ public class MatchingPlayers extends Fragment {
         getActivity().setTitle("Matching Players");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
+        beep = MediaPlayer.create(getContext(), R.raw.beep);
 
         court1A = view.findViewById(R.id.court1A);
         court1A.setOnDragListener(new PlayerDragListener());
@@ -139,26 +146,26 @@ public class MatchingPlayers extends Fragment {
         checkedPlayers = db.getCheckedPlayer();
         count = checkedPlayers.size();
         txTotalPlayer = view.findViewById(R.id.numOfMatchPlayers);
-        txTotalPlayer.setText("" + count);
+        txTotalPlayer.setText(count + " Players");
 
         for(int i = 0; i<count; i++){
             String playerFirstName = checkedPlayers.get(i).getFirstName();
             String playerLastName = checkedPlayers.get(i).getLastName().substring(0,1);
             String name = playerFirstName + " " + playerLastName + ".";
-
             court7.addView(createNewTextView(name));
             //TODO: Add a loop to automatically assign each textview into each LinearLayout
         }
         db.close();
-    //add a guest player before game matching
-        mEditText = (EditText) view.findViewById(R.id.guestName);
+    //add a assistant coach before matching if needed
+        etGuestName = (EditText) view.findViewById(R.id.guestName);
         btAddGuestPlayer = view.findViewById(R.id.addGuestPlayer);
         btAddGuestPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast toast;
-                if(!mEditText.getText().toString().isEmpty()) {
-                    court7.addView(createNewTextView(mEditText.getText().toString()));
+                if(!etGuestName.getText().toString().isEmpty()) {
+                    court7.addView(createNewTextView(etGuestName.getText().toString()));
+                    etGuestName.setText("");
                     toast = Toast.makeText(getContext(), "new player added", Toast.LENGTH_SHORT);
                 }else{
                     toast = Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT);
@@ -168,15 +175,83 @@ public class MatchingPlayers extends Fragment {
             }
         });
 
-        //start auto matching
-        btAutoMatch = (Button) view.findViewById(R.id.autoMatch);
-        btAutoMatch.setOnClickListener(new View.OnClickListener() {
+        //set the play time and start timer
+        tvPlayTime = (TextView) view.findViewById(R.id.tvPlayTime);
+        sbPlayTime = (SeekBar) view.findViewById(R.id.seekBarPlayTime);
+        btStart = (Button) view.findViewById(R.id.buttonPlayStart);
+        sbPlayTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View view) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //tvPlayTime.setText(progress + " minutes");
+                updatePlayCountdownTimer(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
         });
+
+        btStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controlPlayCountDownTimer();
+                sbPlayTime.setEnabled(false);
+                btStart.setVisibility(view.INVISIBLE);
+
+            }
+        });
+
+        //start auto matching
+//        btAutoMatch = (Button) view.findViewById(R.id.autoMatch);
+//        btAutoMatch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
         return view;
+    }
+
+    //
+    public void updatePlayCountdownTimer(int secondsLeft){
+        int minutes = (int) secondsLeft / 60;
+        int seconds = secondsLeft - minutes * 60;
+        //string to hold the minutes
+        String minuteString = Integer.toString(minutes);
+        //check if the number of minutes is single digit and add a zero to fix the timet
+        if(minutes <= 9){
+            minuteString = "0" + minuteString;
+        }
+        //string to hold the seconds
+        String secondsString = Integer.toString(seconds);
+        if(seconds <= 9){
+            secondsString = "0" + secondsString;
+        }
+        //Update the timerTitle
+        tvPlayTime.setText(minuteString + ":" + secondsString);
+    }
+
+    public void controlPlayCountDownTimer(){
+        playTimeCDT = new CountDownTimer(sbPlayTime.getProgress()*1000 + 100 , 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                updatePlayCountdownTimer((int) millisUntilFinished/1000);
+            }
+
+            @Override
+            public void onFinish() {
+                beep.start();
+                btStart.setVisibility(getView().VISIBLE);
+                sbPlayTime.setEnabled(true);
+            }
+        }.start();
     }
 
     private final class PlayerTouchListener implements View.OnTouchListener {
@@ -242,10 +317,10 @@ public class MatchingPlayers extends Fragment {
         textView.setLayoutParams(lparams);
         textView.setBackgroundColor(0x47212F);
         textView.setText(text);
-        textView.setTextSize(24);
+        textView.setTextSize(28);
         textView.setGravity(Gravity.CENTER );
         textView.setTextColor(Color.BLACK);
-        textView.setPadding(5, 2, 5, 2);
+        textView.setPadding(5, 5, 5, 5);
         textView.setOnTouchListener(new PlayerTouchListener());
         textView.setOnDragListener(new PlayerDragListener());
 //        Player player = new Player();
