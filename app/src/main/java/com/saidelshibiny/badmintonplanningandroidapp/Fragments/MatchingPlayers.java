@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -33,17 +35,20 @@ import java.util.ArrayList;
  */
 public class MatchingPlayers extends Fragment {
 
-
+    FragmentManager fm;
     TextView txTotalPlayer;
+    ;
     EditText etGuestName;
     Button btAddGuestPlayer;
-    TextView tvPlayTime;
+    Button btStart;
+    Button btReMatch;
+    Button btScore;
+   // TextView tvPlayTime;
     SeekBar sbPlayTime;
     CountDownTimer playTimeCDT;
     MediaPlayer beep;
 
-    Button btStart;
-    Button btAutoMatch;
+
 
     DBHelper db;
 
@@ -112,6 +117,7 @@ public class MatchingPlayers extends Fragment {
         getActivity().setTitle("Matching Players");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
+        fm = getActivity().getSupportFragmentManager();
         beep = MediaPlayer.create(getContext(), R.raw.beep);
 
         court1A = view.findViewById(R.id.court1A);
@@ -175,8 +181,33 @@ public class MatchingPlayers extends Fragment {
             }
         });
 
+        //re-start matching
+        btReMatch = (Button) view.findViewById(R.id.buttonReMatch);
+        btReMatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //refresh fragment
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new MatchingPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        //go to the page for scoring
+        btScore = (Button) view.findViewById(R.id.buttonScore);
+        btScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new ScoreFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
         //set the play time and start timer
-        tvPlayTime = (TextView) view.findViewById(R.id.tvPlayTime);
+       // tvPlayTime = (TextView) view.findViewById(R.id.tvPlayTime);
         sbPlayTime = (SeekBar) view.findViewById(R.id.seekBarPlayTime);
         btStart = (Button) view.findViewById(R.id.buttonPlayStart);
         sbPlayTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -204,17 +235,11 @@ public class MatchingPlayers extends Fragment {
                 sbPlayTime.setEnabled(false);
                 btStart.setVisibility(view.INVISIBLE);
 
+
             }
         });
 
-        //start auto matching
-//        btAutoMatch = (Button) view.findViewById(R.id.autoMatch);
-//        btAutoMatch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
+
         return view;
     }
 
@@ -234,7 +259,8 @@ public class MatchingPlayers extends Fragment {
             secondsString = "0" + secondsString;
         }
         //Update the timerTitle
-        tvPlayTime.setText(minuteString + ":" + secondsString);
+        //tvPlayTime.setText(minuteString + ":" + secondsString);
+        txTotalPlayer.setText(minuteString + ":" + secondsString);
     }
 
     public void controlPlayCountDownTimer(){
@@ -252,6 +278,8 @@ public class MatchingPlayers extends Fragment {
                 sbPlayTime.setEnabled(true);
             }
         }.start();
+
+
     }
 
     private final class PlayerTouchListener implements View.OnTouchListener {

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity
                    AddPlayerFragment.OnFragmentInteractionListener,
                    ProtectFragment.OnFragmentInteractionListener,
                    MatchingPlayers.OnFragmentInteractionListener,
+                    ScoreFragment.OnFragmentInteractionListener,
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
