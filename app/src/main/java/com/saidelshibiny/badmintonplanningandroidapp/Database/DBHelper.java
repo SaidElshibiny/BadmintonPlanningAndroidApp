@@ -149,7 +149,7 @@ public class DBHelper extends SQLiteOpenHelper {
     /*Reading All records from Player table*/
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> playersArrayList = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY " + COLUMN_LAST_NAME + " DESC";
+        String query = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY " + COLUMN_LAST_NAME + " ASC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -178,7 +178,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public ArrayList<Player> getCheckedPlayer() {
         ArrayList<Player> playersArrayList = new ArrayList<>();
-        String query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + COLUMN_IS_CHECKED + "= 1";
+        String query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + COLUMN_IS_CHECKED + "= 1" + " ORDER BY " + COLUMN_RANKING + " ASC";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()) {

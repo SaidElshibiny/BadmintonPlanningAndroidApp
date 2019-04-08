@@ -62,6 +62,18 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
                 Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " scored 2 more points", Toast.LENGTH_SHORT);
                 toast.setMargin(50, 50);
                 toast.show();
+
+            }
+        });
+        holder1.btMinusScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                player.setRanking(player.getRanking() - 2);
+                db.updatePlayer(player);
+                Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " decrease 2 points", Toast.LENGTH_SHORT);
+                toast.setMargin(50, 50);
+                toast.show();
+
             }
         });
 
@@ -86,6 +98,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
         protected CheckBox checkBox;
         protected TextView currentScore;
         protected Button btAddScore;
+        protected Button btMinusScore;
         protected CheckedTextView mCheckedTextView;
         private ItemClickListener itemClickListener;
         private SparseBooleanArray selectedItems = new SparseBooleanArray();
@@ -99,6 +112,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
             this.checkBox = itemView.findViewById(R.id.checkbox);
             this.currentScore = itemView.findViewById(R.id.currentScore);
             this.btAddScore = itemView.findViewById(R.id.buttonAddScore);
+            this.btMinusScore = itemView.findViewById(R.id.buttonMinusScore);
         }
 
         @Override
