@@ -50,7 +50,7 @@ public class AddPlayerFragment extends Fragment {
     EditText firstName;
     EditText lastName;
     TextView tvRanking;
-    int ranking;
+    int ranking = 50; //default ranking is 50
     SeekBar seekBarRanking;
     FragmentManager fm;
     ImageView avatar0;
@@ -78,27 +78,8 @@ public class AddPlayerFragment extends Fragment {
     ImageView avatar22;
     ImageView avatar23;
     ImageView avatar24;
-//    String avatarName;
     int imageID;
-//    int avatarIndex;
-//    private int[] drawableImagesID = {
-//            R.drawable.boy13,
-//            R.drawable.girl1, R.drawable.boy1,
-//            R.drawable.girl2, R.drawable.boy2,
-//            R.drawable.girl3, R.drawable.boy3,
-//            R.drawable.girl4, R.drawable.boy4,
-//            R.drawable.girl5, R.drawable.boy5,
-//            R.drawable.girl6, R.drawable.boy6,
-//            R.drawable.girl7, R.drawable.boy7,
-//            R.drawable.girl8, R.drawable.boy8,
-//            R.drawable.girl9, R.drawable.boy9,
-//            R.drawable.girl10, R.drawable.boy10,
-//            R.drawable.girl11, R.drawable.boy11,
-//            R.drawable.girl12, R.drawable.boy12,};
     boolean selected = false;
-//    private ImageView[] avatars ={avatar0, avatar1, avatar2, avatar3,avatar4, avatar5,avatar6, avatar7,avatar8, avatar9,
-//            avatar10, avatar11, avatar12, avatar13,avatar14, avatar15,avatar16, avatar17,avatar18, avatar19,
-//            avatar20, avatar21, avatar22, avatar23,avatar24};
     private ArrayList<ImageView> avatars;
 
     private OnFragmentInteractionListener mListener;
@@ -148,7 +129,6 @@ public class AddPlayerFragment extends Fragment {
         imageID = R.drawable.profile;
 
         //available avatars for players to pick from
-
         avatar0 = (ImageView)view.findViewById(R.id.avatar0);
         avatar1 = (ImageView)view.findViewById(R.id.avatar1);
         avatar2 = (ImageView)view.findViewById(R.id.avatar2);

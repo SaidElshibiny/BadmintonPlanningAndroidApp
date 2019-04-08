@@ -121,21 +121,11 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FIRST_NAME, player.getFirstName());
         values.put(COLUMN_LAST_NAME, player.getLastName());
         values.put(COLUMN_RANKING, player.getRanking());
-       values.put(COLUMN_IMAGE_ID, player.getImageID());
-      values.put(COLUMN_IS_CHECKED, player.getChecked());
+        values.put(COLUMN_IMAGE_ID, player.getImageID());
+        values.put(COLUMN_IS_CHECKED, player.getChecked());
         db.insert(TABLE_PLAYERS, null, values);
-//        long id = db.insert(TABLE_PLAYERS, null, values);
         db.close();
-//        return id;
     }
-
-//    //insert records to players table
-//    private void addPlayersToTable(SQLiteDatabase db) {
-//        Player p1 = new Player("Sohan", "Json", 88, R.drawable.boy4, false);
-//        this.addPlayer(p1);
-//        Player p2 = new Player("Sally", "Zhao", 78, R.drawable.girl1, false);
-//        this.addPlayer(p2);
-//    }
 
     /*Reading one player table the PLAYER table*/
     public Player getPlayer(int id) {
@@ -225,14 +215,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deleteAllPlayers() {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_PLAYERS, null, null);
-
     }
 
-    public void checkAllPlayers() {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_PLAYERS, null, null);
 
-    }
 
     // Users CRUD functions=============================================================================================
 

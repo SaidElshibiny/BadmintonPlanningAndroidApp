@@ -41,6 +41,7 @@ public class CheckInPlayers extends Fragment {
     private ArrayList<Player> checkedPlayers;
     int countAllPlayers;
     int countCheckedPlayers;
+    PlayersAdapter playersAdapter;
     Button btfinishedCheckin;
     Button btAddNewPlayer;
 
@@ -96,16 +97,20 @@ public class CheckInPlayers extends Fragment {
         //set title bar
         getActivity().setTitle("Check-In Player");
        players = new ArrayList<>();
-        //get player info from DBHelper - player info not display
+        //get player info from DBHelper
         DBHelper db = new DBHelper(getContext());
         players = db.getAllPlayers();
+        for(int i=0; i<players.size(); i++){
+            db.updatePlayer(players.get(i));
+        }
         countAllPlayers = db.getPlayerCount();
        // db.close();
         tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
-        tvNumberOfPlayers.setText(countCheckedPlayers + "/" + countAllPlayers );
+
+        tvNumberOfPlayers.setText(countAllPlayers + "");
         //Display the player info in Gridview
         final GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
-        final PlayersAdapter playersAdapter = new PlayersAdapter(getContext(),players);
+        playersAdapter = new PlayersAdapter(getContext(),players);
         gridView.setAdapter(playersAdapter);
         gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -135,21 +140,9 @@ public class CheckInPlayers extends Fragment {
             Toast.makeText(getContext(), "Player " + (position +1) + " removed",  Toast.LENGTH_SHORT).show();
             db.close();
             playersAdapter.notifyDataSetChanged();
-
-
-
-
             return false;
         }
     });
-//        final ArrayList<Integer> checkedPlayerIDs = new ArrayList<>();
-//            for(Player player : players){
-//                if(player.getChecked()){
-//                checkedPlayerIDs.add(player.getId());
-//                }
-//                //ssavedInstanceState.putIntegerArrayList(CHECKED_PLAYERS_ID_KEY, checkedPlayerIDs);
-//            }
-
 
         btfinishedCheckin = (Button) view.findViewById(R.id.finishCheckin);
         btfinishedCheckin.setOnClickListener(new View.OnClickListener() {
@@ -161,7 +154,6 @@ public class CheckInPlayers extends Fragment {
                 transaction.commit();
             }
         });
-
 
         btAddNewPlayer = (Button) view.findViewById(R.id.addNewPlayer);
         btAddNewPlayer.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +170,7 @@ public class CheckInPlayers extends Fragment {
         btgetAllJuniorPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //pop up a window to add new player's first name, last name, and select an avatar from a given list
+                //pop up a window to add new player's first name, last name, and avatars from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
                 db.addPlayer(new Player("Lisa", "Zhao", 72, R.drawable.girl10,false));
@@ -245,8 +237,6 @@ public class CheckInPlayers extends Fragment {
                 transaction.commit();
             }
         });
-
-
 
         return view;
     } //end of oncreatview
