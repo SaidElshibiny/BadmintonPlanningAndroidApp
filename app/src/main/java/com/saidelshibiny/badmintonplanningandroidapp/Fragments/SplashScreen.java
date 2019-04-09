@@ -84,8 +84,8 @@ public class SplashScreen extends Fragment {
         //Code to hide the action bar and color the status bar to white
         ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
         Window window = getActivity().getWindow();
-        // finally change the color
-        window.setStatusBarColor(ContextCompat.getColor(getContext(),R.color.colorPrimaryDark));
+//        // finally change the color
+//        window.setStatusBarColor(ContextCompat.getColor(getContext(),R.color.colorPrimaryDark));
 
         //import images to add animations on
         ImageView appLogo = view.findViewById(R.id.applogo);
