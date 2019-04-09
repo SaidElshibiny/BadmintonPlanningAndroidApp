@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval"
+    android:shape="rectangle"
     >
 
     <stroke android:width="3dp"
@@ -9,8 +9,18 @@
         android:angle="225"
         android:endColor="#47212F"
         android:startColor="#7B1B50" />
+
+    <corners
+        android:bottomLeftRadius="10dp"
+        android:bottomRightRadius="10dp"
+        android:topLeftRadius="10dp"
+        android:topRightRadius="10dp" />
     <padding android:bottom="0dp"
-        android:left="16dp"
-        android:right="16dp"
+        android:left="10dp"
+        android:right="10dp"
         android:top="0dp"/>
 </shape>
+
+
+
+

@@ -58,26 +58,20 @@ public class PlayersAdapter extends BaseAdapter {
         viewHolder1.lastName.setText(player.getLastName());
         viewHolder1.imageID.setImageResource(player.getImageID());
         viewHolder1.imageCheck.setImageResource(player.getChecked()? R.drawable.check_enabled:R.drawable.check_disabled);
-
         return view;
     }
-
-
 
     private class ViewHolder {
         private final TextView firstName;
         private final TextView lastName;
         private final ImageView imageID;
         private final ImageView imageCheck;
-
         public ViewHolder(TextView firstName, TextView lastName, ImageView imageID, ImageView imageCheck) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.imageID = imageID;
             this.imageCheck = imageCheck;
         }
-
     }
-
 
 } // end of base adapter

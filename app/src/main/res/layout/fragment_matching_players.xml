@@ -4,319 +4,296 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".Fragments.MatchingPlayers">
 
-    <GridLayout
+    tools:context=".Fragments.MatchingPlayers">
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_weight="6"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:scrollbars="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:orientation="vertical">
+            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:orientation="horizontal">
+                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textColor="@color/colorText"
+                        android:background="@color/colorBackground"
+                        android:text="1"/>
+
+                <LinearLayout
+                    android:id="@+id/court1A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/court1B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
+            </LinearLayout>
+                <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                    android:layout_marginRight="50dp"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:textSize="28sp"
+                        android:gravity="center"
+                        android:textColor="@color/colorText"
+                        android:background="@color/colorBackground"
+                        android:text="2"/>
+                <LinearLayout
+                    android:id="@+id/court2A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                <LinearLayout
+                    android:id="@+id/court2B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+            <LinearLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginBottom="50dp"
+             android:orientation="horizontal">
+             <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_marginRight="50dp"
+                 android:orientation="vertical"
+                 android:padding="@dimen/margin_10">
+                 <TextView
+                     android:layout_width="50dp"
+                     android:layout_height="50dp"
+                     android:textSize="28sp"
+                     android:gravity="center"
+                     android:textColor="@color/colorText"
+                     android:background="@color/colorBackground"
+                     android:text="3"/>
+                 <LinearLayout
+                     android:id="@+id/court3A"
+                     style="@style/CourtLinearLayout"
+                     android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/court3B"
+                        style="@style/CourtLinearLayout"></LinearLayout>
+                </LinearLayout>
+             <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="4"
-        android:stretchMode="columnWidth">
+        android:layout_marginRight="50dp"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_10">
+                 <TextView
+                     android:layout_width="50dp"
+                     android:layout_height="50dp"
+                     android:textSize="28sp"
+                     android:gravity="center"
+                     android:textColor="@color/colorText"
+                     android:background="@color/colorBackground"
+                     android:text="4"/>
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_10">
-            <LinearLayout
-                android:id="@+id/court1A"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
+            android:id="@+id/court4A"
+            style="@style/CourtLinearLayout"
+            android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+        <LinearLayout
+            android:id="@+id/court4B"
+            style="@style/CourtLinearLayout"></LinearLayout>
+    </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/court1B"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
                 android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
+                android:padding="@dimen/margin_10">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:textSize="28sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    android:background="@color/colorBackground"
+                    android:text="5"/>
+                <LinearLayout
+                    android:id="@+id/court5A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                <LinearLayout
+                    android:id="@+id/court5B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_10">
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:textSize="28sp"
+                    android:gravity="center"
+                    android:textColor="@color/colorText"
+                    android:background="@color/colorBackground"
+                    android:text="6"/>
+                <LinearLayout
+                    android:id="@+id/court6A"
+                    style="@style/CourtLinearLayout"
+                    android:layout_marginBottom="@dimen/margin_5"></LinearLayout>
+                <LinearLayout
+                    android:id="@+id/court6B"
+                    style="@style/CourtLinearLayout"></LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/guestName"
+                    android:hint="Guest Player Name"
+                    android:layout_width="@dimen/grid_width"
+                    android:layout_height="50dp"
+                    android:textSize="28sp"
+                    android:gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/colorLightBlue"/>
+                <Button
+                    android:id="@+id/addGuestPlayer"
+                    android:text="Add"
+                    android:textSize="28sp"
+                    android:layout_width="@dimen/grid_width"
+                    android:textColor="@color/colorText"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@drawable/rounded_button"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="50dp"
+                android:orientation="horizontal">
+                <!--<TextView-->
+                    <!--android:id="@+id/tvPlayTime"-->
+                    <!--android:text="10 minutes"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:textSize="28sp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="50dp"-->
+                    <!--android:background="@color/colorLightBlue"-->
+                    <!--/>-->
+
+                <SeekBar
+                    android:id="@+id/seekBarPlayTime"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="50dp"
+                    android:min="2"
+                    android:max="60"
+                    android:progress="10"
+                    android:layout_gravity="fill_horizontal"
+                    />
+                <Button
+                    android:id="@+id/buttonPlayStart"
+                    android:text="Start"
+                    android:textSize="28sp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/colorText"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/rounded_button"
+                    />
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="50dp"
+            android:layout_marginBottom="50dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/buttonReMatch"
+                android:text="Re-Match"
+                android:textSize="28sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:textColor="@color/colorText"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/rounded_button"/>
+
+            <Button
+                android:id="@+id/buttonScore"
+                android:text="Score"
+                android:textSize="28sp"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:textColor="@color/colorText"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/rounded_button"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_10">
-            <LinearLayout
-                android:id="@+id/court2A"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/court2B"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-
-            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_10">
-            <LinearLayout
-                android:id="@+id/court3A"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/court3B"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:alignmentMode="alignBounds"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-        </LinearLayout>
+    </ScrollView>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_10">
-            <LinearLayout
-                android:id="@+id/court4A"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/court4B"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_10">
-            <LinearLayout
-                android:id="@+id/court5A"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/court5B"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/margin_10">
-            <LinearLayout
-                android:id="@+id/court6A"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/court6B"
-                android:layout_width="@dimen/grid_width"
-                android:layout_height="@dimen/grid_height"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/court_background" >
-            </LinearLayout>
-        </LinearLayout>
-
-    </GridLayout>
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
     <LinearLayout
         android:id="@+id/court7"
-        android:layout_width="410dp"
-        android:layout_height="480dp"
+        android:layout_width="160dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_margin="@dimen/margin_10"
         android:background="@drawable/court_background" >
         <TextView
-            android:id="@+id/matchPlayer1A"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player1A"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer1B"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player1B"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF" />
-        <TextView
-            android:id="@+id/matchPlayer2A"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player2A"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF" />
-        <TextView
-            android:id="@+id/matchPlayer2B"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player2B"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF" />
-        <TextView
-            android:id="@+id/matchPlayer3A"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player3A"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF" />
-        <TextView
-            android:id="@+id/matchPlayer3B"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player3B"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer4A"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player4A"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer4B"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player4B"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer5A"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player5A"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer5B"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player5B"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer6A"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player6A"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer6B"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player6B"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
-        <TextView
-            android:id="@+id/matchPlayer7"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/text_height"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textSize="@dimen/text_size"
-            android:text="Player7"
-            android:background="@drawable/round"
-            android:textColor="#FFFFFFFF"/>
+            android:id="@+id/numOfMatchPlayers"
+            android:text="Players"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textColor="@color/colorText"
+            android:background="@color/colorBackground"
+            android:textSize="28sp"
+            android:gravity="center" />
+
     </LinearLayout>
-
-        <Button
-            android:id="@+id/autoMatch"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:textSize="@dimen/text_size"
-            android:background="@color/colorAccent"
-            android:layout_marginStart="@dimen/margin_10"
-            android:layout_marginEnd="@dimen/margin_10"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:text="Add Guest Player"/>
-        <Button
-            android:id="@+id/addMorePlayer"
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:textSize="@dimen/text_size"
-            android:background="@color/colorAccent"
-            android:layout_marginStart="@dimen/margin_10"
-            android:layout_marginEnd="@dimen/margin_10"
-            android:layout_marginBottom="@dimen/margin_10"
-            android:text="Auto Match"/>
-
 </LinearLayout>
-</LinearLayout>
+
+
+
+
+
+

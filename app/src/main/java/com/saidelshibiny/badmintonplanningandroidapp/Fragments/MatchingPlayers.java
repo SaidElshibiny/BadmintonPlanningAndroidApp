@@ -2,29 +2,73 @@ package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
+import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
+import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MatchingPlayers.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MatchingPlayers#newInstance} factory method to
- * create an instance of this fragment.
+/* @@author Chaonan Chen
+ * Last updated on April 02, 2019
  */
 public class MatchingPlayers extends Fragment {
+
+    FragmentManager fm;
+    TextView txTotalPlayer;
+    ;
+    EditText etGuestName;
+    Button btAddGuestPlayer;
+    Button btStart;
+    Button btReMatch;
+    Button btScore;
+   // TextView tvPlayTime;
+    SeekBar sbPlayTime;
+    CountDownTimer playTimeCDT;
+    MediaPlayer beep;
+
+
+
+    DBHelper db;
+
+    LinearLayout court1A;
+    LinearLayout court1B;
+    LinearLayout court2A;
+    LinearLayout court2B;
+    LinearLayout court3A;
+    LinearLayout court3B;
+    LinearLayout court4A;
+    LinearLayout court4B;
+    LinearLayout court5A;
+    LinearLayout court5B;
+    LinearLayout court6A;
+    LinearLayout court6B;
+    LinearLayout court7;
+
+    ArrayList<TextView> checkedPlayerTextViews;
+    private ArrayList<Player> checkedPlayers;
+    int count;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -73,34 +117,169 @@ public class MatchingPlayers extends Fragment {
         getActivity().setTitle("Matching Players");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
-        view.findViewById(R.id.matchPlayer1A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer2A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer3A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer1B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer2B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer3B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer4A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer5A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6A).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer4B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer5B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer6B).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.matchPlayer7).setOnTouchListener(new PlayerTouchListener());
-        view.findViewById(R.id.court1A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court2A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court3A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court4A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court5A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court6A).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court1B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court2B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court3B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court4B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court5B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court6B).setOnDragListener(new PlayerDragListener());
-        view.findViewById(R.id.court7).setOnDragListener(new PlayerDragListener());
+        fm = getActivity().getSupportFragmentManager();
+        beep = MediaPlayer.create(getContext(), R.raw.beep);
+
+        court1A = view.findViewById(R.id.court1A);
+        court1A.setOnDragListener(new PlayerDragListener());
+        court1B = view.findViewById(R.id.court1B);
+        court1B.setOnDragListener(new PlayerDragListener());
+        court2A = view.findViewById(R.id.court2A);
+        court2A.setOnDragListener(new PlayerDragListener());
+        court2B = view.findViewById(R.id.court2B);
+        court2B.setOnDragListener(new PlayerDragListener());
+        court3A = view.findViewById(R.id.court3A);
+        court3A.setOnDragListener(new PlayerDragListener());
+        court3B = view.findViewById(R.id.court3B);
+        court3B.setOnDragListener(new PlayerDragListener());
+        court4A = view.findViewById(R.id.court4A);
+        court4A.setOnDragListener(new PlayerDragListener());
+        court4B = view.findViewById(R.id.court4B);
+        court4B.setOnDragListener(new PlayerDragListener());
+        court5A = view.findViewById(R.id.court5A);
+        court5A.setOnDragListener(new PlayerDragListener());
+        court5B = view.findViewById(R.id.court5B);
+        court5B.setOnDragListener(new PlayerDragListener());
+        court6A = view.findViewById(R.id.court6A);
+        court6A.setOnDragListener(new PlayerDragListener());
+        court6B = view.findViewById(R.id.court6B);
+        court6B.setOnDragListener(new PlayerDragListener());
+        court7 = (LinearLayout)view.findViewById(R.id.court7);
+        court7.setOnDragListener(new PlayerDragListener());
+
+        checkedPlayers = new ArrayList<>();
+        db = new DBHelper(getContext());
+        checkedPlayers = db.getCheckedPlayer();
+        count = checkedPlayers.size();
+        txTotalPlayer = view.findViewById(R.id.numOfMatchPlayers);
+        txTotalPlayer.setText(count + " Players");
+
+        for(int i = 0; i<count; i++){
+            String playerFirstName = checkedPlayers.get(i).getFirstName();
+            String playerLastName = checkedPlayers.get(i).getLastName().substring(0,1);
+            String name = playerFirstName + " " + playerLastName + ".";
+            court7.addView(createNewTextView(name));
+            //TODO: Add a loop to automatically assign each textview into each LinearLayout
+        }
+        db.close();
+    //add a assistant coach before matching if needed
+        etGuestName = (EditText) view.findViewById(R.id.guestName);
+        btAddGuestPlayer = view.findViewById(R.id.addGuestPlayer);
+        btAddGuestPlayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast;
+                if(!etGuestName.getText().toString().isEmpty()) {
+                    court7.addView(createNewTextView(etGuestName.getText().toString()));
+                    etGuestName.setText("");
+                    toast = Toast.makeText(getContext(), "new player added", Toast.LENGTH_SHORT);
+                }else{
+                    toast = Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT);
+                }
+                toast.setMargin(50, 50);
+                toast.show();
+            }
+        });
+
+        //re-start matching
+        btReMatch = (Button) view.findViewById(R.id.buttonReMatch);
+        btReMatch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //refresh fragment
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new MatchingPlayers());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        //go to the page for scoring
+        btScore = (Button) view.findViewById(R.id.buttonScore);
+        btScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new ScoreFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        //set the play time and start timer
+       // tvPlayTime = (TextView) view.findViewById(R.id.tvPlayTime);
+        sbPlayTime = (SeekBar) view.findViewById(R.id.seekBarPlayTime);
+        btStart = (Button) view.findViewById(R.id.buttonPlayStart);
+        sbPlayTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //tvPlayTime.setText(progress + " minutes");
+                updatePlayCountdownTimer(progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        btStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                controlPlayCountDownTimer();
+                sbPlayTime.setEnabled(false);
+                btStart.setVisibility(view.INVISIBLE);
+
+
+            }
+        });
+
+
         return view;
+    }
+
+    //
+    public void updatePlayCountdownTimer(int secondsLeft){
+        int minutes = (int) secondsLeft / 60;
+        int seconds = secondsLeft - minutes * 60;
+        //string to hold the minutes
+        String minuteString = Integer.toString(minutes);
+        //check if the number of minutes is single digit and add a zero to fix the timet
+        if(minutes <= 9){
+            minuteString = "0" + minuteString;
+        }
+        //string to hold the seconds
+        String secondsString = Integer.toString(seconds);
+        if(seconds <= 9){
+            secondsString = "0" + secondsString;
+        }
+        //Update the timerTitle
+        //tvPlayTime.setText(minuteString + ":" + secondsString);
+        txTotalPlayer.setText(minuteString + ":" + secondsString);
+    }
+
+    public void controlPlayCountDownTimer(){
+        playTimeCDT = new CountDownTimer(sbPlayTime.getProgress()*1000 + 100 , 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                updatePlayCountdownTimer((int) millisUntilFinished/1000);
+            }
+
+            @Override
+            public void onFinish() {
+                beep.start();
+                btStart.setVisibility(getView().VISIBLE);
+                sbPlayTime.setEnabled(true);
+            }
+        }.start();
+
+
     }
 
     private final class PlayerTouchListener implements View.OnTouchListener {
@@ -156,7 +335,31 @@ public class MatchingPlayers extends Fragment {
         }
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
+    private TextView createNewTextView(String text) {
+        final LinearLayout.LayoutParams lparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        lparams.setMargins(5, 2, 5, 2);
+        lparams.gravity = Gravity.CENTER;
+        final TextView textView = new TextView(getContext());
+        textView.setLayoutParams(lparams);
+        textView.setBackgroundColor(0x47212F);
+        textView.setText(text);
+        textView.setTextSize(28);
+        textView.setGravity(Gravity.CENTER );
+        textView.setTextColor(Color.BLACK);
+        textView.setPadding(5, 5, 5, 5);
+        textView.setOnTouchListener(new PlayerTouchListener());
+        textView.setOnDragListener(new PlayerDragListener());
+//        Player player = new Player();
+//        player.setFirstName(text);
+//        db.addPlayer(player);
+//
+//        db.close();
+        return textView;
+    }
+
+
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
