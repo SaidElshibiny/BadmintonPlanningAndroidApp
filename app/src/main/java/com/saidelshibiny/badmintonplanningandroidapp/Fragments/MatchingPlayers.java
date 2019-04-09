@@ -206,8 +206,7 @@ public class MatchingPlayers extends Fragment {
             }
         });
 
-        //set the play time and start timer
-       // tvPlayTime = (TextView) view.findViewById(R.id.tvPlayTime);
+        //set the play time and  then start timer
         sbPlayTime = (SeekBar) view.findViewById(R.id.seekBarPlayTime);
         btStart = (Button) view.findViewById(R.id.buttonPlayStart);
         sbPlayTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -219,12 +218,10 @@ public class MatchingPlayers extends Fragment {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
@@ -234,11 +231,8 @@ public class MatchingPlayers extends Fragment {
                 controlPlayCountDownTimer();
                 sbPlayTime.setEnabled(false);
                 btStart.setVisibility(view.INVISIBLE);
-
-
             }
         });
-
 
         return view;
     }
