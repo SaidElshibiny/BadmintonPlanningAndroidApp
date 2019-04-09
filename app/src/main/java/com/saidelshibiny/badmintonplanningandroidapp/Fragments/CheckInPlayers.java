@@ -3,6 +3,7 @@ package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
@@ -20,25 +22,26 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 import java.util.ArrayList;
 
+import static android.widget.AdapterView.OnItemClickListener;
+import static android.widget.AdapterView.OnItemLongClickListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link CheckInPlayers.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link CheckInPlayers#newInstance} factory method to
- * create an instance of this fragment.
- */
+/* @@author Chaonan Chen
+        * Last updated on April 02, 2019
+        */
 public class CheckInPlayers extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String checkedPlayerNamesKey = "checkedPlayerNamesKey";
+    private static final String CHECKED_PLAYERS_ID_KEY = "CHECKED_PLAYERS_ID";
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String mcheckedPlayersID;
     private String mParam2;
     private ArrayList<Player> players;
+    private ArrayList<Player> checkedPlayers;
+    int countAllPlayers;
+    int countCheckedPlayers;
+    PlayersAdapter playersAdapter;
     Button btfinishedCheckin;
     Button btAddNewPlayer;
 
@@ -47,7 +50,7 @@ public class CheckInPlayers extends Fragment {
     Button btgetAllJuniorPlayers;
     Button btgetAllSeniorPlayers;
     TextView tvNumberOfPlayers;
-    int count;
+
     FragmentManager fm;
     private OnFragmentInteractionListener mListener;
 
@@ -67,7 +70,7 @@ public class CheckInPlayers extends Fragment {
     public static CheckInPlayers newInstance(String param1, String param2) {
         CheckInPlayers fragment = new CheckInPlayers();
         Bundle args = new Bundle();
-        args.putString(checkedPlayerNamesKey, param1);
+        args.putString(CHECKED_PLAYERS_ID_KEY, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
@@ -77,10 +80,13 @@ public class CheckInPlayers extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(checkedPlayerNamesKey);
+            mcheckedPlayersID = getArguments().getString(CHECKED_PLAYERS_ID_KEY);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+    @NonNull
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,43 +97,52 @@ public class CheckInPlayers extends Fragment {
         //set title bar
         getActivity().setTitle("Check-In Player");
        players = new ArrayList<>();
-        //get player info from DBHelper - player info not display
+        //get player info from DBHelper
         DBHelper db = new DBHelper(getContext());
         players = db.getAllPlayers();
-        count = db.getPlayerCount();
-        db.close();
+        for(int i=0; i<players.size(); i++){
+            db.updatePlayer(players.get(i));
+        }
+        countAllPlayers = db.getPlayerCount();
+       // db.close();
+        tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
+
+        tvNumberOfPlayers.setText(countAllPlayers + "");
         //Display the player info in Gridview
-        GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
-        final PlayersAdapter playersAdapter = new PlayersAdapter(getContext(),players);
+        final GridView gridView = (GridView)view.findViewById(R.id.playersGrid);
+        playersAdapter = new PlayersAdapter(getContext(),players);
         gridView.setAdapter(playersAdapter);
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gridView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 DBHelper db = new DBHelper(getContext());
                 Player player = players.get(i);
                 player.toggleChecked();
                 db.updatePlayer(player);
+                checkedPlayers = db.getCheckedPlayer();
+                countCheckedPlayers = checkedPlayers.size();
+                tvNumberOfPlayers.setText(countCheckedPlayers + "/" + countAllPlayers );
                 db.close();
                 playersAdapter.notifyDataSetChanged();
             }
         });
 
-//        final ArrayList<Integer> checkedPlayerNames = savedInstanceState.getIntegerArrayList(checkedPlayerNamesKey);
-//        for(int playerid : checkedPlayerNames){
-//            for(Player player : players){
-//                if(player.getId() == playerid) {
-//                    player.setChecked(true);
-//                    break;
-//                }
-//            }
-//        }
+        //long click to remove a player
+    gridView.setOnItemLongClickListener(new OnItemLongClickListener(){
 
-//        for(Player player : players){
-//            if(player.getChecked()){
-//                checkedPlayerNames.add(player.getId());
-//            }
-//            playersAdapter.putIntegerArrayList(checkedPlayerNamesKey, checkedPlayerNames);
-//        }
+        @Override
+        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+            DBHelper db = new DBHelper(getContext());
+            Player player = players.get(position);
+            // player.
+            db.deletePlayer(player);
+            Toast.makeText(getContext(), "Player " + (position +1) + " removed",  Toast.LENGTH_SHORT).show();
+            db.close();
+            playersAdapter.notifyDataSetChanged();
+            return false;
+        }
+    });
 
         btfinishedCheckin = (Button) view.findViewById(R.id.finishCheckin);
         btfinishedCheckin.setOnClickListener(new View.OnClickListener() {
@@ -140,8 +155,6 @@ public class CheckInPlayers extends Fragment {
             }
         });
 
-        tvNumberOfPlayers = (TextView) view.findViewById(R.id.numOfPlayers);
-        tvNumberOfPlayers.setText("" + count);
         btAddNewPlayer = (Button) view.findViewById(R.id.addNewPlayer);
         btAddNewPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,27 +170,27 @@ public class CheckInPlayers extends Fragment {
         btgetAllJuniorPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //pop up a window to add new player's first name, last name, and select an avatar from a given list
+                //pop up a window to add new player's first name, last name, and avatars from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
-                db.addPlayer(new Player("Lisa", "Zhao", 78, R.drawable.girl2,false));
-                db.addPlayer(new Player("Mary", "Thomson", 88, R.drawable.boy2,false));
-                db.addPlayer(new Player("Dan", "Underwood", 78, R.drawable.girl3,false));
-                db.addPlayer(new Player("Laura", "Robertson", 88, R.drawable.boy3,false));
-                db.addPlayer(new Player("Abigail", "MacDonald", 78, R.drawable.girl1, false));
-                db.addPlayer(new Player("Carolyn", "MacDonald", 88, R.drawable.boy1,false));
-                db.addPlayer(new Player("Angela", "Newman", 78, R.drawable.girl2,false));
-                db.addPlayer(new Player("Emily", "Paterson", 88, R.drawable.boy2,false));
-                db.addPlayer(new Player("Shelly", "Smith", 78, R.drawable.girl3,false));
-                db.addPlayer(new Player("John", "Robertson", 88, R.drawable.boy3,false));
-                db.addPlayer(new Player("Heather", "Underwood", 78, R.drawable.girl4,false));
-                db.addPlayer(new Player("Jessica", "Thomson", 88, R.drawable.boy4,false));
-                db.addPlayer(new Player("Karen", "White", 78, R.drawable.girl5,false));
-                db.addPlayer(new Player("Steve", "White", 88, R.drawable.boy4,false));
-                db.addPlayer(new Player("Leah", "Zhao", 78, R.drawable.girl1,false));
-                db.addPlayer(new Player("Maria", "Hemmings", 88, R.drawable.boy1,false));
-                count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("" +  count);
+                db.addPlayer(new Player("Lisa", "Zhao", 72, R.drawable.girl10,false));
+                db.addPlayer(new Player("Mary", "Thomson", 58, R.drawable.girl9,false));
+                db.addPlayer(new Player("Dan", "Underwood", 64, R.drawable.boy10,false));
+                db.addPlayer(new Player("Laura", "Robertson", 48, R.drawable.girl5,false));
+                db.addPlayer(new Player("Abigail", "MacDonald", 54, R.drawable.boy5, false));
+                db.addPlayer(new Player("Carolyn", "MacDonald", 66, R.drawable.boy9,false));
+                db.addPlayer(new Player("Angela", "Newman", 46, R.drawable.girl2,false));
+                db.addPlayer(new Player("Emily", "Paterson", 64, R.drawable.girl3,false));
+                db.addPlayer(new Player("Shelly", "Smith", 72, R.drawable.girl6,false));
+                db.addPlayer(new Player("John", "Robertson", 80, R.drawable.boy6,false));
+                db.addPlayer(new Player("Heather", "Underwood", 62, R.drawable.girl7,false));
+                db.addPlayer(new Player("Jessica", "Thomson", 56, R.drawable.girl8,false));
+                db.addPlayer(new Player("David", "White", 58, R.drawable.boy4,false));
+                db.addPlayer(new Player("Steve", "White", 52, R.drawable.boy8,false));
+                db.addPlayer(new Player("Leah", "Zhao", 38, R.drawable.girl1,false));
+                db.addPlayer(new Player("Mario", "Hemmings", 44, R.drawable.boy7,false));
+                countAllPlayers = db.getPlayerCount();
+                tvNumberOfPlayers.setText("" + countAllPlayers);
                 db.close();
                 //refresh fragment
                 FragmentTransaction transaction = fm.beginTransaction();
@@ -193,17 +206,18 @@ public class CheckInPlayers extends Fragment {
                 //pop up a window to add new player's first name, last name, and select an avatar from a given list
                 DBHelper db = new DBHelper(getContext());
                 db.deleteAllPlayers();
-                db.addPlayer(new Player("Jenna", "Paterson", 78, R.drawable.girl4,false));
-                db.addPlayer(new Player("Julian", "Newman", 88, R.drawable.boy4,false));
-                db.addPlayer(new Player("Richard", "Hemmings", 88, R.drawable.boy1,false));
-                db.addPlayer(new Player("Dominic", "Cameron", 78, R.drawable.girl2,false));
-                db.addPlayer(new Player("John", "Buckland", 88, R.drawable.boy2,false));
-                db.addPlayer(new Player("Jenny", "Cameron", 78, R.drawable.girl3,false));
-                db.addPlayer(new Player("Tim", "Bower", 88, R.drawable.boy3,false));
-                db.addPlayer(new Player("Warren", "Black", 78, R.drawable.girl4,false));
-                db.addPlayer(new Player("Charles", "Allan", 88, R.drawable.boy4,false));
-                count = db.getPlayerCount();
-                tvNumberOfPlayers.setText("" +  count);
+                db.addPlayer(new Player("Jenna", "Paterson", 70, R.drawable.girl4,false));
+                db.addPlayer(new Player("Julian", "Newman", 68, R.drawable.boy4,false));
+                db.addPlayer(new Player("Richard", "Hemmings", 74, R.drawable.boy1,false));
+                db.addPlayer(new Player("Dominic", "Cameron", 36, R.drawable.girl2,false));
+                db.addPlayer(new Player("John", "Buckland", 52, R.drawable.boy2,false));
+                db.addPlayer(new Player("Jenny", "Cameron", 58, R.drawable.girl3,false));
+                db.addPlayer(new Player("Tim", "Bower", 64, R.drawable.boy3,false));
+                db.addPlayer(new Player("Warren", "Black", 56, R.drawable.boy5,false));
+                db.addPlayer(new Player("Charles", "Allan", 54, R.drawable.boy6,false));
+                countAllPlayers = db.getPlayerCount();
+                tvNumberOfPlayers.setText("" + countAllPlayers);
+//                btgetAllSeniorPlayers.setBackgroundColor(Color.GREEN);
                 db.close();
                 //refresh fragment
                 FragmentTransaction transaction = fm.beginTransaction();
@@ -217,18 +231,12 @@ public class CheckInPlayers extends Fragment {
         btRemoveAllPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db = new DBHelper(getContext());
-                db.deleteAllPlayers();
-                //refresh fragment
                 FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.main_content, new CheckInPlayers());
+                transaction.replace(R.id.main_content, new ProtectFragment());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
-
-
 
         return view;
     } //end of oncreatview
@@ -256,6 +264,20 @@ public class CheckInPlayers extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+//    @Override
+//    public void onActivityCreated(Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        final ArrayList<Integer> checkedPlayerIDs = savedInstanceState.getIntegerArrayList(CHECKED_PLAYERS_ID_KEY);
+//        for(int playerid : checkedPlayerIDs){
+//            for(Player player : players){
+//                if(player.getId() == playerid) {
+//                    player.setChecked(true);
+//                    break;
+//                }
+//            }
+//        }
+//    }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name

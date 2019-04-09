@@ -3,11 +3,11 @@ package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,17 +22,30 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    MainFragment.OnFragmentInteractionListener,
                    CheckInPlayers.OnFragmentInteractionListener,
-                    AddPlayerFragment.OnFragmentInteractionListener,
+                   AddPlayerFragment.OnFragmentInteractionListener,
+                   ProtectFragment.OnFragmentInteractionListener,
                    MatchingPlayers.OnFragmentInteractionListener,
+                    ScoreFragment.OnFragmentInteractionListener,
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
-                   Rules.OnFragmentInteractionListener{
+                   Rules.OnFragmentInteractionListener,
+                   SplashScreen.OnFragmentInteractionListener{
+
+
+/**
+ * @author Said Elshibiny
+ * The main activity were we manage switching between pages and more
+**/
 
     //Create fragment manager
     FragmentManager fm;
+
     //create the a public static variable for the fab
     public static FloatingActionButton fab;
+
+    //Variable for splash screen time on screen in milliseconds
+    private static int SPLASH_TIME = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +55,40 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         fm = getSupportFragmentManager();
-        if (savedInstanceState == null) {
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.main_content, new MainFragment());
-           // transaction.addToBackStack(null);
-            transaction.commit();
-        }
+
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.hide();
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_content, new SplashScreen());
+        // transaction.addToBackStack(null);
+        transaction.commit();
+
+        /**
+         * @author Said Elshibiny
+         * Handler created to launch the main fragment after 2000 milliseconds
+         */
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                FragmentTransaction transaction = fm.beginTransaction();
+                transaction.replace(R.id.main_content, new MainFragment());
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        },SPLASH_TIME);
+
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -60,14 +99,7 @@ public class MainActivity extends AppCompatActivity
 //            }
 //        });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
