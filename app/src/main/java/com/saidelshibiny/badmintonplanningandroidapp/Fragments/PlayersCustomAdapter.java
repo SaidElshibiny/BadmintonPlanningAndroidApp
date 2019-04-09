@@ -58,6 +58,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 player.setRanking(player.getRanking() + 2);
+                player.setChecked(true);
                 db.updatePlayer(player);
                 Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " scored 2 more points", Toast.LENGTH_SHORT);
                 toast.setMargin(50, 50);
@@ -69,6 +70,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
             @Override
             public void onClick(View view) {
                 player.setRanking(player.getRanking() - 2);
+                player.setChecked(true);
                 db.updatePlayer(player);
                 Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " decrease 2 points", Toast.LENGTH_SHORT);
                 toast.setMargin(50, 50);
