@@ -15,17 +15,17 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             android:orientation="vertical">
             <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
                 <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="20dp"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_10">
                     <TextView
@@ -49,7 +49,7 @@
                 <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="20dp"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_10">
                     <TextView
@@ -72,12 +72,12 @@
             <LinearLayout
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:layout_marginBottom="50dp"
+             android:layout_marginBottom="20dp"
              android:orientation="horizontal">
              <LinearLayout
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
-                 android:layout_marginRight="50dp"
+                 android:layout_marginRight="20dp"
                  android:orientation="vertical"
                  android:padding="@dimen/margin_10">
                  <TextView
@@ -99,7 +99,7 @@
              <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="50dp"
+        android:layout_marginRight="20dp"
         android:orientation="vertical"
         android:padding="@dimen/margin_10">
                  <TextView
@@ -122,12 +122,12 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="20dp"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_10">
                 <TextView
@@ -172,7 +172,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
                 <EditText
                     android:id="@+id/guestName"
@@ -182,7 +182,7 @@
                     android:textSize="28sp"
                     android:gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="20dp"
                     android:background="@color/colorLightBlue"/>
                 <Button
                     android:id="@+id/addGuestPlayer"
@@ -197,8 +197,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="50dp"
-                android:layout_marginBottom="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
                 <!--<TextView-->
                     <!--android:id="@+id/tvPlayTime"-->
@@ -218,7 +218,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="50dp"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="10dp"
                     android:min="2"
                     android:max="60"
                     android:progress="10"
@@ -231,9 +231,9 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="30dp"
                     android:textColor="@color/colorText"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="40dp"
                     android:background="@drawable/rounded_button"
                     />
             </LinearLayout>
@@ -241,8 +241,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
             <Button
                 android:id="@+id/buttonReMatch"
@@ -252,7 +252,7 @@
                 android:layout_weight="1"
                 android:layout_height="50dp"
                 android:textColor="@color/colorText"
-                android:layout_marginRight="50dp"
+                android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_button"/>
 
             <Button
@@ -263,7 +263,7 @@
                 android:layout_weight="1"
                 android:layout_height="50dp"
                 android:textColor="@color/colorText"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="40dp"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/rounded_button"/>
         </LinearLayout>
@@ -274,10 +274,10 @@
 
     <LinearLayout
         android:id="@+id/court7"
-        android:layout_width="160dp"
+        android:layout_width="240dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="@dimen/margin_10"
+
         android:background="@drawable/court_background" >
         <TextView
             android:id="@+id/numOfMatchPlayers"

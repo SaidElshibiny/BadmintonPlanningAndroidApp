@@ -213,8 +213,8 @@ public class MatchingPlayers extends Fragment {
         sbPlayTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //tvPlayTime.setText(progress + " minutes");
-                updatePlayCountdownTimer(progress);
+                //seekbar progress value is design to be 0 - 60 minutes, * 60 to get seconds
+                updatePlayCountdownTimer(progress * 60);
             }
 
             @Override
@@ -245,26 +245,14 @@ public class MatchingPlayers extends Fragment {
 
     //
     public void updatePlayCountdownTimer(int secondsLeft){
-        int minutes = (int) secondsLeft / 60;
-        int seconds = secondsLeft - minutes * 60;
-        //string to hold the minutes
-        String minuteString = Integer.toString(minutes);
-        //check if the number of minutes is single digit and add a zero to fix the timet
-        if(minutes <= 9){
-            minuteString = "0" + minuteString;
-        }
-        //string to hold the seconds
-        String secondsString = Integer.toString(seconds);
-        if(seconds <= 9){
-            secondsString = "0" + secondsString;
-        }
-        //Update the timerTitle
-        //tvPlayTime.setText(minuteString + ":" + secondsString);
-        txTotalPlayer.setText(minuteString + ":" + secondsString);
+        int minutes = (int) secondsLeft/60;
+        int seconds = secondsLeft%60;
+        txTotalPlayer.setText(String.format("%02d : %02d", minutes,seconds ) + " min");
     }
 
     public void controlPlayCountDownTimer(){
-        playTimeCDT = new CountDownTimer(sbPlayTime.getProgress()*1000 + 100 , 1000) {
+        //the seekbard range is from 0 to 60 minutes. default 10 minutes, 10min * 60sec/min * 1000 millisec =  600k
+        playTimeCDT = new CountDownTimer(sbPlayTime.getProgress()*60 * 1000  , 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -286,8 +274,7 @@ public class MatchingPlayers extends Fragment {
         public boolean onTouch(View view, MotionEvent motionEvent) {
             if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
                 ClipData data = ClipData.newPlainText("", "");
-                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(
-                        view);
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 view.setVisibility(View.INVISIBLE);
                 return true;
