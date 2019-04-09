@@ -4,26 +4,27 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
-import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
-import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
-import java.util.ArrayList;
-
-/*
- * Created by Chaonan Chen on April 7, 2019
- * Last updated on April 8, 2019
- * */
-public class ScoreFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link SplashScreen.OnFragmentInteractionListener} interface
+ * to handle interaction events.
+ * Use the {@link SplashScreen#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class SplashScreen extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -32,18 +33,10 @@ public class ScoreFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private ArrayList<Player> checkedPlayers;
-    FragmentManager fm;
-    RecyclerView rvPlayerScores;
-    Button btSubmitScore;
-    Button btBackToMatch;
-    PlayersCustomAdapter adapter;
-    DBHelper db;
-
 
     private OnFragmentInteractionListener mListener;
 
-    public ScoreFragment() {
+    public SplashScreen() {
         // Required empty public constructor
     }
 
@@ -53,11 +46,11 @@ public class ScoreFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ScoreFragment.
+     * @return A new instance of fragment SplashScreen.
      */
     // TODO: Rename and change types and number of parameters
-    public static ScoreFragment newInstance(String param1, String param2) {
-        ScoreFragment fragment = new ScoreFragment();
+    public static SplashScreen newInstance(String param1, String param2) {
+        SplashScreen fragment = new SplashScreen();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -77,35 +70,36 @@ public class ScoreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_score, container, false);
-        fm = getActivity().getSupportFragmentManager();
-        //set title bar
-        getActivity().setTitle("Update Scores");
-        db = new DBHelper(getContext());
-        checkedPlayers = db.getCheckedPlayer();
-        rvPlayerScores = (RecyclerView) view.findViewById(R.id.rvPlayerScores);
-        rvPlayerScores.setLayoutManager((new LinearLayoutManager(getContext())));
-        adapter = new PlayersCustomAdapter(checkedPlayers);
-        rvPlayerScores.setAdapter(adapter);
-        btBackToMatch = view.findViewById(R.id.buttonBackToMatch);
-        btSubmitScore = view.findViewById(R.id.buttonSubmitScore);
 
-        btBackToMatch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentTransaction transaction = fm.beginTransaction();
-                transaction.replace(R.id.main_content, new MatchingPlayers());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-        btSubmitScore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                adapter.notifyDataSetChanged();
-            }
-        });
+        /**
+         * @author Said Elshibiny
+         * The splash screen. Here I make sure the status bar is the same color as the background so it is hidden.
+         * I grab the images for the app logo and the app name so I can animate them.
+         **/
+
+
+        // Inflate the layout for this fragment
+        View view =  inflater.inflate(R.layout.fragment_splash_screen, container, false);
+
+        //Code to hide the action bar and color the status bar to white
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        Window window = getActivity().getWindow();
+//        // finally change the color
+//        window.setStatusBarColor(ContextCompat.getColor(getContext(),R.color.colorPrimaryDark));
+
+        //import images to add animations on
+        ImageView appLogo = view.findViewById(R.id.applogo);
+        ImageView companyname = view.findViewById(R.id.appname);
+
+//        //create the animation
+//        Animation slideFromLeft = AnimationUtils.loadAnimation(getContext(), R.anim.splashanimation_slide_from_left);
+//        Animation slideFromRight = AnimationUtils.loadAnimation(getContext(), R.anim.splashanimation_slide_from_right);
+
+//        //add animation to the images
+//        appLogo.startAnimation(slideFromLeft);
+//        companyname.startAnimation(slideFromRight)
+
+
         return view;
     }
 

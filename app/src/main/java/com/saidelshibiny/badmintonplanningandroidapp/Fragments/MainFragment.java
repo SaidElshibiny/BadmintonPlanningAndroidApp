@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,12 @@ import android.widget.ImageButton;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
+
+/**
+ * @author Said Elshibiny
+ * The main fragment aka the homepage of the app.
+ * It contains 6 icons that reflect the 6 pages In the app
+ **/
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +38,8 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    //Create Variables
 
     ImageButton checkinPlayers;
     ImageButton matchPlayers;
@@ -82,6 +91,8 @@ public class MainFragment extends Fragment {
 
         //separate view and inflate
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
 
         //getsupportfragmentmanager
         fm = getActivity().getSupportFragmentManager();
