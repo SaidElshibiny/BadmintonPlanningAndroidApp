@@ -1,8 +1,10 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 public class MainActivity extends AppCompatActivity
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -103,7 +107,14 @@ public class MainActivity extends AppCompatActivity
 //            startActivity(intent);
             return true;
         }
-
+        else if(id == R.id.action_log_out) {
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(LoginFragment.USER_LOGGED_IN, false).apply();
+            Intent intent = new Intent(this, LoginActivity.class);
+            finish();
+            startActivity(intent);
+        }
         return super.onOptionsItemSelected(item);
     }
 

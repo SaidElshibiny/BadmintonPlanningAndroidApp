@@ -97,6 +97,8 @@ public class LoginFragment extends Fragment {
                        change USER_LOGGED_IN to true
                      */
 
+
+
                     //open the main activity
                     Intent intent = new Intent(getActivity(), MainActivity.class);
                     intent.putExtra(USER_LOGGED_IN, true);
