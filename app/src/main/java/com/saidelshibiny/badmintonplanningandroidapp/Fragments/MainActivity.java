@@ -1,8 +1,10 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 public class MainActivity extends AppCompatActivity
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
+                   LoginFragment.OnFragmentInteractionListener,
+                   CreditsFragment.OnFragmentInteractionListener,
                    Rules.OnFragmentInteractionListener,
                    SplashScreen.OnFragmentInteractionListener{
 
@@ -37,6 +42,8 @@ public class MainActivity extends AppCompatActivity
  * @author Said Elshibiny
  * The main activity were we manage switching between pages and more
 **/
+
+
 
     //Create fragment manager
     FragmentManager fm;
@@ -51,6 +58,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -132,6 +140,22 @@ public class MainActivity extends AppCompatActivity
 //            startActivity(intent);
             return true;
         }
+        else if(id == R.id.action_log_out) {
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(LoginFragment.USER_LOGGED_IN, false).apply();
+            Intent intent = new Intent(this, LoginActivity.class);
+            finish();
+            startActivity(intent);
+        }
+
+        else if(id == R.id.action_credits) {
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.main_content, new CreditsFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
