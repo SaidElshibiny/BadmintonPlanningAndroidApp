@@ -218,20 +218,20 @@ public class Timer extends Fragment {
 
         /*SeekBars */
 
-//        //max values
-//        warmupSB.setMax(1800);
-//        footworkDrillsSB.setMax(1800);
-//        breakSB.setMax(1800);
-//        matchSB.setMax(1800);
-//        cooldownSB.setMax(1800);
+        //max values
+        warmupSB.setMax(1800);
+        footworkDrillsSB.setMax(1800);
+        breakSB.setMax(1800);
+        matchSB.setMax(1800);
+        cooldownSB.setMax(1800);
 
 
-        //temp max values for testing
-        warmupSB.setMax(10);
-        footworkDrillsSB.setMax(10);
-        breakSB.setMax(10);
-        matchSB.setMax(10);
-        cooldownSB.setMax(10);
+//        //temp max values for testing
+//        warmupSB.setMax(10);
+//        footworkDrillsSB.setMax(10);
+//        breakSB.setMax(10);
+//        matchSB.setMax(10);
+//        cooldownSB.setMax(10);
 
         //SeekBar Listeners
 
