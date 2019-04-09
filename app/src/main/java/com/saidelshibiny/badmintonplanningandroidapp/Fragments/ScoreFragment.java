@@ -19,14 +19,10 @@ import com.saidelshibiny.badmintonplanningandroidapp.R;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ScoreFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ScoreFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+/*
+ * Created by Chaonan Chen on April 7, 2019
+ * Last updated on April 8, 2019
+ * */
 public class ScoreFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +36,7 @@ public class ScoreFragment extends Fragment {
     FragmentManager fm;
     RecyclerView rvPlayerScores;
     Button btSubmitScore;
+    Button btBackToMatch;
     PlayersCustomAdapter adapter;
     DBHelper db;
 
@@ -91,16 +88,22 @@ public class ScoreFragment extends Fragment {
         rvPlayerScores.setLayoutManager((new LinearLayoutManager(getContext())));
         adapter = new PlayersCustomAdapter(checkedPlayers);
         rvPlayerScores.setAdapter(adapter);
+        btBackToMatch = view.findViewById(R.id.buttonBackToMatch);
         btSubmitScore = view.findViewById(R.id.buttonSubmitScore);
-        btSubmitScore.setOnClickListener(new View.OnClickListener() {
+
+        btBackToMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adapter.notifyDataSetChanged();
                 FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new MatchingPlayers());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
+            }
+        });
+        btSubmitScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                adapter.notifyDataSetChanged();
             }
         });
         return view;
