@@ -66,15 +66,12 @@ public class PlayersAdapter extends BaseAdapter {
         private final TextView lastName;
         private final ImageView imageID;
         private final ImageView imageCheck;
-
         public ViewHolder(TextView firstName, TextView lastName, ImageView imageID, ImageView imageCheck) {
             this.firstName = firstName;
             this.lastName = lastName;
             this.imageID = imageID;
             this.imageCheck = imageCheck;
         }
-
     }
-
 
 } // end of base adapter

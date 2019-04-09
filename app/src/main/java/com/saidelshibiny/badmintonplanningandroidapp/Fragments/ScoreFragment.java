@@ -6,23 +6,28 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
+import com.saidelshibiny.badmintonplanningandroidapp.Database.Player;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link MainFragment.OnFragmentInteractionListener} interface
+ * {@link ScoreFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MainFragment#newInstance} factory method to
+ * Use the {@link ScoreFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainFragment extends Fragment {
+public class ScoreFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -31,21 +36,17 @@ public class MainFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    ImageButton checkinPlayers;
-    ImageButton matchPlayers;
-    ImageButton footworkDrills;
-    ImageButton timer;
-    ImageButton coaches;
-    ImageButton rules;
-
-    //Create fragment manager
+    private ArrayList<Player> checkedPlayers;
     FragmentManager fm;
+    RecyclerView rvPlayerScores;
+    Button btSubmitScore;
+    PlayersCustomAdapter adapter;
+    DBHelper db;
 
 
     private OnFragmentInteractionListener mListener;
 
-    public MainFragment() {
+    public ScoreFragment() {
         // Required empty public constructor
     }
 
@@ -55,11 +56,11 @@ public class MainFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment MainFragment.
+     * @return A new instance of fragment ScoreFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainFragment newInstance(String param1, String param2) {
-        MainFragment fragment = new MainFragment();
+    public static ScoreFragment newInstance(String param1, String param2) {
+        ScoreFragment fragment = new ScoreFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -79,95 +80,29 @@ public class MainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        //separate view and inflate
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-
-        //getsupportfragmentmanager
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_score, container, false);
         fm = getActivity().getSupportFragmentManager();
-
-        //set the title
-        getActivity().setTitle("Home Page");
-
-        //link imagebuttons
-        checkinPlayers = view.findViewById(R.id.hpcheckinimage);
-        matchPlayers = view.findViewById(R.id.hpmatchplayersimage);
-        footworkDrills = view.findViewById(R.id.hpfootworkdrillsimage);
-        timer = view.findViewById(R.id.hptimerimage);
-        coaches = view.findViewById(R.id.hpcoachesimage);
-        rules = view.findViewById(R.id.hprulesimage);
-
-        final FragmentTransaction transaction = fm.beginTransaction();
-//        final Fragment timerFragment = new Timer();
-//        transaction.add(R.id.main_content, timerFragment);
-//        transaction.hide(timerFragment);
-
-        //create buttons
-        checkinPlayers.setOnClickListener(new View.OnClickListener() {
+        //set title bar
+        getActivity().setTitle("Update Scores");
+        db = new DBHelper(getContext());
+        checkedPlayers = db.getCheckedPlayer();
+        rvPlayerScores = (RecyclerView) view.findViewById(R.id.rvPlayerScores);
+        rvPlayerScores.setLayoutManager((new LinearLayoutManager(getContext())));
+        adapter = new PlayersCustomAdapter(checkedPlayers);
+        rvPlayerScores.setAdapter(adapter);
+        btSubmitScore = view.findViewById(R.id.buttonSubmitScore);
+        btSubmitScore.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
-                transaction.replace(R.id.main_content, new CheckInPlayers());
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-
-            }
-        });
-
-        matchPlayers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+            public void onClick(View view) {
+                adapter.notifyDataSetChanged();
+                FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new MatchingPlayers());
                 transaction.addToBackStack(null);
                 transaction.commit();
 
             }
         });
-
-
-        footworkDrills.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                transaction.replace(R.id.main_content, new FootworkDrills());
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-            }
-        });
-
-
-        timer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transaction.replace(R.id.main_content, new Timer());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-
-        coaches.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transaction.replace(R.id.main_content, new Coaches());
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-
-        rules.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transaction.replace(R.id.main_content, new Rules());
-                transaction.addToBackStack(null);
-                transaction.commit();
-
-            }
-        });
-
-        // Inflate the layout for this fragment
         return view;
     }
 

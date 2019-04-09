@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="@color/colorText"
+    android:background="@color/colorWhite"
     tools:context=".Fragments.Timer">
 
     <GridLayout
@@ -42,16 +42,16 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/warmupText"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:text="Warmup"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
+                android:background="@null"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -87,15 +87,15 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/footworkDrillText"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:text="Footwork Drills"
                 android:textAlignment="center"
+                android:background="@null"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -132,14 +132,14 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/breakText"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:text="Break"
+                android:background="@null"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
@@ -177,15 +177,15 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/matchText"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:text="Matches"
                 android:textAlignment="center"
+                android:background="@null"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -223,18 +223,18 @@
                 android:textStyle="bold"
                 android:textAlignment="center" />
 
-            <TextView
+            <EditText
                 android:id="@+id/cooldownText"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-black"
-                android:text="Cooldown"
+                android:textAlignment="center"
+                android:background="@null"
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:textAlignment="center" />
+                android:textStyle="bold" />
 
             <SeekBar
                 android:id="@+id/cooldownSeekBar"

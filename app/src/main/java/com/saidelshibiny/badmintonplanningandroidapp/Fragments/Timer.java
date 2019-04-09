@@ -7,11 +7,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -77,11 +77,11 @@ public class Timer extends Fragment {
     TextView matchTimerText;
     TextView cooldownTimerText;
 
-    TextView warmupTV;
-    TextView footworkDrillsTV;
-    TextView breakTV;
-    TextView matchTV;
-    TextView cooldownTV;
+    EditText warmupET;
+    EditText footworkDrillsET;
+    EditText breakET;
+    EditText matchET;
+    EditText cooldownET;
 
     /* SeekBars */
     SeekBar warmupSB;
@@ -113,6 +113,10 @@ public class Timer extends Fragment {
     Boolean counterIsActive = false;
 
 
+    /* MediaPlayer (Sound) */
+    //create a MediaPlayer for sound
+    MediaPlayer horn;
+    MediaPlayer beep;
 
 
     @Override
@@ -139,11 +143,11 @@ public class Timer extends Fragment {
         breakTimerText = view.findViewById(R.id.breakTimerText);
         matchTimerText = view.findViewById(R.id.matchTimerText);
         cooldownTimerText = view.findViewById(R.id.coolDownTimerText);
-        warmupTV = view.findViewById(R.id.warmupText);
-        footworkDrillsTV = view.findViewById(R.id.hpfootworkdrillstext);
-        breakTV = view.findViewById(R.id.breakText);
-        matchTV = view.findViewById(R.id.matchText);
-        cooldownTV = view.findViewById(R.id.cooldownText);
+        warmupET = view.findViewById(R.id.warmupText);
+        footworkDrillsET = view.findViewById(R.id.footworkDrillText);
+        breakET = view.findViewById(R.id.breakText);
+        matchET = view.findViewById(R.id.matchText);
+        cooldownET = view.findViewById(R.id.cooldownText);
 
         /* SeekBars */
         warmupSB = view.findViewById(R.id.warmupSeekBar);
@@ -162,7 +166,22 @@ public class Timer extends Fragment {
         matchLL = view.findViewById(R.id.matchLL);
         cooldownLL = view.findViewById(R.id.coolDownLL);
 
-        /*Setup SeekBars */
+        /* Sound */
+        horn = MediaPlayer.create(getContext(), R.raw.airhorn);
+        beep = MediaPlayer.create(getContext(), R.raw.beep);
+
+
+
+        /*Setup*/
+
+        /* EditText */
+        warmupET.setText("Warmup");
+        footworkDrillsET.setText("Footwork Drills");
+        breakET.setText("Break");
+        matchET.setText("Match");
+        cooldownET.setText("Cooldown");
+
+        /*SeekBars */
 
 //        //max values
 //        warmupSB.setMax(600);
@@ -171,7 +190,7 @@ public class Timer extends Fragment {
 //        matchSB.setMax(1800);
 //        cooldownSB.setMax(600);
 
-        //max values
+        //temp max values for testing
         warmupSB.setMax(10);
         footworkDrillsSB.setMax(10);
         breakSB.setMax(10);
@@ -251,7 +270,7 @@ public class Timer extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (warmupSB.getProgress() == 0 || footworkDrillsSB.getProgress() == 0 || breakSB.getProgress() == 0 || matchSB.getProgress() == 0 || cooldownSB.getProgress() == 0){
+                if ((warmupSB.getProgress() == 0 || footworkDrillsSB.getProgress() == 0 || breakSB.getProgress() == 0 || matchSB.getProgress() == 0 || cooldownSB.getProgress() == 0)){ //&& (warmupET.getText().equals("") == false || footworkDrillsET.getText().equals("") == false || breakET.getText().equals("") == false || matchET.getText().equals("") == false || cooldownET.getText().equals("") == false)){
 
                     Toast toast = Toast.makeText(getContext(), "Please set the timers first", Toast.LENGTH_LONG);
                     toast.show();
@@ -267,6 +286,13 @@ public class Timer extends Fragment {
                     breakSB.setEnabled(false);
                     matchSB.setEnabled(false);
                     cooldownSB.setEnabled(false);
+
+                    //disable EditText
+                    warmupET.setEnabled(false);
+                    footworkDrillsET.setEnabled(false);
+                    breakET.setEnabled(false);
+                    matchET.setEnabled(false);
+                    cooldownET.setEnabled(false);
 
                     playPauseButton.setVisibility(view.INVISIBLE);
                 }
@@ -286,38 +312,44 @@ public class Timer extends Fragment {
         warmupSB.setProgress(600);
         //enable SeekBar
         warmupSB.setEnabled(true);
+        //enable EditText
+        warmupET.setEnabled(true);
         //cancel the countdown
         warmUpCD.cancel();
         //change the layout background color
-        warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         footworkDrillTimerText.setText("30:00");
         footworkDrillsSB.setProgress(1800);
         footworkDrillsSB.setEnabled(true);
+        footworkDrillsET.setEnabled(true);
         footworkDrillsCD.cancel();
-        footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         breakTimerText.setText("10:00");
         breakSB.setProgress(600);
         breakSB.setEnabled(true);
+        breakET.setEnabled(true);
         breakCD.cancel();
-        breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         matchTimerText.setText("30:00");
         matchSB.setProgress(1800);
         matchSB.setEnabled(true);
+        matchET.setEnabled(true);
         matchCD.cancel();
-        matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         cooldownTimerText.setText("10:00");
         cooldownSB.setProgress(600);
         cooldownSB.setEnabled(true);
+        cooldownET.setEnabled(true);
         coolDownCD.cancel();
-        cooldownLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
+        cooldownLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
         playPauseButton.setVisibility(getView().VISIBLE);
         playPauseButton.setText("START");
@@ -389,9 +421,8 @@ public class Timer extends Fragment {
                 //change the layout background color
                 warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
-                //create a mediaplayer and play sound
-                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
-                mplayer.start();
+                //play beep sound to alert user when the timer shift to a new stage
+                beep.start();
 
             }
         }.start();
@@ -457,9 +488,8 @@ public class Timer extends Fragment {
                     footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
 
-                    //create a mediaplayer and play sound
-                    MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
-                    mplayer.start();
+                    //play beep sound to alert user when the timer shift to a new stage
+                    beep.start();
 
                 }
             }.start();
@@ -524,9 +554,8 @@ public class Timer extends Fragment {
                 breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
 
-                //create a mediaplayer and play sound
-                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
-                mplayer.start();
+                //play beep sound to alert user when the timer shift to a new stage
+                beep.start();
 
             }
         }.start();
@@ -590,9 +619,8 @@ public class Timer extends Fragment {
                 //change the layout background color
                 matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
-                //create a mediaplayer and play sound
-                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.beep);
-                mplayer.start();
+                //play beep sound to alert user when the timer shift to a new stage
+                beep.start();
 
             }
         }.start();
@@ -649,9 +677,8 @@ public class Timer extends Fragment {
 
                 resetAllTimers();
 
-                //create a mediaplayer and play sound
-                MediaPlayer mplayer = MediaPlayer.create(getContext(), R.raw.airhorn);
-                mplayer.start();
+                //play horn sound to alert user when timer is done
+                horn.start();
 
             }
         }.start();
