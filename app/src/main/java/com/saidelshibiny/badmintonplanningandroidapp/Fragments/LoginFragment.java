@@ -24,7 +24,7 @@ public class LoginFragment extends Fragment {
 
 
     // Admin Keys
-    public static final String ADMIN_USERNAME = "admin@riversidebadmintion.ca";
+    public static final String ADMIN_USERNAME = "admin";
     public static final String ADMIN_PASSWORD = "admin";
 
     //Pass the key to the MainActivity once the user has logged in
@@ -92,7 +92,7 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                    if (usernameEditText.getText().toString() == ADMIN_USERNAME && passwordEditText.getText().toString() == ADMIN_PASSWORD){
+                    if (usernameEditText.getText().toString().equals(ADMIN_USERNAME) && passwordEditText.getText().toString().equals(ADMIN_PASSWORD)){
                     /* Successful login
                        change USER_LOGGED_IN to true
                      */
@@ -116,7 +116,7 @@ public class LoginFragment extends Fragment {
                 }else{
 
                     // Incorrect login details
-                    Toast.makeText(getActivity(), "incorrect username or password", Toast.LENGTH_LONG)
+                    Toast.makeText(getActivity(), "Incorrect username or password", Toast.LENGTH_LONG)
                             .show();
                 }
             }

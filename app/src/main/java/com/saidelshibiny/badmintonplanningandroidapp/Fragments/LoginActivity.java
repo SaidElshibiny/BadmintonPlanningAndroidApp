@@ -11,46 +11,48 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import com.saidelshibiny.badmintonplanningandroidapp.Fragments.LoginFragment;
 import com.saidelshibiny.badmintonplanningandroidapp.Database.User;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
 
-public class LoginActivity extends AppCompatActivity implements LoginFragment.OnFragmentInteractionListener {
+public class LoginActivity extends AppCompatActivity implements
+        LoginFragment.OnFragmentInteractionListener {
 
-    //keys for user sharedPref
+    //keys for admin sharedPref
     public static final String ADMIN_USERNAME = "USERNAME";
     public static final String ADMIN_PASSWORD = "PASSWORD";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_login);
-    }
+        setContentView(R.layout.activity_login_activity);
 
-    //get the shared pref
-    SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-    //we check to see if the user is logged in by checking the shared preferences
-    boolean isLoggedIn = sharedPref.getBoolean(LoginFragment.USER_LOGGED_IN, false);
-        if(isLoggedIn){
+        //get the shared pref
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        //we check to see if the user is logged in by checking the shared preferences
+        boolean isLoggedIn = sharedPref.getBoolean(LoginFragment.USER_LOGGED_IN, false);
+        if (isLoggedIn) {
+//
             //if is logged in, then we grab  from the shared preferences
-        String username = sharedPref.getString(LoginActivity.ADMIN_USERNAME, "");
-        String password = sharedPref.getString(LoginActivity.ADMIN_PASSWORD, "");
+            String username = sharedPref.getString(LoginActivity.ADMIN_USERNAME, "");
+            String password = sharedPref.getString(LoginActivity.ADMIN_PASSWORD, "");
 
-        //create the user
-        User isUser = new User(username, password);
+            //create the user
+            User isUser = new User(username, password);
 
-        //start the mainActivity
-        Intent i = new Intent(this, MainActivity.class);
-        i.putExtra(LoginFragment.USER_LOGGED_IN, isUser);
-        startActivity(i);
-    }
-    else {
-        // If no user is logged in, display the LoginFragment
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.login_content, new LoginFragment())
-                .commit();
+            //start the mainActivity
+            Intent i = new Intent(this, MainActivity.class);
+            i.putExtra(LoginFragment.USER_LOGGED_IN, isUser);
+            startActivity(i);
+        } else {
+            // If no user is logged in, display the LoginFragment
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.login_activity_content, new LoginFragment())
+                    .commit();
+        }
     }
 
 
