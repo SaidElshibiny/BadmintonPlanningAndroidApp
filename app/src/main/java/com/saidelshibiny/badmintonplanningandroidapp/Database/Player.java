@@ -82,7 +82,6 @@ public class Player{
     public void setChecked(boolean isChecked) { this.isChecked = isChecked;   }
     public void toggleChecked(){ isChecked = !isChecked; }
 
-
     public void writeToParcel(Parcel parcel, int i) {
         if (id == 0) {
             parcel.writeByte((byte) 0);
@@ -110,6 +109,7 @@ public class Player{
        this.ranking = in.readInt();
        this.imageID = in.readInt();
        this.isChecked = in.readByte() != 0; // isChecked == true if byte != 0
+
     }
 
     public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {

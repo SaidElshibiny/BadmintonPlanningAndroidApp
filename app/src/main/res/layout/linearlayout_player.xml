@@ -9,9 +9,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:contentDescription="@string/image_attribute"
-        android:background="@drawable/profile"
         android:scaleType="centerCrop"/>
-
+    <!--android:background="@drawable/profile"-->
 <FrameLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
@@ -32,7 +31,6 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:gravity="left"
-
             android:textSize="24sp" />
     </LinearLayout>
     <ImageView

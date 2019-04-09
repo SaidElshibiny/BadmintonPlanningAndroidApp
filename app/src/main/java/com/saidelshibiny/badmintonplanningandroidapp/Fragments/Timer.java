@@ -8,7 +8,6 @@ import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -353,16 +352,12 @@ public class Timer extends Fragment {
         warmupET.setEnabled(true);
         //cancel the countdown
         warmUpCD.cancel();
-        //change the layout background color
-//        warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
-
 
         footworkDrillTimerText.setText("30:00");
         footworkDrillsSB.setProgress(1800);
         footworkDrillsSB.setEnabled(true);
         footworkDrillsET.setEnabled(true);
         footworkDrillsCD.cancel();
-//        footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
 
 
         breakTimerText.setText("10:00");
@@ -370,7 +365,6 @@ public class Timer extends Fragment {
         breakSB.setEnabled(true);
         breakET.setEnabled(true);
         breakCD.cancel();
-//        breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
 
 
         matchTimerText.setText("30:00");
@@ -378,15 +372,12 @@ public class Timer extends Fragment {
         matchSB.setEnabled(true);
         matchET.setEnabled(true);
         matchCD.cancel();
-//        matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
-
 
         cooldownTimerText.setText("10:00");
         cooldownSB.setProgress(600);
         cooldownSB.setEnabled(true);
         cooldownET.setEnabled(true);
         coolDownCD.cancel();
-//        cooldownLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorText));
 
         playPauseButton.setVisibility(getView().VISIBLE);
         playPauseButton.setText("START");
