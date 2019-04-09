@@ -1,5 +1,4 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +6,10 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -21,9 +24,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
+import com.saidelshibiny.badmintonplanningandroidapp.Database.DBHelper;
 import com.saidelshibiny.badmintonplanningandroidapp.R;
-
 import static android.content.ContentValues.TAG;
 
 public class MainActivity extends AppCompatActivity
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
+                   LoginFragment.OnFragmentInteractionListener,
+                   CreditsFragment.OnFragmentInteractionListener,
                    Rules.OnFragmentInteractionListener,
                    SplashScreen.OnFragmentInteractionListener{
 
@@ -45,6 +49,8 @@ public class MainActivity extends AppCompatActivity
  * @author Said Elshibiny
  * The main activity were we manage switching between pages and more
 **/
+
+
 
     //Create fragment manager
     FragmentManager fm;
@@ -60,6 +66,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -141,6 +148,22 @@ public class MainActivity extends AppCompatActivity
 //            startActivity(intent);
             return true;
         }
+        else if(id == R.id.action_log_out) {
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putBoolean(LoginFragment.USER_LOGGED_IN, false).apply();
+            Intent intent = new Intent(this, LoginActivity.class);
+            finish();
+            startActivity(intent);
+        }
+
+        else if(id == R.id.action_credits) {
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.main_content, new CreditsFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

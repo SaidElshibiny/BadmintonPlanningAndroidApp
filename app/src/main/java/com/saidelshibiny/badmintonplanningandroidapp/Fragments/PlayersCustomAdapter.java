@@ -60,7 +60,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
                 player.setRanking(player.getRanking() + 2);
                 player.setChecked(true);
                 db.updatePlayer(player);
-                Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " scored 2 more points", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " gained 2 points", Toast.LENGTH_SHORT);
                 toast.setMargin(50, 50);
                 toast.show();
 
@@ -72,7 +72,7 @@ public class PlayersCustomAdapter extends RecyclerView.Adapter {
                 player.setRanking(player.getRanking() - 2);
                 player.setChecked(true);
                 db.updatePlayer(player);
-                Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " decrease 2 points", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(view.getContext(),  player.getFirstName() + " lose 2 points", Toast.LENGTH_SHORT);
                 toast.setMargin(50, 50);
                 toast.show();
 
