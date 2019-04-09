@@ -453,7 +453,7 @@ public class Timer extends Fragment {
                 beep.start();
 
                 //Toast
-                Toast.makeText(getContext(), warmupET.getText() + " DONE", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), warmupET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -524,7 +524,7 @@ public class Timer extends Fragment {
                     beep.start();
 
                     //Toast
-                    Toast.makeText(getContext(), footworkDrillsET.getText() + " DONE", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), footworkDrillsET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
                 }
             }.start();
@@ -593,7 +593,7 @@ public class Timer extends Fragment {
                 beep.start();
 
                 //Toast
-                Toast.makeText(getContext(), breakET.getText() + " DONE", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), breakET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
             }
         }.start();
@@ -661,7 +661,7 @@ public class Timer extends Fragment {
                 beep.start();
 
                 //Toast
-                Toast.makeText(getContext(), matchET.getText() + " DONE", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), matchET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
             }
         }.start();
@@ -722,7 +722,7 @@ public class Timer extends Fragment {
                 horn.start();
 
                 //Toast
-                Toast.makeText(getContext(), cooldownET.getText() + " DONE", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), cooldownET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
             }
         }.start();
