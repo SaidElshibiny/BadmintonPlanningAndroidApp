@@ -5,9 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,7 +22,10 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
                    MainFragment.OnFragmentInteractionListener,
                    CheckInPlayers.OnFragmentInteractionListener,
+                   AddPlayerFragment.OnFragmentInteractionListener,
+                   ProtectFragment.OnFragmentInteractionListener,
                    MatchingPlayers.OnFragmentInteractionListener,
+                    ScoreFragment.OnFragmentInteractionListener,
                    FootworkDrills.OnFragmentInteractionListener,
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
@@ -139,12 +142,17 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
        // fm = getSupportFragmentManager();
+
+//        Fragment timerFragment = new Timer();
+
         FragmentTransaction transaction = fm.beginTransaction();
+//        transaction.add(R.id.main_content, timerFragment);
 
         if (id == R.id.nav_check_in) {
             transaction.replace(R.id.main_content, new CheckInPlayers());
             transaction.addToBackStack(null);
             transaction.commit();
+
         } else if (id == R.id.nav_match_players) {
             transaction.replace(R.id.main_content, new MatchingPlayers());
             transaction.addToBackStack(null);
@@ -157,6 +165,9 @@ public class MainActivity extends AppCompatActivity
             transaction.replace(R.id.main_content, new Timer());
             transaction.addToBackStack(null);
             transaction.commit();
+//            transaction.show(timerFragment);
+//            transaction.commit();
+
         } else if (id == R.id.nav_coaches) {
             transaction.replace(R.id.main_content, new Coaches());
             transaction.addToBackStack(null);

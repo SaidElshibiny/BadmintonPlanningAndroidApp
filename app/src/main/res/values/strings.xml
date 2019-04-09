@@ -7,12 +7,35 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="image_attribute">Player Avatar</string>
-<!---->
+    <!---->
     <!--References-->
     <string name="reference_background_selector">https://inducesmile.com/android/how-to-set-recycleview-item-row-background-color-in-android/</string>
     <string name="reference_button_under_recyclerview">https://techdoma.in/adding-buttons-below-recyclerview-android/</string>
     <string name="reference_drag_drop_tutorial">https://www.vogella.com/tutorials/AndroidDragAndDrop/article.html</string>
+    <string name="reference_dynamic_add_textview">https://stackoverflow.com/questions/6930604/android-add-textview-to-layout-when-button-is-pressed</string>
+    <!--<div>Icons made by-->
+    <!--<a href="http://www.freepik.com/" title="Freepik">Freepik</a> from-->
+    <!--<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by-->
+    <!--<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
+    <string name="reference_icons">https://www.flaticon.com/</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="title_activity_splash_screen">SplashScreen</string>
+
+    <!-- Made by: Said Elshibiny-->
+    <!-- Badminton Rules-->
+    <string name="rulesTitle">Badminton Rules</string>
+    <string name="rule1">&#8226; A game can take place with either 2 (singles) or 4 (doubles) players.</string>
+    <string name="rule2">&#8226; An official match has to be played indoors on the proper court dimensions. The dimensions are 6.1m by 13.4m, The net is situated throught the middle of the court and is set at 1.55m</string>
+    <string name="rule3">&#8226; To score a point the birdie must hit within the guidelines of the opponents court.</string>
+    <string name="rule4">&#8226; If the birdie hits the net or lands out then a point is awarded to your opponent</string>
+    <string name="rule5">&#8226; Players must serve diagonally across the net to their opponent. As points are won then serving stations move from one side to the other. There are no second serves so if your first serve goes out then your opponent wins the point.</string>
+    <string name="rule6">&#8226; A serve must be hit underarm and below the servers waist. No overarm serves allowed.</string>
+    <string name="rule7">&#8226; Each game will start with a toss to determine which player will serve first and which side of the court the opponent would like to start from.</string>
+    <string name="rule8">&#8226; A point is scored when you successfully hit the birdie over the net and land it in your opponent\'s court before they hit it.</string>
+    <string name="rule9">&#8226; A point can also be gained when your opponent hits the birdie into either the net or outside the guidelines.</string>
+    <string name="rule10">&#8226; To win a game you must reach 21 point before your opponent.</string>
 </resources>
+

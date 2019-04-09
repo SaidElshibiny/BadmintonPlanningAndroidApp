@@ -105,15 +105,20 @@ public class MainFragment extends Fragment {
         coaches = view.findViewById(R.id.hpcoachesimage);
         rules = view.findViewById(R.id.hprulesimage);
 
+        final FragmentTransaction transaction = fm.beginTransaction();
+//        final Fragment timerFragment = new Timer();
+//        transaction.add(R.id.main_content, timerFragment);
+//        transaction.hide(timerFragment);
+
         //create buttons
         checkinPlayers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new CheckInPlayers());
                 transaction.addToBackStack(null);
                 transaction.commit();
+
 
             }
         });
@@ -122,7 +127,6 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new MatchingPlayers());
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -135,7 +139,6 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new FootworkDrills());
                 transaction.addToBackStack(null);
                 transaction.commit();
@@ -147,34 +150,24 @@ public class MainFragment extends Fragment {
         timer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new Timer());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
-
 
         coaches.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new Coaches());
                 transaction.addToBackStack(null);
                 transaction.commit();
-
             }
         });
-
 
         rules.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                FragmentTransaction transaction = fm.beginTransaction();
                 transaction.replace(R.id.main_content, new Rules());
                 transaction.addToBackStack(null);
                 transaction.commit();

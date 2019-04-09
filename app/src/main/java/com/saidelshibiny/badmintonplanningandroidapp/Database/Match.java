@@ -1,17 +1,15 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Database;
 
-import java.sql.Date;
-
 public class Match {
-    private Integer matchId;
-    private Integer winningScore;
-    private Integer losingScore;
-    private Date startTime;
+    private int matchId;
+    private int winningScore;
+    private int losingScore;
+    private String startTime;
 
     //constructor
     public Match(){}
 
-    public Match(Integer matchId, Integer winningScore, Integer losingScore, Date startTime) {
+    public Match(int matchId, int winningScore, int losingScore, String startTime) {
         this.matchId = matchId;
         this.winningScore = winningScore;
         this.losingScore = losingScore;
@@ -20,23 +18,23 @@ public class Match {
 
     //getter and setter
 
-    public Integer getMatchId() {
+    public int getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(Integer matchId) {
+    public void setMatchId(int matchId) {
         this.matchId = matchId;
     }
 
-    public Integer getWinningScore() {
+    public int getWinningScore() {
         return winningScore;
     }
 
-    public void setWinningScore(Integer winningScore) {
+    public void setWinningScore(int winningScore) {
         this.winningScore = winningScore;
     }
 
-    public Integer getLosingScore() {
+    public int getLosingScore() {
         return losingScore;
     }
 
@@ -44,11 +42,11 @@ public class Match {
         this.losingScore = losingScore;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 }
