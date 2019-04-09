@@ -98,6 +98,16 @@ public class LoginFragment extends Fragment {
                      */
 
 
+                        //we state that the user is logged in.
+                        // We do this so that we can check if the user is logged in or out
+                        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+                        SharedPreferences.Editor editor = sharedPref.edit();
+                        editor.putBoolean(USER_LOGGED_IN, true);
+
+
+                        editor.putString(LoginActivity.ADMIN_USERNAME, ADMIN_USERNAME);
+                        editor.putString(LoginActivity.ADMIN_PASSWORD, ADMIN_PASSWORD);
+                        editor.apply();
 
                     //open the main activity
                     Intent intent = new Intent(getActivity(), MainActivity.class);
