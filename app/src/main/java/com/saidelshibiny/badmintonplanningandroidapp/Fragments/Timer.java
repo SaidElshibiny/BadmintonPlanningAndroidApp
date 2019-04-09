@@ -5,6 +5,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -18,6 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
+
+import java.util.Locale;
+
+import javax.security.auth.login.LoginException;
 
 
 /**
@@ -92,6 +97,9 @@ public class Timer extends Fragment {
 
     /* Button */
     Button playPauseButton;
+
+    /* TextToSpeech */
+    TextToSpeech textToSpeech;
 
     /*LinerLayouts*/
 
@@ -171,6 +179,33 @@ public class Timer extends Fragment {
         beep = MediaPlayer.create(getContext(), R.raw.beep);
 
 
+//        //TextToSpeech
+//        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+//            @Override
+//            public void onInit(int status) {
+//                if(status == TextToSpeech.SUCCESS){
+//                    int result = textToSpeech.setLanguage(Locale.ENGLISH);
+//
+//                    if(result == TextToSpeech.LANG_MISSING_DATA || result == textToSpeech.LANG_NOT_SUPPORTED){
+//                        Log.e("textToSpeech","Language not supported");
+//                    }
+//                }
+//            }else{
+//                Log.e("textToSpeech","Init Failed");
+//            }
+//        });
+//
+//        public void speak(String x){
+//
+//
+//            String text = t;
+//            textToSpeech.setPitch(0.1f);
+//            textToSpeech.setSpeechRate(0.1f);
+//            textToSpeech.speak(text,textToSpeech.QUEUE_FLUSH, null);
+//
+//        }
+
+
 
         /*Setup*/
 
@@ -184,11 +219,12 @@ public class Timer extends Fragment {
         /*SeekBars */
 
 //        //max values
-//        warmupSB.setMax(600);
+//        warmupSB.setMax(1800);
 //        footworkDrillsSB.setMax(1800);
-//        breakSB.setMax(600);
+//        breakSB.setMax(1800);
 //        matchSB.setMax(1800);
-//        cooldownSB.setMax(600);
+//        cooldownSB.setMax(1800);
+
 
         //temp max values for testing
         warmupSB.setMax(10);
@@ -316,16 +352,12 @@ public class Timer extends Fragment {
         warmupET.setEnabled(true);
         //cancel the countdown
         warmUpCD.cancel();
-        //change the layout background color
-        warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
-
 
         footworkDrillTimerText.setText("30:00");
         footworkDrillsSB.setProgress(1800);
         footworkDrillsSB.setEnabled(true);
         footworkDrillsET.setEnabled(true);
         footworkDrillsCD.cancel();
-        footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         breakTimerText.setText("10:00");
@@ -333,7 +365,6 @@ public class Timer extends Fragment {
         breakSB.setEnabled(true);
         breakET.setEnabled(true);
         breakCD.cancel();
-        breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
 
         matchTimerText.setText("30:00");
@@ -341,15 +372,12 @@ public class Timer extends Fragment {
         matchSB.setEnabled(true);
         matchET.setEnabled(true);
         matchCD.cancel();
-        matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
-
 
         cooldownTimerText.setText("10:00");
         cooldownSB.setProgress(600);
         cooldownSB.setEnabled(true);
         cooldownET.setEnabled(true);
         coolDownCD.cancel();
-        cooldownLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorWhite));
 
         playPauseButton.setVisibility(getView().VISIBLE);
         playPauseButton.setText("START");
@@ -419,10 +447,14 @@ public class Timer extends Fragment {
                 controlFootWorkDrillsTimer();
 
                 //change the layout background color
-                warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+//                warmupLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
                 //play beep sound to alert user when the timer shift to a new stage
                 beep.start();
+
+                //Toast
+                Toast.makeText(getContext(), warmupET.getText() + " is done", Toast.LENGTH_SHORT).show();
+
 
             }
         }.start();
@@ -485,11 +517,14 @@ public class Timer extends Fragment {
                     controlBreakTimer();
 
                     //change the layout background color
-                    footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+//                    footworkDrillLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
 
                     //play beep sound to alert user when the timer shift to a new stage
                     beep.start();
+
+                    //Toast
+                    Toast.makeText(getContext(), footworkDrillsET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
                 }
             }.start();
@@ -551,11 +586,14 @@ public class Timer extends Fragment {
                 controlMatchTimer();
 
                 //change the layout background color
-                breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+//                breakLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
 
                 //play beep sound to alert user when the timer shift to a new stage
                 beep.start();
+
+                //Toast
+                Toast.makeText(getContext(), breakET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
             }
         }.start();
@@ -617,10 +655,13 @@ public class Timer extends Fragment {
                 controlCoolDownTimer();
 
                 //change the layout background color
-                matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
+//                matchLL.setBackgroundColor(ContextCompat.getColor(getView().getContext(), R.color.colorPrimary));
 
                 //play beep sound to alert user when the timer shift to a new stage
                 beep.start();
+
+                //Toast
+                Toast.makeText(getContext(), matchET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
             }
         }.start();
@@ -679,6 +720,9 @@ public class Timer extends Fragment {
 
                 //play horn sound to alert user when timer is done
                 horn.start();
+
+                //Toast
+                Toast.makeText(getContext(), cooldownET.getText() + " is done", Toast.LENGTH_SHORT).show();
 
             }
         }.start();
