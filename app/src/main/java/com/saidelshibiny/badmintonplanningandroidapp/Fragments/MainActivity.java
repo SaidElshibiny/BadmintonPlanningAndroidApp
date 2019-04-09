@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity
                    Timer.OnFragmentInteractionListener,
                    Coaches.OnFragmentInteractionListener,
                    LoginFragment.OnFragmentInteractionListener,
+                   CreditsFragment.OnFragmentInteractionListener,
                    Rules.OnFragmentInteractionListener{
 
 
@@ -116,6 +117,15 @@ public class MainActivity extends AppCompatActivity
             finish();
             startActivity(intent);
         }
+
+        else if(id == R.id.action_credits) {
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.main_content, new CreditsFragment());
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 

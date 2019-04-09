@@ -44,15 +44,16 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
         Intent i = new Intent(this, MainActivity.class);
         i.putExtra(LoginFragment.USER_LOGGED_IN, isUser);
         startActivity(i);
-    }else {
-        //if there is no user logged in, then display the fragment for the user to log in
+    }
+    else {
+        // If no user is logged in, display the LoginFragment
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.login_content, new LoginFragment())
                 .commit();
     }
 
-    }
+
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -75,4 +76,8 @@ public class LoginActivity extends AppCompatActivity implements LoginFragment.On
             ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).
                     hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+
 }
+
