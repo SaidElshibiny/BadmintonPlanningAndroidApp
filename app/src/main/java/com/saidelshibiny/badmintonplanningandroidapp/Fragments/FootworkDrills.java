@@ -1,14 +1,22 @@
 package com.saidelshibiny.badmintonplanningandroidapp.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
+
+import java.util.Random;
 
 
 /**
@@ -62,15 +70,221 @@ public class FootworkDrills extends Fragment {
         }
     }
 
+
+    /**
+     * @author Said Elshibiny
+     * */
+
+    /* create the images and the button and sound */
+
+    ImageView position1;
+    ImageView position2;
+    ImageView position3;
+    ImageView position4;
+    ImageView position5;
+    ImageView position6;
+
+    Button startDrill;
+
+    MediaPlayer beep;
+
+    CountDownTimer drillCountDown;
+
+    //Create boolean for counterIsActive to change the button text
+    Boolean counterIsActive = false;
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_footwork_drills, container, false);
+
+        //change title
         getActivity().setTitle("Footwork Drills");
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_footwork_drills, container, false);
+
+        // grab images, button and sound
+
+        position1 = view.findViewById(R.id.position1);
+        position2 = view.findViewById(R.id.position2);
+        position3 = view.findViewById(R.id.position3);
+        position4 = view.findViewById(R.id.position4);
+        position5 = view.findViewById(R.id.position5);
+        position6 = view.findViewById(R.id.position6);
+
+        startDrill = view.findViewById(R.id.startDrillButton);
+
+        beep = MediaPlayer.create(getContext(), R.raw.beep);
+
+
+        startDrill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                controlDrillTimer();
+            }
+        });
+
+        return view;
     }
+
+
+    /* Footwork Drill */
+
+    //Create a method for the that will control the drill
+    public void controlDrillTimer(){
+
+        if (counterIsActive == false) {
+
+            //set counterIsActive to true
+            counterIsActive = true;
+
+            //change the text for the playPauseButton
+            startDrill.setText("STOP DRILL");
+
+            //Add 0.1 seconds to time to give time for the script to run and not impact timer
+             drillCountDown = new CountDownTimer(100 * 1000 + 100, 1000) {
+
+                @Override
+                public void onTick(long millisUntilFinished) {
+
+                    if(millisUntilFinished % 2 == 0){
+
+                        int random = new Random().nextInt((6 - 1) + 1) + 1;
+
+                        switch (random){
+                            case 1:
+                                //highlight background with color red
+                                position1.setColorFilter(Color.RED);
+                                position2.setColorFilter(Color.TRANSPARENT);
+                                position3.setColorFilter(Color.TRANSPARENT);
+                                position4.setColorFilter(Color.TRANSPARENT);
+                                position5.setColorFilter(Color.TRANSPARENT);
+                                position6.setColorFilter(Color.TRANSPARENT);
+                                //play beep sound to alert of number change
+                                beep.start();
+                                break;
+                            case 2:
+                                //highlight background with color red
+                                position2.setColorFilter(Color.RED);
+                                position1.setColorFilter(Color.TRANSPARENT);
+                                position3.setColorFilter(Color.TRANSPARENT);
+                                position4.setColorFilter(Color.TRANSPARENT);
+                                position5.setColorFilter(Color.TRANSPARENT);
+                                position6.setColorFilter(Color.TRANSPARENT);
+                                //play beep sound to alert of number change
+                                beep.start();
+                                break;
+                            case 3:
+                                //highlight background and set color
+                                position3.setColorFilter(Color.RED);
+                                position1.setColorFilter(Color.TRANSPARENT);
+                                position2.setColorFilter(Color.TRANSPARENT);
+                                position4.setColorFilter(Color.TRANSPARENT);
+                                position5.setColorFilter(Color.TRANSPARENT);
+                                position6.setColorFilter(Color.TRANSPARENT);
+                                //play beep sound to alert of number change
+                                beep.start();
+                                break;
+                            case 4:
+                                //highlight background and set color
+                                position4.setColorFilter(Color.RED);
+                                position1.setColorFilter(Color.TRANSPARENT);
+                                position2.setColorFilter(Color.TRANSPARENT);
+                                position3.setColorFilter(Color.TRANSPARENT);
+                                position5.setColorFilter(Color.TRANSPARENT);
+                                position6.setColorFilter(Color.TRANSPARENT);
+                                //play beep sound to alert of number change
+                                beep.start();
+                                break;
+                            case 5:
+                                //highlight background and set color
+                                position5.setColorFilter(Color.RED);
+                                position1.setColorFilter(Color.TRANSPARENT);
+                                position2.setColorFilter(Color.TRANSPARENT);
+                                position3.setColorFilter(Color.TRANSPARENT);
+                                position4.setColorFilter(Color.TRANSPARENT);
+                                position6.setColorFilter(Color.TRANSPARENT);
+                                //play beep sound to alert of number change
+                                beep.start();
+                                break;
+                            case 6:
+                                //highlight background and set color
+                                position6.setColorFilter(Color.RED);
+                                position1.setColorFilter(Color.TRANSPARENT);
+                                position2.setColorFilter(Color.TRANSPARENT);
+                                position3.setColorFilter(Color.TRANSPARENT);
+                                position4.setColorFilter(Color.TRANSPARENT);
+                                position5.setColorFilter(Color.TRANSPARENT);
+                                //play beep sound to alert of number change
+                                beep.start();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+//                    pauseTime();
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+
+                }
+
+                @Override
+                public void onFinish() {
+
+                    resetDrill();
+
+                    //Toast
+                    Toast.makeText(getContext(), " The drill is done", Toast.LENGTH_LONG).show();
+
+                }
+            }.start();
+
+        }else {
+
+            resetDrill();
+
+        }
+    }
+
+    //Method to reset the drill
+    public void resetDrill(){
+
+        position1.setColorFilter(Color.TRANSPARENT);
+        position2.setColorFilter(Color.TRANSPARENT);
+        position3.setColorFilter(Color.TRANSPARENT);
+        position4.setColorFilter(Color.TRANSPARENT);
+        position5.setColorFilter(Color.TRANSPARENT);
+        position6.setColorFilter(Color.TRANSPARENT);
+
+        //Set counter to false
+        counterIsActive = false;
+
+        //cancel timer
+        drillCountDown.cancel();
+
+        //change the text for the playPauseButton
+        startDrill.setText("START DRILL");
+
+    }
+
+
+    //Create a method to run a background thread to pause time
+    public void pauseTime(){
+        PauseTimer threadPause = new PauseTimer();
+        threadPause.start();
+    }
+
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -109,5 +323,18 @@ public class FootworkDrills extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+}
+
+
+class PauseTimer extends Thread{
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
