@@ -117,7 +117,7 @@ public class Timer extends Fragment {
     CountDownTimer matchCD;
     CountDownTimer coolDownCD;
 
-    //Create boolean for counterIsActive to change the button text
+    //Create boolean for counterIsActive to indicate that timer is running
     Boolean counterIsActive = false;
 
 
