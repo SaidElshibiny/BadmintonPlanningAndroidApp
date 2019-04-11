@@ -64,8 +64,11 @@ public class CreditsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Credits");
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_credits, container, false);
+        View view = inflater.inflate(R.layout.fragment_credits, container, false);
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
