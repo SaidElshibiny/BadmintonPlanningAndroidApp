@@ -77,18 +77,28 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:weightSum="7"
         android:layout_weight="1">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/intervalSpinner"
+            android:textStyle="bold"></Spinner>
 
         <Button
             android:id="@+id/startDrillButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorText"
+            android:layout_weight="6"
             android:background="@drawable/rounded_button"
             android:text="START DRILL"
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="80dp"
-            android:layout_marginBottom="30dp"
             android:textAlignment="center"
             android:textStyle="bold" />
 

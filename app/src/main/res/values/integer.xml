@@ -2,5 +2,4 @@
 <resources>
 
     <integer name="anim_duration_medium">10</integer>
-
 </resources>

@@ -10,8 +10,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
@@ -76,7 +79,7 @@ public class FootworkDrills extends Fragment {
      * Date April 10, 2019
      * */
 
-    /* create the images and the button and sound */
+    /* create the images, button, sound, timer, spinner and variables */
 
     //Images
     ImageView position1;
@@ -100,8 +103,12 @@ public class FootworkDrills extends Fragment {
     //timer
     CountDownTimer drillCountDown;
 
+    //spinner
+    Spinner intervalSpinner;
+
     //Create boolean for counterIsActive to change the button text
     Boolean counterIsActive = false;
+    Integer intervalTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -114,7 +121,7 @@ public class FootworkDrills extends Fragment {
         getActivity().setTitle("Footwork Drills");
 
 
-        // grab images, button and sound
+        // grab images, button, sound and spinner
 
         //images
         position1 = view.findViewById(R.id.position1);
@@ -137,13 +144,61 @@ public class FootworkDrills extends Fragment {
         six = MediaPlayer.create(getContext(), R.raw.six);
 
 
+        //spinner
+        intervalSpinner = view.findViewById(R.id.intervalSpinner);
+
+        //Create an array adapter that will hold the values for the spinner
+        final ArrayAdapter<String> intervalAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.footworkDrillIntervalValues));
+        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        intervalSpinner.setAdapter(intervalAdapter);
+
+
+        intervalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                //create a switch for the position
+                switch (position){
+                    case 0:
+                        intervalTime = 1000;
+                        break;
+                    case 1:
+                        intervalTime = 2000;
+                        break;
+                    case 2:
+                        intervalTime = 3000;
+                        break;
+                    case 3:
+                        intervalTime = 4000;
+                        break;
+                    case 4:
+                        intervalTime = 5000;
+                        break;
+                    default:
+                        intervalTime = 1000;
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                //set interval time to 3 seconds
+                intervalTime = 3000;
+
+            }
+        });
+
+
         //onclick listener for the button to start timer for drill
         startDrill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //start timer
-                controlDrillTimer();
+                controlDrillTimer(intervalTime);
+
             }
         });
 
@@ -154,18 +209,20 @@ public class FootworkDrills extends Fragment {
     /* Footwork Drill */
 
     //Create a method for the that will control the drill
-    public void controlDrillTimer(){
+    public void controlDrillTimer(int setInterval){
 
         if (counterIsActive == false) {
 
             //set counterIsActive to true
             counterIsActive = true;
 
+            intervalSpinner.setEnabled(false);
+
             //change the text for the playPauseButton
             startDrill.setText("STOP DRILL");
 
             //Add 0.1 seconds to time to give time for the script to run and not impact timer
-             drillCountDown = new CountDownTimer(100 * 1000 + 100, 5000) {
+             drillCountDown = new CountDownTimer(100 * 1000 + 100, setInterval) {
 
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -289,6 +346,8 @@ public class FootworkDrills extends Fragment {
 
         //cancel timer
         drillCountDown.cancel();
+
+        intervalSpinner.setEnabled(true);
 
         //change the text for the playPauseButton
         startDrill.setText("START DRILL");

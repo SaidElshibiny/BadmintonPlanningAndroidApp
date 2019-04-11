@@ -37,5 +37,17 @@
     <string name="rule8">&#8226; A point is scored when you successfully hit the birdie over the net and land it in your opponent\'s court before they hit it.</string>
     <string name="rule9">&#8226; A point can also be gained when your opponent hits the birdie into either the net or outside the guidelines.</string>
     <string name="rule10">&#8226; To win a game you must reach 21 point before your opponent.</string>
+
+
+    /*create an string array to hold the interval values for the timer
+    It will be used in the interval spinner
+    By: Said Elshibiny*/
+    <string-array name="footworkDrillIntervalValues">
+        <item name="1-second">1000</item>
+        <item name="2-second">2000</item>
+        <item name="3-second">3000</item>
+        <item name="4-second">4000</item>
+        <item name="5-second">5000</item>
+    </string-array>
 </resources>
 
