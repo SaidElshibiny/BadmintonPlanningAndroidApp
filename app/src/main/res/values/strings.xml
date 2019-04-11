@@ -43,11 +43,11 @@
     It will be used in the interval spinner
     By: Said Elshibiny*/
     <string-array name="footworkDrillIntervalValues">
-        <item name="1-second">1000</item>
-        <item name="2-second">2000</item>
-        <item name="3-second">3000</item>
-        <item name="4-second">4000</item>
-        <item name="5-second">5000</item>
+        <item name="1-second">1 second Interval</item>
+        <item name="2-seconds">2 seconds Interval</item>
+        <item name="3-seconds">3 seconds Interval</item>
+        <item name="4-seconds">4 seconds Interval</item>
+        <item name="5-seconds">5 seconds Interval</item>
     </string-array>
 </resources>
 

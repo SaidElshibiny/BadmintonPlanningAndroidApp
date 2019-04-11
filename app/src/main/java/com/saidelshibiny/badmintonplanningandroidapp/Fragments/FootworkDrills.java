@@ -149,10 +149,13 @@ public class FootworkDrills extends Fragment {
 
         //Create an array adapter that will hold the values for the spinner
         final ArrayAdapter<String> intervalAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.footworkDrillIntervalValues));
+        //set as a drop-down list
         intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //set the adapter to the spinner
         intervalSpinner.setAdapter(intervalAdapter);
 
 
+        //create an on item selected listener for the spinner
         intervalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -160,21 +163,27 @@ public class FootworkDrills extends Fragment {
                 //create a switch for the position
                 switch (position){
                     case 0:
+                        //set to 1 second
                         intervalTime = 1000;
                         break;
                     case 1:
+                        //set to 2 seconds
                         intervalTime = 2000;
                         break;
                     case 2:
+                        //set to 3 seconds
                         intervalTime = 3000;
                         break;
                     case 3:
+                        //set to 4 seconds
                         intervalTime = 4000;
                         break;
                     case 4:
+                        //set to 5 seconds
                         intervalTime = 5000;
                         break;
                     default:
+                        //set default to 1 second
                         intervalTime = 1000;
                         break;
                 }
@@ -202,6 +211,7 @@ public class FootworkDrills extends Fragment {
             }
         });
 
+        //return the view
         return view;
     }
 
@@ -216,6 +226,7 @@ public class FootworkDrills extends Fragment {
             //set counterIsActive to true
             counterIsActive = true;
 
+            //make the spinner uneditable
             intervalSpinner.setEnabled(false);
 
             //change the text for the playPauseButton
@@ -227,8 +238,10 @@ public class FootworkDrills extends Fragment {
                 @Override
                 public void onTick(long millisUntilFinished) {
 
+                        //generate number between 1 and 6
                         int random = new Random().nextInt((6 - 1) + 1) + 1;
 
+                        //switch the random number and perform tasks for every number
                         switch (random){
                             case 1:
                                 //highlight background with color red
@@ -347,6 +360,7 @@ public class FootworkDrills extends Fragment {
         //cancel timer
         drillCountDown.cancel();
 
+        //make spinner editable
         intervalSpinner.setEnabled(true);
 
         //change the text for the playPauseButton
