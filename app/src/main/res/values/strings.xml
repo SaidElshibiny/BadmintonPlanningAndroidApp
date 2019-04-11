@@ -9,6 +9,8 @@
     <string name="image_attribute">Player Avatar</string>
     <!---->
     <!--References, by Chaonan Chen-->
+
+    <string name="reference_audioResources">https://freesound.org/</string>
     <string name="reference_background_selector">https://inducesmile.com/android/how-to-set-recycleview-item-row-background-color-in-android/</string>
     <string name="reference_button_under_recyclerview">https://techdoma.in/adding-buttons-below-recyclerview-android/</string>
     <string name="reference_drag_drop_tutorial">https://www.vogella.com/tutorials/AndroidDragAndDrop/article.html</string>

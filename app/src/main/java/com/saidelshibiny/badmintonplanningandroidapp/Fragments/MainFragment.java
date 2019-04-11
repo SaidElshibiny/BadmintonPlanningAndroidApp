@@ -98,7 +98,7 @@ public class MainFragment extends Fragment {
         fm = getActivity().getSupportFragmentManager();
 
         //set the title
-        getActivity().setTitle("Home Page");
+        getActivity().setTitle("Riverside Badminton Club");
 
         //link imagebuttons
         checkinPlayers = view.findViewById(R.id.hpcheckinimage);

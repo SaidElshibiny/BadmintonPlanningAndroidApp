@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
-
-import java.util.Locale;
-
-import javax.security.auth.login.LoginException;
 
 
 /**
@@ -210,11 +205,11 @@ public class Timer extends Fragment {
         /*Setup*/
 
         /* EditText */
-        warmupET.setText("Warmup");
+        warmupET.setText("Warm Up");
         footworkDrillsET.setText("Footwork Drills");
-        breakET.setText("Break");
-        matchET.setText("Match");
-        cooldownET.setText("Cooldown");
+        breakET.setText("Badminton Skills");
+        matchET.setText("Badminton Games");
+        cooldownET.setText("Cool Down");
 
         /*SeekBars */
 
@@ -222,20 +217,20 @@ public class Timer extends Fragment {
         warmupSB.setMax(1800);
         footworkDrillsSB.setMax(1800);
         breakSB.setMax(1800);
-        matchSB.setMax(1800);
+        matchSB.setMax(3600);
         cooldownSB.setMax(1800);
 
         //set the progress and the timer
-        warmupSB.setProgress(900);
-        warmUpTimerText.setText("15:00");
-        footworkDrillsSB.setProgress(1800);
-        footworkDrillTimerText.setText("30:00");
+        warmupSB.setProgress(600);
+        warmUpTimerText.setText("10:00");
+        footworkDrillsSB.setProgress(600);
+        footworkDrillTimerText.setText("10:00");
         breakSB.setProgress(900);
         breakTimerText.setText("15:00");
-        matchSB.setProgress(1800);
-        matchTimerText.setText("30:00");
-        cooldownSB.setProgress(900);
-        cooldownTimerText.setText("15:00");
+        matchSB.setProgress(2700);
+        matchTimerText.setText("45:00");
+        cooldownSB.setProgress(600);
+        cooldownTimerText.setText("10:00");
 
 
 //        //temp max values for testing
@@ -365,22 +360,22 @@ public class Timer extends Fragment {
         //cancel the countdown
         warmUpCD.cancel();
 
-        footworkDrillTimerText.setText("30:00");
-        footworkDrillsSB.setProgress(1800);
+        footworkDrillTimerText.setText("10:00");
+        footworkDrillsSB.setProgress(600);
         footworkDrillsSB.setEnabled(true);
         footworkDrillsET.setEnabled(true);
         footworkDrillsCD.cancel();
 
 
-        breakTimerText.setText("10:00");
-        breakSB.setProgress(600);
+        breakTimerText.setText("15:00");
+        breakSB.setProgress(900);
         breakSB.setEnabled(true);
         breakET.setEnabled(true);
         breakCD.cancel();
 
 
-        matchTimerText.setText("30:00");
-        matchSB.setProgress(1800);
+        matchTimerText.setText("45:00");
+        matchSB.setProgress(2700);
         matchSB.setEnabled(true);
         matchET.setEnabled(true);
         matchCD.cancel();

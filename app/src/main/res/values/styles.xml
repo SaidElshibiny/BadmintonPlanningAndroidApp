@@ -140,8 +140,18 @@
         <item name="android:fontFamily">sans-serif-black</item>
     </style>
 
+    <style name="SeekBarTheme" parent="Widget.AppCompat.SeekBar" >
+        <item name="colorAccent">@color/colorText</item>
+    </style>
+
+    <style name="CustomSpinner"
+        parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:textSize">40sp</item>
+    </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
 
 </resources>

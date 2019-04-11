@@ -10,11 +10,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Spinner;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.saidelshibiny.badmintonplanningandroidapp.R;
@@ -104,11 +103,17 @@ public class FootworkDrills extends Fragment {
     CountDownTimer drillCountDown;
 
     //spinner
-    Spinner intervalSpinner;
+    //Spinner intervalSpinner;
 
     //Create boolean for counterIsActive to change the button text
     Boolean counterIsActive = false;
-    Integer intervalTime;
+   // Integer intervalTime;
+    /*last modified by Chaonan Chen on April 11, 2019
+    Use a seek bar to set the time interval so it can be set with 0.01 presicion
+    */
+    int timeOfInterval = 100;
+    SeekBar sbInterval;
+    TextView tvInterval;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -120,9 +125,7 @@ public class FootworkDrills extends Fragment {
         //change title
         getActivity().setTitle("Footwork Drills");
 
-
         // grab images, button, sound and spinner
-
         //images
         position1 = view.findViewById(R.id.position1);
         position2 = view.findViewById(R.id.position2);
@@ -134,7 +137,6 @@ public class FootworkDrills extends Fragment {
         //button
         startDrill = view.findViewById(R.id.startDrillButton);
 
-
         //sound
         one = MediaPlayer.create(getContext(), R.raw.one);
         two = MediaPlayer.create(getContext(), R.raw.two);
@@ -143,71 +145,98 @@ public class FootworkDrills extends Fragment {
         five = MediaPlayer.create(getContext(), R.raw.five);
         six = MediaPlayer.create(getContext(), R.raw.six);
 
-
         //spinner
-        intervalSpinner = view.findViewById(R.id.intervalSpinner);
+       // intervalSpinner = view.findViewById(R.id.intervalSpinner);
+        sbInterval = view.findViewById(R.id.seekBarInterval);
+        tvInterval = view.findViewById(R.id.textViewInterval);
 
-        //Create an array adapter that will hold the values for the spinner
-        final ArrayAdapter<String> intervalAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.footworkDrillIntervalValues));
-        //set as a drop-down list
-        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //set the adapter to the spinner
-        intervalSpinner.setAdapter(intervalAdapter);
-
-
-        //create an on item selected listener for the spinner
-        intervalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        sbInterval.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int MIN = 100;
+                float miliseconds = progress;
+                if(miliseconds < MIN){
 
-                //create a switch for the position
-                switch (position){
-                    case 0:
-                        //set to 1 second
-                        intervalTime = 1000;
-                        break;
-                    case 1:
-                        //set to 2 seconds
-                        intervalTime = 2000;
-                        break;
-                    case 2:
-                        //set to 3 seconds
-                        intervalTime = 3000;
-                        break;
-                    case 3:
-                        //set to 4 seconds
-                        intervalTime = 4000;
-                        break;
-                    case 4:
-                        //set to 5 seconds
-                        intervalTime = 5000;
-                        break;
-                    default:
-                        //set default to 1 second
-                        intervalTime = 1000;
-                        break;
+                    timeOfInterval = MIN * 10 ;
+                    tvInterval.setText("Interval: " + String.format("%02d:%02d", MIN / 100, 0)  + " seconds");
+                } else {
+                    timeOfInterval = progress *10 ;
+                    tvInterval.setText("Interval: " +  String.format("%02d:%02d", (int) (progress / 100) ,progress %100 ) + " seconds");
                 }
 
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
 
-                //set interval time to 3 seconds
-                intervalTime = 3000;
-
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
+
+
+
+        //Create an array adapter that will hold the values for the spinner
+//        final ArrayAdapter<String> intervalAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.footworkDrillIntervalValues));
+//        //set as a drop-down list
+//        intervalAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        //set the adapter to the spinner
+//        intervalSpinner.setAdapter(intervalAdapter);
+//
+//
+//        //create an on item selected listener for the spinner
+//        intervalSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//
+//                //create a switch for the position
+//                switch (position){
+//                    case 0:
+//                        //set to 1 second
+//                        intervalTime = 1000;
+//                        break;
+//                    case 1:
+//                        //set to 2 seconds
+//                        intervalTime = 2000;
+//                        break;
+//                    case 2:
+//                        //set to 3 seconds
+//                        intervalTime = 3000;
+//                        break;
+//                    case 3:
+//                        //set to 4 seconds
+//                        intervalTime = 4000;
+//                        break;
+//                    case 4:
+//                        //set to 5 seconds
+//                        intervalTime = 5000;
+//                        break;
+//                    default:
+//                        //set default to 1 second
+//                        intervalTime = 1000;
+//                        break;
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//                //set interval time to 3 seconds
+//                intervalTime = 3000;
+//
+//            }
+//        });
 
 
         //onclick listener for the button to start timer for drill
         startDrill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //start timer
-                controlDrillTimer(intervalTime);
-
+//                controlDrillTimer(intervalTime);
+                controlDrillTimer(timeOfInterval);
             }
         });
 
@@ -215,6 +244,11 @@ public class FootworkDrills extends Fragment {
         return view;
     }
 
+//    public void updatePlayCountdownTimer(int secondsLeft){
+//        int minutes = (int) secondsLeft / 60;
+//        int seconds = secondsLeft % 60;
+//        tvInterval.setText(String.format("%02d : %02d", minutes, seconds) + " min");
+//    }
 
     /* Footwork Drill */
 
@@ -227,23 +261,25 @@ public class FootworkDrills extends Fragment {
             counterIsActive = true;
 
             //make the spinner uneditable
-            intervalSpinner.setEnabled(false);
-
+            //intervalSpinner.setEnabled(false);
+           tvInterval.setVisibility(getView().INVISIBLE);
+            sbInterval.setVisibility(getView().INVISIBLE);
+            sbInterval.setEnabled(false);
             //change the text for the playPauseButton
-            startDrill.setText("STOP DRILL");
+            startDrill.setText("STOP");
 
             //Add 0.1 seconds to time to give time for the script to run and not impact timer
              drillCountDown = new CountDownTimer(100 * 1000 + 100, setInterval) {
 
                 @Override
                 public void onTick(long millisUntilFinished) {
-
                         //generate number between 1 and 6
                         int random = new Random().nextInt((6 - 1) + 1) + 1;
-
                         //switch the random number and perform tasks for every number
                         switch (random){
                             case 1:
+                                //play number sound to alert of number change
+                                one.start();
                                 //highlight background with color red
                                 position1.setColorFilter(Color.RED);
                                 //set other numbers to transparent
@@ -252,10 +288,10 @@ public class FootworkDrills extends Fragment {
                                 position4.setColorFilter(Color.TRANSPARENT);
                                 position5.setColorFilter(Color.TRANSPARENT);
                                 position6.setColorFilter(Color.TRANSPARENT);
-                                //play number sound to alert of number change
-                                one.start();
                                 break;
                             case 2:
+                                //play number sound to alert of number change
+                                two.start();
                                 //highlight background with color red
                                 position2.setColorFilter(Color.RED);
                                 //set other numbers to transparent
@@ -264,10 +300,10 @@ public class FootworkDrills extends Fragment {
                                 position4.setColorFilter(Color.TRANSPARENT);
                                 position5.setColorFilter(Color.TRANSPARENT);
                                 position6.setColorFilter(Color.TRANSPARENT);
-                                //play number sound to alert of number change
-                                two.start();
                                 break;
                             case 3:
+                                //play number sound to alert of number change
+                                three.start();
                                 //highlight background and set color
                                 position3.setColorFilter(Color.RED);
                                 //set other numbers to transparent
@@ -276,10 +312,10 @@ public class FootworkDrills extends Fragment {
                                 position4.setColorFilter(Color.TRANSPARENT);
                                 position5.setColorFilter(Color.TRANSPARENT);
                                 position6.setColorFilter(Color.TRANSPARENT);
-                                //play number sound to alert of number change
-                                three.start();
                                 break;
                             case 4:
+                                //play number sound to alert of number change
+                                four.start();
                                 //highlight background and set color
                                 position4.setColorFilter(Color.RED);
                                 //set other numbers to transparent
@@ -288,10 +324,10 @@ public class FootworkDrills extends Fragment {
                                 position3.setColorFilter(Color.TRANSPARENT);
                                 position5.setColorFilter(Color.TRANSPARENT);
                                 position6.setColorFilter(Color.TRANSPARENT);
-                                //play number sound to alert of number change
-                                four.start();
                                 break;
                             case 5:
+                                //play number sound to alert of number change
+                                five.start();
                                 //highlight background and set color
                                 position5.setColorFilter(Color.RED);
                                 //set other numbers to transparent
@@ -300,10 +336,10 @@ public class FootworkDrills extends Fragment {
                                 position3.setColorFilter(Color.TRANSPARENT);
                                 position4.setColorFilter(Color.TRANSPARENT);
                                 position6.setColorFilter(Color.TRANSPARENT);
-                                //play number sound to alert of number change
-                                five.start();
                                 break;
                             case 6:
+                                //play number sound to alert of number change
+                                six.start();
                                 //highlight background and set color
                                 position6.setColorFilter(Color.RED);
                                 //set other numbers to transparent
@@ -312,24 +348,17 @@ public class FootworkDrills extends Fragment {
                                 position3.setColorFilter(Color.TRANSPARENT);
                                 position4.setColorFilter(Color.TRANSPARENT);
                                 position5.setColorFilter(Color.TRANSPARENT);
-                                //play number sound to alert of number change
-                                six.start();
                                 break;
-                            default:
-                                break;
-
+//                            default:
+//                                break;
                     }
 
                 }
 
                 @Override
                 public void onFinish() {
-
-
                     //reset drill
                     resetDrill();
-
-
                     //Toast message to indicate that drill is done
                     Toast.makeText(getContext(), " The drill is done", Toast.LENGTH_LONG).show();
 
@@ -337,10 +366,8 @@ public class FootworkDrills extends Fragment {
             }.start();
 
         }else {
-
             //reset drill if button pressed and timer not active
             resetDrill();
-
         }
     }
 
@@ -361,10 +388,15 @@ public class FootworkDrills extends Fragment {
         drillCountDown.cancel();
 
         //make spinner editable
-        intervalSpinner.setEnabled(true);
+//        intervalSpinner.setEnabled(true);
+
+        sbInterval.setVisibility(getView().VISIBLE);
+      sbInterval.setEnabled(true);
+      tvInterval.setVisibility(getView().VISIBLE);
+
 
         //change the text for the playPauseButton
-        startDrill.setText("START DRILL");
+        startDrill.setText("START");
 
     }
 
