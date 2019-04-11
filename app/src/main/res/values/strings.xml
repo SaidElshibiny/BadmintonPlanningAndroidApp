@@ -49,5 +49,34 @@
         <item name="4-seconds">4 seconds Interval</item>
         <item name="5-seconds">5 seconds Interval</item>
     </string-array>
+
+
+    /* Create strings for the coach nancy */
+
+    <string name="coachname">Nancy Leoffler-Caro</string>
+
+    <string name="Title1">Responsible for training badminton school age players from 4 to 18</string>
+
+    <string name="sentence1">Since January 1, 2012, Coach Nancy started coaching at Riverside Badminton Club. At that time, there were only a few senior high school players that were playing badminton competitively.
+        and there was no badminton summer program. By the end of 2012 the club have 80 players and had introduced a badminton summer camp with 40 players attend the 1st summer camp.</string>
+
+    <string name="sentence2">Each year we’ve had a steady increase of players. This past year we had 85 players in the program with many players playing competitive badminton for their school and outside school.</string>
+
+    <string name="sentence3">The success of these players showed with peak performances this year.
+         One of our players in grade 9 won the High School City Championship and was also the SWOSSAA champion in boy\'s singles, In the Grade School district championships our players won the Boy\'s and Girls Singles titles.
+         This past badminton season our club members played 17 tournaments and won 23 Gold medals, 7 Silver medals and 4 Bronze medals.</string>
+
+    <string name="sentence4">Our summer camp in 2018 had 65 players participants, which was the highest number of participants compare with any other sports camp Riverside Sports hosted.</string>
+
+
+    <string name="Title2">Certification and Awards</string>
+    <string name="award1">&#8226; December 30, 2012 Regional Badminton Coach Certification through Badminton Ontario</string>
+    <string name="award2">&#8226; January ,2011 St. Clair Open Badminton Ladies Singles Finalist (C Flight)</string>
+    <string name="award3">&#8226; August 2016 Michigan Senior Olympics (Badminton) Ladies Singles 55+ Champion</string>
+    <string name="award4">&#8226; August 2016 Michigan Senior Olympics (Badminton) Ladies Doubles 55+ Champion</string>
+    <string name="award5">&#8226; August 2016 Michigan Senior Olympics (Badminton) Mixed Doubles 55+ Champion</string>
+    <string name="award6">&#8226; November 2016 Windsor Essex County Senior Games (Badminton) Ladies Doubles 55+Champion</string>
+    <string name="award7">&#8226; February 2017 Provincial Senior Games (Badminton) Ladies Doubles Silver Medalist</string>
+
 </resources>
 
