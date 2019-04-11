@@ -156,10 +156,12 @@ public class MatchingPlayers extends Fragment {
 
         for(int i = 0; i<count; i++){
             String playerFirstName = checkedPlayers.get(i).getFirstName();
-            String playerLastName = checkedPlayers.get(i).getLastName().substring(0,1);
-            String name = playerFirstName + " " + playerLastName + ".";
+            String playerLastName = checkedPlayers.get(i).getLastName();
+            String name = playerFirstName + " " + playerLastName;
+            if(name.length() > 13){
+                name = name.substring(0, 13) + "...";
+            }
             court7.addView(createNewTextView(name));
-            //TODO: Add a loop to automatically assign each textview into each LinearLayout
         }
         db.close();
     //add a assistant coach before matching if needed

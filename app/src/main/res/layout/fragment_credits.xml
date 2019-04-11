@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     tools:context=".Fragments.CreditsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:text="Background Selector"
+            style="@style/TitleTextView"/>
+        <TextView
+            android:text="@string/reference_background_selector"
+            style="@style/LinkTextView"/>
+        <TextView
+            android:text="Layout setting for Buttons under recyclerview"
+            style="@style/TitleTextView"/>
+        <TextView
+            android:text="@string/reference_button_under_recyclerview"
+            style="@style/LinkTextView"/>
+        <TextView
+            android:text="Drag and Drop Tutorial"
+            style="@style/TitleTextView"/>
+        <TextView
+            android:text="@string/reference_drag_drop_tutorial"
+            style="@style/LinkTextView"/>
+        <TextView
+            android:text="Dynamic add Textview"
+            style="@style/TitleTextView"/>
+        <TextView
+            android:text="@string/reference_dynamic_add_textview"
+            style="@style/LinkTextView"/>
+        <TextView
+            android:text="Kids Avatar icons"
+            style="@style/TitleTextView"/>
+        <TextView
+            android:text="@string/reference_freepik"
+            style="@style/LinkTextView"/>
+         <TextView
+            android:text="@string/reference_flaticon"
+            style="@style/LinkTextView"/>
+        </LinearLayout>
+</ScrollView>
 
-</FrameLayout>
+
+</LinearLayout>
