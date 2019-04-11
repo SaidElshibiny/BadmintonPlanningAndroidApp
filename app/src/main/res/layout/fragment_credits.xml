@@ -13,13 +13,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-        <TextView
+            <TextView
+                android:text="Badminton rules"
+                style="@style/TitleTextView"/>
+            <TextView
+                android:text="@string/reference_scoring"
+                style="@style/LinkTextView"/>
+            <TextView
             android:text="Background Selector"
             style="@style/TitleTextView"/>
         <TextView
             android:text="@string/reference_background_selector"
             style="@style/LinkTextView"/>
-        <TextView
+            <TextView
+                android:text="Badminton Court Lines"
+                style="@style/TitleTextView"/>
+            <TextView
+                android:text="@string/reference_courtlines"
+                style="@style/LinkTextView"/>
+
+            <TextView
             android:text="Layout setting for Buttons under recyclerview"
             style="@style/TitleTextView"/>
         <TextView
@@ -46,6 +59,8 @@
          <TextView
             android:text="@string/reference_flaticon"
             style="@style/LinkTextView"/>
+
+
         </LinearLayout>
 </ScrollView>
 
