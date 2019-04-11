@@ -17,9 +17,7 @@
     <string name="reference_flaticon">https://www.flaticon.com/ (licensed by Creative Commons BY 3.0) at http://creativecommons.org/licenses/by/3.0/ </string>
     <string name="reference_scoring">https://web.mst.edu/~ima/rules/Badmintonrules.html</string>
     <string name="reference_courtlines">https://sportsknowhow.com/badminton/dimensions/badminton-court-dimensions.html</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="title_activity_splash_screen">SplashScreen</string>
 
     <!-- Made by: Said Elshibiny-->
@@ -29,6 +27,10 @@
     <string name="rule2">&#8226; Each game will start with a toss to determine which player will serve first and which side of the court the opponent would like to start from.</string>
     <string name="rule3">&#8226; To score a point the birdie must hit within the guidelines of the opponents court.</string>
     <string name="rule4">&#8226; If the birdie hits the net or lands out then a point is awarded to your opponent</string>
+    <string name="rule5">&#8226; A point is scored when you successfully hit the birdie over the net and land it in your opponent\'s court before they hit it.</string>
+    <string name="rule6">&#8226; A point can also be gained when your opponent hits the birdie into either the net or outside the guidelines.</string>
+    <string name="rule7">&#8226; Players must serve diagonally across the net to their opponent. As points are won then serving stations move from one side to the other. There are no second serves so if your first serve goes out then your opponent wins the point.</string>
+    <string name="rule8">&#8226; A serve must be hit underarm and below the servers waist. No overarm serves allowed.</string>
     <string name="rule9">&#8226; A point can also be gained when your opponent hits the birdie into either the net or outside the guidelines.</string>
     <string name="rule10">&#8226; To win a game you must reach 21 point before your opponent.</string>
     <!--Lines of Court-->
@@ -57,13 +59,9 @@
     <string name="scoring5">&#8226; At 29 all, the side scoring the 30th point, wins that game.</string>
     <string name="scoring6">&#8226; The side winning a game serves first in the next game.</string>
 
-
-
-
-
-    /*create an string array to hold the interval values for the timer
-    It will be used in the interval spinner
-    By: Said Elshibiny*/
+    <!--create an string array to hold the interval values for the timer-->
+    <!--It will be used in the interval spinner-->
+    <!--By: Said Elshibiny-->
     <string-array name="footworkDrillIntervalValues">
         <item name="1-second">1 second Interval</item>
         <item name="2-seconds">2 seconds Interval</item>
@@ -73,15 +71,11 @@
     </string-array>
 
 
-    /* Create strings for the coach nancy */
-
+    <!--Create strings for the coach nancy -->
     <string name="coachname">Nancy Leoffler-Caro</string>
-
     <string name="Title1">Responsible for training badminton school age players from 4 to 18</string>
-
     <string name="sentence1">Since January 1, 2012, Coach Nancy started coaching at Riverside Badminton Club. At that time, there were only a few senior high school players that were playing badminton competitively.
         and there was no badminton summer program. By the end of 2012 the club have 80 players and had introduced a badminton summer camp with 40 players attend the 1st summer camp.</string>
-
     <string name="sentence2">Each year we’ve had a steady increase of players. This past year we had 85 players in the program with many players playing competitive badminton for their school and outside school.</string>
 
     <string name="sentence3">The success of these players showed with peak performances this year.
@@ -89,7 +83,6 @@
          This past badminton season our club members played 17 tournaments and won 23 Gold medals, 7 Silver medals and 4 Bronze medals.</string>
 
     <string name="sentence4">Our summer camp in 2018 had 65 players participants, which was the highest number of participants compare with any other sports camp Riverside Sports hosted.</string>
-
 
     <string name="Title2">Certification and Awards</string>
     <string name="award1">&#8226; December 30, 2012 Regional Badminton Coach Certification through Badminton Ontario</string>
@@ -100,6 +93,5 @@
     <string name="award6">&#8226; November 2016 Windsor Essex County Senior Games (Badminton) Ladies Doubles 55+Champion</string>
     <string name="award7">&#8226; February 2017 Provincial Senior Games (Badminton) Ladies Doubles Silver Medalist</string>
 
->>>>>>> staging
 </resources>
 
