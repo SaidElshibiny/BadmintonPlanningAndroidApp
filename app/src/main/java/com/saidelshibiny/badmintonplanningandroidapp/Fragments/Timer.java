@@ -225,6 +225,18 @@ public class Timer extends Fragment {
         matchSB.setMax(1800);
         cooldownSB.setMax(1800);
 
+        //set the progress and the timer
+        warmupSB.setProgress(900);
+        warmUpTimerText.setText("15:00");
+        footworkDrillsSB.setProgress(1800);
+        footworkDrillTimerText.setText("30:00");
+        breakSB.setProgress(900);
+        breakTimerText.setText("15:00");
+        matchSB.setProgress(1800);
+        matchTimerText.setText("30:00");
+        cooldownSB.setProgress(900);
+        cooldownTimerText.setText("15:00");
+
 
 //        //temp max values for testing
 //        warmupSB.setMax(10);
