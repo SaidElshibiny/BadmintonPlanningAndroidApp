@@ -14,7 +14,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
-                android:text="Badminton rules"
+                android:text="Audio Resources"
+                style="@style/TitleTextView"/>
+            <TextView
+                android:text="@string/reference_audioResources"
+                style="@style/LinkTextView"/>
+            <TextView
+                android:text="Badminton Rules"
                 style="@style/TitleTextView"/>
             <TextView
                 android:text="@string/reference_scoring"
@@ -33,7 +39,7 @@
                 style="@style/LinkTextView"/>
 
             <TextView
-            android:text="Layout setting for Buttons under recyclerview"
+            android:text="Layout Setting for Buttons Under Recyclerview"
             style="@style/TitleTextView"/>
         <TextView
             android:text="@string/reference_button_under_recyclerview"
@@ -51,7 +57,7 @@
             android:text="@string/reference_dynamic_add_textview"
             style="@style/LinkTextView"/>
         <TextView
-            android:text="Kids Avatar icons"
+            android:text="Kids Avatars"
             style="@style/TitleTextView"/>
         <TextView
             android:text="@string/reference_freepik"

@@ -9,6 +9,8 @@
     <string name="image_attribute">Player Avatar</string>
     <!---->
     <!--References, by Chaonan Chen-->
+
+    <string name="reference_audioResources">https://freesound.org/</string>
     <string name="reference_background_selector">https://inducesmile.com/android/how-to-set-recycleview-item-row-background-color-in-android/</string>
     <string name="reference_button_under_recyclerview">https://techdoma.in/adding-buttons-below-recyclerview-android/</string>
     <string name="reference_drag_drop_tutorial">https://www.vogella.com/tutorials/AndroidDragAndDrop/article.html</string>
@@ -72,8 +74,10 @@
 
 
     <!--Create strings for the coach nancy -->
-    <string name="coachname">Nancy Leoffler-Caro</string>
-    <string name="Title1">Responsible for training badminton school age players from 4 to 18</string>
+    <string name="admin_coachname1">Ms. Lil Lenarduzzi</string>
+    <string name="admin_coachname2">Nancy Leoffler-Caro</string>
+
+    <string name="Title1">Head Instructor</string>
     <string name="sentence1">Since January 1, 2012, Coach Nancy started coaching at Riverside Badminton Club. At that time, there were only a few senior high school players that were playing badminton competitively.
         and there was no badminton summer program. By the end of 2012 the club have 80 players and had introduced a badminton summer camp with 40 players attend the 1st summer camp.</string>
     <string name="sentence2">Each year we’ve had a steady increase of players. This past year we had 85 players in the program with many players playing competitive badminton for their school and outside school.</string>
@@ -92,6 +96,16 @@
     <string name="award5">&#8226; August 2016 Michigan Senior Olympics (Badminton) Mixed Doubles 55+ Champion</string>
     <string name="award6">&#8226; November 2016 Windsor Essex County Senior Games (Badminton) Ladies Doubles 55+Champion</string>
     <string name="award7">&#8226; February 2017 Provincial Senior Games (Badminton) Ladies Doubles Silver Medalist</string>
+
+    <string name="Title3">Site Administrator</string>
+    <string name="responsible1">&#8226; Responsible for training badminton school age players from 4 to 18</string>
+    <string name="responsible2">&#8226; Handling player registration and payments</string>
+    <string name="responsible3">&#8226; Matching players for badminton games</string>
+    <string name="responsible4">&#8226; Processing player sign-in procedure</string>
+    <string name="responsible5">&#8226; Maintaining nets, rackets, googles, birdies</string>
+    <string name="responsible6">&#8226; Training schedule and time management</string>
+    <string name="responsible7">&#8226; Facility, coach, and assistant coaches arrangement</string>
+    <string name="responsible8">&#8226; Major contact for any question about Riverside Badminton club</string>
 
 </resources>
 
