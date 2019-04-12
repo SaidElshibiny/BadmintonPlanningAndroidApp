@@ -111,7 +111,7 @@ public class FootworkDrills extends Fragment {
     /*last modified by Chaonan Chen on April 11, 2019
     Use a seek bar to set the time interval so it can be set with 0.01 presicion
     */
-    int timeOfInterval = 100;
+    int timeOfInterval = 2000;
     SeekBar sbInterval;
     TextView tvInterval;
 
@@ -153,12 +153,12 @@ public class FootworkDrills extends Fragment {
         sbInterval.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                int MIN = 100;
+                int MIN = 150;
                 float miliseconds = progress;
                 if(miliseconds < MIN){
 
                     timeOfInterval = MIN * 10 ;
-                    tvInterval.setText("Interval: " + String.format("%02d:%02d", MIN / 100, 0)  + " seconds");
+                    tvInterval.setText("Interval: " + String.format("%02d:%02d", MIN/100, MIN%100)  + " seconds");
                 } else {
                     timeOfInterval = progress *10 ;
                     tvInterval.setText("Interval: " +  String.format("%02d:%02d", (int) (progress / 100) ,progress %100 ) + " seconds");

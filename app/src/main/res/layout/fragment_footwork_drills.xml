@@ -84,17 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/margin_10"
-            android:text="Interval: 02:00 seconds"
+            android:text="Interval: 01:50 seconds"
             android:textSize="30sp"/>
-        <!--<Spinner-->
-            <!--android:id="@+id/intervalSpinner"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:padding="@dimen/margin_10"-->
-            <!--android:textSize ="28sp"-->
-            <!--style="@style/CustomSpinner"-->
-
-            <!--&gt;</Spinner>-->
         <SeekBar
             android:id="@+id/seekBarInterval"
             android:layout_width="match_parent"
@@ -106,17 +97,21 @@
             android:max="1000"
             android:progress="200"
             android:layout_gravity="fill_horizontal"/>
-        <!--<TextView-->
-            <!--android:id="@+id/textViewInterval"-->
+        <!--<Spinner-->
+            <!--android:id="@+id/intervalSpinner"-->
             <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content" />-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:padding="@dimen/margin_10"-->
+            <!--android:textSize ="28sp"-->
+            <!--style="@style/CustomSpinner"-->
+            <!--&gt;</Spinner>-->
+
     </LinearLayout>
 
-    <!--style="@style/CenterRoundButton"-->
     <Button
         android:id="@+id/startDrillButton"
         android:text="Start"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:textColor="@color/colorText"
