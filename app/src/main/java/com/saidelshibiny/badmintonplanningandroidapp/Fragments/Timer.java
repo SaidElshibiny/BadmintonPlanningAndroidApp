@@ -135,7 +135,7 @@ public class Timer extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //change the title
-        getActivity().setTitle("Timer");
+        getActivity().setTitle("Time Management");
 
         final View view = inflater.inflate(R.layout.fragment_timer, container, false);
 

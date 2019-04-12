@@ -36,7 +36,7 @@
                   android:layout_height="match_parent"
                   android:orientation="vertical">
                   <TextView
-                      android:text="Responsibilities"
+                      android:text="Major Responsibilities"
                       style="@style/TitleTextView"/>
 
                   <TextView
@@ -57,6 +57,10 @@
                   <TextView
                       android:text="@string/responsible7"
                       style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/responsible8"
+                      style="@style/LinkTextView"/>
+
 
               </LinearLayout>
 

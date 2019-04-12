@@ -66,7 +66,7 @@ public class Rules extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        getActivity().setTitle("Rules");
+        getActivity().setTitle("Badminton Rules");
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_rules, container, false);
