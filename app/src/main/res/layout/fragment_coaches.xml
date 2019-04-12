@@ -1,14 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragments.Coaches">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Coaches Fragment" />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+             <TextView
+                  android:text="@string/Title3"
+                 style="@style/TitleYellowTextView"
+                   />
+              <TextView
+                  android:text="@string/admin_coachname1"
+                  style="@style/TitleYellowTextView"
+                  android:gravity="end"
+                   />
+          </LinearLayout>
 
-</FrameLayout>
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_weight="5"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+                  <TextView
+                      android:text="Major Responsibilities"
+                      style="@style/TitleTextView"/>
+
+                  <TextView
+                      android:text="@string/responsible2"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/responsible3"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/responsible4"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/responsible5"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/responsible6"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/responsible7"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/responsible8"
+                      style="@style/LinkTextView"/>
+
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:background="@color/colorLightBlue"
+                  android:layout_weight="2">
+                  <ImageView
+                      android:layout_width="300dp"
+                      android:layout_height="400dp"
+                      app:srcCompat="@drawable/adminlil" />
+              </LinearLayout>
+          </LinearLayout>
+
+
+          <TextView
+              android:text="@string/sentence1"
+              style="@style/LinkTextView"/>
+          <TextView
+              android:text="@string/sentence2"
+              style="@style/LinkTextView"/>
+          <TextView
+              android:text="@string/sentence3"
+              style="@style/LinkTextView"/>
+          <TextView
+              android:text="@string/sentence4"
+              style="@style/LinkTextView"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:text="@string/Title1"
+            style="@style/TitleYellowTextView"
+            />
+        <TextView
+            android:text="@string/admin_coachname2"
+            style="@style/TitleYellowTextView"
+            android:gravity="end"
+            />
+    </LinearLayout>
+    <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_weight="5"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical">
+
+                  <TextView
+                      android:text="@string/Title2"
+                      style="@style/TitleTextView"/>
+
+                  <TextView
+                      android:text="@string/award1"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/award2"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/award3"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/award4"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/award5"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/award6"
+                      style="@style/LinkTextView"/>
+                  <TextView
+                      android:text="@string/award7"
+                      style="@style/LinkTextView"/>
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="0dp"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:background="@color/colorLightBlue"
+                  android:layout_weight="2">
+                  <ImageView
+                      android:layout_width="300dp"
+                      android:layout_height="520dp"
+                      app:srcCompat="@drawable/coachnancy" />
+              </LinearLayout>
+              </LinearLayout>
+
+
+
+
+
+
+      </LinearLayout>
+
+</ScrollView>

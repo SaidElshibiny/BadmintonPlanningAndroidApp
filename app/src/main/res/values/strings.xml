@@ -8,34 +8,104 @@
     <string name="action_settings">Settings</string>
     <string name="image_attribute">Player Avatar</string>
     <!---->
-    <!--References-->
+    <!--References, by Chaonan Chen-->
+
+    <string name="reference_audioResources">https://freesound.org/</string>
     <string name="reference_background_selector">https://inducesmile.com/android/how-to-set-recycleview-item-row-background-color-in-android/</string>
     <string name="reference_button_under_recyclerview">https://techdoma.in/adding-buttons-below-recyclerview-android/</string>
     <string name="reference_drag_drop_tutorial">https://www.vogella.com/tutorials/AndroidDragAndDrop/article.html</string>
     <string name="reference_dynamic_add_textview">https://stackoverflow.com/questions/6930604/android-add-textview-to-layout-when-button-is-pressed</string>
-    <!--<div>Icons made by-->
-    <!--<a href="http://www.freepik.com/" title="Freepik">Freepik</a> from-->
-    <!--<a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by-->
-    <!--<a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
-    <string name="reference_icons">https://www.flaticon.com/</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="reference_freepik">http://www.freepik.com/</string>
+    <string name="reference_flaticon">https://www.flaticon.com/ (licensed by Creative Commons BY 3.0) at http://creativecommons.org/licenses/by/3.0/ </string>
+    <string name="reference_scoring">https://web.mst.edu/~ima/rules/Badmintonrules.html</string>
+    <string name="reference_courtlines">https://sportsknowhow.com/badminton/dimensions/badminton-court-dimensions.html</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="title_activity_splash_screen">SplashScreen</string>
 
     <!-- Made by: Said Elshibiny-->
     <!-- Badminton Rules-->
     <string name="rulesTitle">Badminton Rules</string>
     <string name="rule1">&#8226; A game can take place with either 2 (singles) or 4 (doubles) players.</string>
-    <string name="rule2">&#8226; An official match has to be played indoors on the proper court dimensions. The dimensions are 6.1m by 13.4m, The net is situated throught the middle of the court and is set at 1.55m</string>
+    <string name="rule2">&#8226; Each game will start with a toss to determine which player will serve first and which side of the court the opponent would like to start from.</string>
     <string name="rule3">&#8226; To score a point the birdie must hit within the guidelines of the opponents court.</string>
     <string name="rule4">&#8226; If the birdie hits the net or lands out then a point is awarded to your opponent</string>
-    <string name="rule5">&#8226; Players must serve diagonally across the net to their opponent. As points are won then serving stations move from one side to the other. There are no second serves so if your first serve goes out then your opponent wins the point.</string>
-    <string name="rule6">&#8226; A serve must be hit underarm and below the servers waist. No overarm serves allowed.</string>
-    <string name="rule7">&#8226; Each game will start with a toss to determine which player will serve first and which side of the court the opponent would like to start from.</string>
-    <string name="rule8">&#8226; A point is scored when you successfully hit the birdie over the net and land it in your opponent\'s court before they hit it.</string>
+    <string name="rule5">&#8226; A point is scored when you successfully hit the birdie over the net and land it in your opponent\'s court before they hit it.</string>
+    <string name="rule6">&#8226; A point can also be gained when your opponent hits the birdie into either the net or outside the guidelines.</string>
+    <string name="rule7">&#8226; Players must serve diagonally across the net to their opponent. As points are won then serving stations move from one side to the other. There are no second serves so if your first serve goes out then your opponent wins the point.</string>
+    <string name="rule8">&#8226; A serve must be hit underarm and below the servers waist. No overarm serves allowed.</string>
     <string name="rule9">&#8226; A point can also be gained when your opponent hits the birdie into either the net or outside the guidelines.</string>
     <string name="rule10">&#8226; To win a game you must reach 21 point before your opponent.</string>
+    <!--Lines of Court-->
+    <string name="linesOfCourt1">&#8226; The overall dimensions of a badminton court is 20 feet by 44 feet. The lines along these measurements mark the sidelines for doubles play and long service lines for singles play.</string>
+    <string name="linesOfCourt2">&#8226; The net line marks the middle of the court where the net is placed, creating a 22 feet by 20 feet area on each side of the net.</string>
+    <string name="linesOfCourt3">&#8226; The short service line is marked 6 feet 6 inches (some are marked 7 feet) from the center line. The area inside the short service line is also called the Non Volley Zone.</string>
+    <string name="linesOfCourt4">&#8226; The Center Line is the line that divides the court from the Short Service Line to the Back Boundary Line. This delineates the Left from Right Service Court.</string>
+    <string name="linesOfCourt5">&#8226; The Singles Side Line is marked 1 1/2 feet from the edge of the outer boundary (doubles side line)</string>
+    <string name="linesOfCourt6">&#8226; The back boundary line is the same for singles and doubles play it is the outermost back line on the court.</string>
+    <string name="linesOfCourt7">&#8226; The Long Service line for Doubles is marked 2 1/2 feet inside the Back Boundary Line.</string>
+    <string name="linesOfCourt8">&#8226; The badminton net measures 5 feet (1.55m) tall in the center.</string>
+
+    <!--Serving rules-->
+    <string name="serving1">&#8226; A serve must be hit underarm and below the servers waist. No overarm serves allowed.</string>
+    <string name="serving2">&#8226; Players must serve diagonally across the net to their opponent.</string>
+    <string name="serving3">&#8226; At the beginning of the game (0-0) and when the server’s score is even, the server serves from the right service court.</string>
+    <string name="serving4">&#8226; When the server’s score is odd, the server serves from the left service court.</string>
+    <string name="serving5">&#8226; Both feet of player must remain in a stationary position until the serve is made.</string>
+    <string name="serving6">&#8226; The feet of player can not touch the line at serving.</string>
+
+    <!--Scoring rules-->
+    <string name="scoring1">&#8226; A match consists of the best of 3 games of 21 points.</string>
+    <string name="scoring2">&#8226; Every time there is a serve – there is a point scored.</string>
+    <string name="scoring3">&#8226; The side winning a rally adds a point to its score.</string>
+    <string name="scoring4">&#8226; At 20 all, the side which gains a 2 point lead first, wins that game.</string>
+    <string name="scoring5">&#8226; At 29 all, the side scoring the 30th point, wins that game.</string>
+    <string name="scoring6">&#8226; The side winning a game serves first in the next game.</string>
+
+    <!--create an string array to hold the interval values for the timer-->
+    <!--It will be used in the interval spinner-->
+    <!--By: Said Elshibiny-->
+    <string-array name="footworkDrillIntervalValues">
+        <item name="1-second">1 second Interval</item>
+        <item name="2-seconds">2 seconds Interval</item>
+        <item name="3-seconds">3 seconds Interval</item>
+        <item name="4-seconds">4 seconds Interval</item>
+        <item name="5-seconds">5 seconds Interval</item>
+    </string-array>
+
+
+    <!--Create strings for the coach nancy -->
+    <string name="admin_coachname1">Ms. Lil Lenarduzzi</string>
+    <string name="admin_coachname2">Nancy Leoffler-Caro</string>
+
+    <string name="Title1">Head Instructor</string>
+    <string name="sentence1">Since January 1, 2012, Coach Nancy started coaching at Riverside Badminton Club. At that time, there were only a few senior high school players that were playing badminton competitively.
+        and there was no badminton summer program. By the end of 2012 the club have 80 players and had introduced a badminton summer camp with 40 players attend the 1st summer camp.</string>
+    <string name="sentence2">Each year we’ve had a steady increase of players. This past year we had 85 players in the program with many players playing competitive badminton for their school and outside school.</string>
+
+    <string name="sentence3">The success of these players showed with peak performances this year.
+         One of our players in grade 9 won the High School City Championship and was also the SWOSSAA champion in boy\'s singles, In the Grade School district championships our players won the Boy\'s and Girls Singles titles.
+         This past badminton season our club members played 17 tournaments and won 23 Gold medals, 7 Silver medals and 4 Bronze medals.</string>
+
+    <string name="sentence4">Our summer camp in 2018 had 65 players participants, which was the highest number of participants compare with any other sports camp Riverside Sports hosted.</string>
+
+    <string name="Title2">Certification and Awards</string>
+    <string name="award1">&#8226; December 30, 2012 Regional Badminton Coach Certification through Badminton Ontario</string>
+    <string name="award2">&#8226; January ,2011 St. Clair Open Badminton Ladies Singles Finalist (C Flight)</string>
+    <string name="award3">&#8226; August 2016 Michigan Senior Olympics (Badminton) Ladies Singles 55+ Champion</string>
+    <string name="award4">&#8226; August 2016 Michigan Senior Olympics (Badminton) Ladies Doubles 55+ Champion</string>
+    <string name="award5">&#8226; August 2016 Michigan Senior Olympics (Badminton) Mixed Doubles 55+ Champion</string>
+    <string name="award6">&#8226; November 2016 Windsor Essex County Senior Games (Badminton) Ladies Doubles 55+Champion</string>
+    <string name="award7">&#8226; February 2017 Provincial Senior Games (Badminton) Ladies Doubles Silver Medalist</string>
+
+    <string name="Title3">Site Administrator</string>
+    <string name="responsible1">&#8226; Responsible for training badminton school age players from 4 to 18</string>
+    <string name="responsible2">&#8226; Handling player registration and payments</string>
+    <string name="responsible3">&#8226; Matching players for badminton games</string>
+    <string name="responsible4">&#8226; Processing player sign-in procedure</string>
+    <string name="responsible5">&#8226; Maintaining nets, rackets, googles, birdies</string>
+    <string name="responsible6">&#8226; Training schedule and time management</string>
+    <string name="responsible7">&#8226; Facility, coach, and assistant coaches arrangement</string>
+    <string name="responsible8">&#8226; Major contact for any question about Riverside Badminton club</string>
+
 </resources>
 
