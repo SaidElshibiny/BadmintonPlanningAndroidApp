@@ -170,55 +170,50 @@
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
+                android:background="@color/colorLightBlue"
                 android:orientation="horizontal">
                 <EditText
                     android:id="@+id/guestName"
                     android:hint="Guest Player Name"
-                    android:layout_width="@dimen/grid_width"
+                    android:layout_width="480dp"
                     android:layout_height="50dp"
                     android:textSize="28sp"
-                    android:gravity="center"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="20dp"
+                    android:paddingStart="20dp"
                     android:background="@color/colorLightBlue"/>
                 <Button
                     android:id="@+id/addGuestPlayer"
                     android:text="Add"
                     android:textSize="28sp"
-                    android:layout_width="@dimen/grid_width"
+                    android:layout_width="220dp"
                     android:textColor="@color/colorText"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="20dp"
+
                     android:background="@drawable/rounded_button"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="20dp"
+                android:background="@color/colorLightBlue"
                 android:orientation="horizontal">
-                <!--<TextView-->
-                    <!--android:id="@+id/tvPlayTime"-->
-                    <!--android:text="10 minutes"-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:textSize="28sp"-->
-                    <!--android:layout_height="50dp"-->
-                    <!--android:gravity="center"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:layout_marginRight="50dp"-->
-                    <!--android:background="@color/colorLightBlue"-->
-                    <!--/>-->
-
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:textSize="28sp"
+                    android:paddingStart="20dp"
+                    android:text="Set timer:"/>
                 <SeekBar
                     android:id="@+id/seekBarPlayTime"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="280dp"
                     android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
+                     android:gravity="center"
+                     android:layout_marginLeft="10dp"
+                     android:thumbTint="@color/colorText"
+                     android:theme="@style/SeekBarTheme"
                     android:min="2"
                     android:max="60"
                     android:progress="10"
@@ -228,28 +223,37 @@
                     android:id="@+id/buttonPlayStart"
                     android:text="Start"
                     android:textSize="28sp"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="220dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="30dp"
                     android:textColor="@color/colorText"
-                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
                     android:background="@drawable/rounded_button"
                     />
             </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
             android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewPlayTime"
+                android:text="10:00 min"
+                android:layout_width="220dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:background="@color/colorLightBlue"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:gravity="center" />
             <Button
                 android:id="@+id/buttonReMatch"
                 android:text="Re-Match"
                 android:textSize="28sp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:textColor="@color/colorText"
                 android:layout_marginRight="20dp"
@@ -259,12 +263,9 @@
                 android:id="@+id/buttonScore"
                 android:text="Score"
                 android:textSize="28sp"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:textColor="@color/colorText"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="20dp"
                 android:background="@drawable/rounded_button"/>
         </LinearLayout>
 

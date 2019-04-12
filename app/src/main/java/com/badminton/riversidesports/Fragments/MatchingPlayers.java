@@ -43,12 +43,11 @@ public class MatchingPlayers extends Fragment {
     Button btStart;
     Button btReMatch;
     Button btScore;
-   // TextView tvPlayTime;
+    TextView tvPlayTime;
     SeekBar sbPlayTime;
     CountDownTimer playTimeCDT;
+    Boolean timerIsActive = false;
     MediaPlayer beep;
-
-
 
     DBHelper db;
 
@@ -69,6 +68,7 @@ public class MatchingPlayers extends Fragment {
     ArrayList<TextView> checkedPlayerTextViews;
     private ArrayList<Player> checkedPlayers;
     int count;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -208,7 +208,8 @@ public class MatchingPlayers extends Fragment {
             }
         });
 
-        //set the play time and  then start timer
+        //set the play time and  then start  count down timer
+        tvPlayTime = (TextView) view .findViewById(R.id.textViewPlayTime);
         sbPlayTime = (SeekBar) view.findViewById(R.id.seekBarPlayTime);
         btStart = (Button) view.findViewById(R.id.buttonPlayStart);
         sbPlayTime.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -231,8 +232,8 @@ public class MatchingPlayers extends Fragment {
             @Override
             public void onClick(View view) {
                 controlPlayCountDownTimer();
-                sbPlayTime.setEnabled(false);
-                btStart.setVisibility(view.INVISIBLE);
+                //sbPlayTime.setEnabled(false);
+               // btStart.setVisibility(view.INVISIBLE);
             }
         });
 
@@ -243,27 +244,43 @@ public class MatchingPlayers extends Fragment {
     public void updatePlayCountdownTimer(int secondsLeft){
         int minutes = (int) secondsLeft/60;
         int seconds = secondsLeft%60;
-        txTotalPlayer.setText(String.format("%02d : %02d", minutes,seconds ) + " min");
+        tvPlayTime.setText(String.format("%02d : %02d", minutes,seconds ) + " min");
     }
 
     public void controlPlayCountDownTimer(){
-        //the seekbard range is from 0 to 60 minutes. default 10 minutes, 10min * 60sec/min * 1000 millisec =  600k
-        playTimeCDT = new CountDownTimer(sbPlayTime.getProgress()*60 * 1000  , 1000) {
+        if(timerIsActive == false){
+            timerIsActive = true;
+//            sbPlayTime.setVisibility(getView().INVISIBLE);
+            sbPlayTime.setEnabled(false);
+            btStart.setText("STOP");
+            //the seekbard range is from 0 to 60 minutes. default 10 minutes, 10min * 60sec/min * 1000 millisec =  600k
+            playTimeCDT = new CountDownTimer(sbPlayTime.getProgress()*60 * 1000  , 1000) {
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-                updatePlayCountdownTimer((int) millisUntilFinished/1000);
-            }
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    updatePlayCountdownTimer((int) millisUntilFinished/1000);
+                }
 
-            @Override
-            public void onFinish() {
-                beep.start();
-                btStart.setVisibility(getView().VISIBLE);
-                sbPlayTime.setEnabled(true);
-            }
-        }.start();
+                @Override
+                public void onFinish() {
+                    beep.start();
+                    resetTimer();
+                }
+            }.start();
+        }else{
+            resetTimer();
+        }
 
+    }
 
+    public void resetTimer(){
+        timerIsActive = false;
+        playTimeCDT.cancel();
+//        sbPlayTime.setVisibility(getView().VISIBLE);
+        sbPlayTime.setEnabled(true);
+        
+        //   btStart.setVisibility(getView().VISIBLE);
+        btStart.setText("START");
     }
 
     private final class PlayerTouchListener implements View.OnTouchListener {
