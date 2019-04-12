@@ -45,8 +45,8 @@ public class MatchingPlayers extends Fragment {
     Button btScore;
     TextView tvPlayTime;
     SeekBar sbPlayTime;
-    CountDownTimer playTimeCDT;
-    Boolean timerIsActive = false;
+    public  static CountDownTimer playTimeCDT;
+    public static  Boolean timerIsActive = false;
     MediaPlayer beep;
 
     DBHelper db;
@@ -117,6 +117,17 @@ public class MatchingPlayers extends Fragment {
         getActivity().setTitle("Matching Players");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matching_players, container, false);
+
+        //cancel the footwork drills to prevent it from running in background
+        if(FootworkDrills.counterIsActive){
+            FootworkDrills.drillCountDown.cancel();
+        }
+
+        //cancel the matching timer inside the match fragment to prevent it from running in background
+        if(MatchingPlayers.timerIsActive){
+            MatchingPlayers.playTimeCDT.cancel();
+        }
+
         fm = getActivity().getSupportFragmentManager();
         beep = MediaPlayer.create(getContext(), R.raw.beep);
 

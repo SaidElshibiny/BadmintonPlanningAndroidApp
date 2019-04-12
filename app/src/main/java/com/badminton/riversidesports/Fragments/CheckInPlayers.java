@@ -93,6 +93,18 @@ public class CheckInPlayers extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_check_in_players, container, false);
+
+        //cancel the footwork drills to prevent it from running in background
+        if(FootworkDrills.counterIsActive){
+            FootworkDrills.drillCountDown.cancel();
+        }
+
+        //cancel the matching timer inside the match fragment to prevent it from running in background
+        if(MatchingPlayers.timerIsActive){
+            MatchingPlayers.playTimeCDT.cancel();
+        }
+
+
         fm = getActivity().getSupportFragmentManager();
         //set title bar
         getActivity().setTitle("Check-In Player");

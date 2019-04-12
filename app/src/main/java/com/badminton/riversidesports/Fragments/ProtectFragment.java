@@ -30,7 +30,7 @@ public class ProtectFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     TextView tvNotice;
     EditText etProtectPassword;
-    private static final String PASSWORD = "123456";
+    private static final String PASSWORD = "admin";
     String inputPassword;
     Button btCancel;
     Button btConfirm;

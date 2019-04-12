@@ -64,6 +64,17 @@ public class CreditsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        //cancel the footwork drills to prevent it from running in background
+        if(FootworkDrills.counterIsActive){
+            FootworkDrills.drillCountDown.cancel();
+        }
+
+        //cancel the matching timer inside the match fragment to prevent it from running in background
+        if(MatchingPlayers.timerIsActive){
+            MatchingPlayers.playTimeCDT.cancel();
+        }
+
         getActivity().setTitle("Credits");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_credits, container, false);

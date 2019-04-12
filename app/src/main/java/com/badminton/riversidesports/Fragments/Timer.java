@@ -134,10 +134,22 @@ public class Timer extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        final View view = inflater.inflate(R.layout.fragment_timer, container, false);
+
         //change the title
         getActivity().setTitle("Time Management");
 
-        final View view = inflater.inflate(R.layout.fragment_timer, container, false);
+        //cancel the footwork drills to prevent it from running in background
+        if(FootworkDrills.counterIsActive){
+            FootworkDrills.drillCountDown.cancel();
+        }
+
+        //cancel the matching timer inside the match fragment to prevent it from running in background
+        if(MatchingPlayers.timerIsActive){
+            MatchingPlayers.playTimeCDT.cancel();
+        }
+
 
         //Grab the TextViews, SeekBars and Button
         /* TextViews*/

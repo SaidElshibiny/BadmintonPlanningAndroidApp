@@ -202,6 +202,17 @@ public class MainActivity extends AppCompatActivity
             transaction.addToBackStack(null);
             transaction.commit();
         } else if (id == R.id.nav_email) {
+
+            //cancel the footwork drills to prevent it from running in background
+            if(FootworkDrills.counterIsActive){
+                FootworkDrills.drillCountDown.cancel();
+            }
+
+            //cancel the matching timer inside the match fragment to prevent it from running in background
+            if(MatchingPlayers.timerIsActive){
+                MatchingPlayers.playTimeCDT.cancel();
+            }
+
             String[] UsersEmails = {"test1@test.com", "test2@test.com"};
             Intent intent = new Intent(Intent.ACTION_SENDTO);
             intent.setData(Uri.parse("mailto:"));

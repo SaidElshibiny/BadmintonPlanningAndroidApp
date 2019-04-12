@@ -149,7 +149,7 @@
                   android:layout_weight="2">
                   <ImageView
                       android:layout_width="300dp"
-                      android:layout_height="500dp"
+                      android:layout_height="520dp"
                       app:srcCompat="@drawable/coachnancy" />
               </LinearLayout>
               </LinearLayout>

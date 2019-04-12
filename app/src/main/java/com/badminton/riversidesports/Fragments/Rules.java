@@ -68,6 +68,16 @@ public class Rules extends Fragment {
 
         getActivity().setTitle("Badminton Rules");
 
+        //cancel the footwork drills to prevent it from running in background
+        if(FootworkDrills.counterIsActive){
+            FootworkDrills.drillCountDown.cancel();
+        }
+
+        //cancel the matching timer inside the match fragment to prevent it from running in background
+        if(MatchingPlayers.timerIsActive){
+            MatchingPlayers.playTimeCDT.cancel();
+        }
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_rules, container, false);
     }

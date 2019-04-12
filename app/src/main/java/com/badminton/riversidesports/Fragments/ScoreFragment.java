@@ -79,6 +79,12 @@ public class ScoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_score, container, false);
+
+        //cancel the matching timer inside the match fragment to prevent it from running in background
+        if(MatchingPlayers.timerIsActive){
+            MatchingPlayers.playTimeCDT.cancel();
+        }
+
         fm = getActivity().getSupportFragmentManager();
         //set title bar
         getActivity().setTitle("Update Scores");

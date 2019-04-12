@@ -100,13 +100,13 @@ public class FootworkDrills extends Fragment {
     MediaPlayer six;
 
     //timer
-    CountDownTimer drillCountDown;
+    public static CountDownTimer drillCountDown;
 
     //spinner
     //Spinner intervalSpinner;
 
     //Create boolean for counterIsActive to change the button text
-    Boolean counterIsActive = false;
+    public static Boolean counterIsActive = false;
    // Integer intervalTime;
     /*last modified by Chaonan Chen on April 11, 2019
     Use a seek bar to set the time interval so it can be set with 0.01 presicion
@@ -121,6 +121,17 @@ public class FootworkDrills extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_footwork_drills, container, false);
+
+        //cancel the footwork drills to prevent it from running in background
+        if(counterIsActive){
+            drillCountDown.cancel();
+        }
+
+        //cancel the matching timer inside the match fragment to prevent it from running in background
+        if(MatchingPlayers.timerIsActive){
+            MatchingPlayers.playTimeCDT.cancel();
+        }
+
 
         //change title
         getActivity().setTitle("Footwork Drills");
