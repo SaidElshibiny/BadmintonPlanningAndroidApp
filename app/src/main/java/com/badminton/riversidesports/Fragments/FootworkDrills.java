@@ -244,20 +244,12 @@ public class FootworkDrills extends Fragment {
         return view;
     }
 
-//    public void updatePlayCountdownTimer(int secondsLeft){
-//        int minutes = (int) secondsLeft / 60;
-//        int seconds = secondsLeft % 60;
-//        tvInterval.setText(String.format("%02d : %02d", minutes, seconds) + " min");
-//    }
-
     /* Footwork Drill */
 
     //Create a method for the that will control the drill
     public void controlDrillTimer(int setInterval){
 
         if (counterIsActive == false) {
-
-            //set counterIsActive to true
             counterIsActive = true;
 
             //make the spinner uneditable
