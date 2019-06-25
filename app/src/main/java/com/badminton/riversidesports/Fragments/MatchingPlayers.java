@@ -28,6 +28,8 @@ import com.badminton.riversidesports.Database.DBHelper;
 import com.badminton.riversidesports.Database.Player;
 import com.badminton.riversidesports.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /* @@author Chaonan Chen
@@ -329,9 +331,20 @@ public class MatchingPlayers extends Fragment {
                     // Dropped, reassign View to ViewGroup
                     View view = (View) event.getLocalState();
                     ViewGroup owner = (ViewGroup) view.getParent();
-                    owner.removeView(view);
-                    LinearLayout container = (LinearLayout) v;
-                    container.addView(view);
+                    /**
+                     * @author Said Elshibiny
+                     *Check to see if the container is an instance of LinerLayout
+                     *if it is, remove the TextView and add it to the LinerLayout
+                     */
+                    if (v instanceof LinearLayout){
+                        owner.removeView(view);
+                        LinearLayout container = (LinearLayout) v;
+                        container.addView(view);
+                    }
+//                    else {
+//                        Toast.makeText(getContext(), "Cannot insert here", Toast.LENGTH_SHORT).show();
+//
+//                    }
                     view.setVisibility(View.VISIBLE);
 //                    RelativeLayout container1 = (RelativeLayout) v;
 //                    container1.addView(view);

@@ -19,6 +19,8 @@
     <string name="reference_flaticon">https://www.flaticon.com/ (licensed by Creative Commons BY 3.0) at http://creativecommons.org/licenses/by/3.0/ </string>
     <string name="reference_scoring">https://web.mst.edu/~ima/rules/Badmintonrules.html</string>
     <string name="reference_courtlines">https://sportsknowhow.com/badminton/dimensions/badminton-court-dimensions.html</string>
+
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
 
